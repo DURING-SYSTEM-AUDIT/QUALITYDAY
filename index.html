@@ -19,18 +19,18 @@ input,textarea{width:100%;border:1px solid #c9d6e6;border-radius:12px;padding:13
 .qr-duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}.qr-card{background:#fff;border-radius:15px;padding:11px;text-align:center;color:#153452}.qr-card img{width:180px;height:180px;object-fit:contain;display:block;margin:auto}.qr-label{font-weight:900;margin:5px 0 2px}.qr-note{font-size:11px;color:#6f8093}.live-foot{font-size:12px;color:#79a4ca;margin-top:10px;word-break:break-all}.voice-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.voice-card{border:1px solid #315577;background:var(--panel2);border-radius:14px;padding:14px;min-width:0}.voice-card b{color:#e7f5ff}.voice-card p{font-size:18px;line-height:1.45;margin:8px 0}.voice-card small{color:#7fa4c7}.rank{font-weight:900;color:#3d8cff;margin-bottom:7px}.winner-list{display:grid;gap:8px;margin-bottom:12px}.ai-note{border:1px solid #2f5e82;background:#0a2037;border-radius:12px;padding:12px;color:#b8d9f5;margin-bottom:12px}
 @media(max-width:950px){.live-grid{grid-template-columns:1fr}.live-title{font-size:38px}.voice-list{grid-template-columns:1fr}.live-head{align-items:flex-start;flex-direction:column}.admin-grid,.home-grid{grid-template-columns:1fr}}@media(max-width:620px){.live-question{white-space:normal;font-size:24px}.wrap{padding:14px}.hero{padding:22px}.hero h1{font-size:26px}.live-wrap{padding:14px}.live-panel{padding:16px}.qr-card img{width:140px;height:140px}.mode-nav{top:7px;right:7px}}
 </style></head><body>
-<div id="homeView" class="hidden"><div class="wrap"><header class="hero"><h1>2026 DURING 품질공감데이</h1><p>행사 운영 화면을 선택해 주세요.</p></header><div class="home-grid"><button class="home-card" id="goLive"><div class="home-kicker">EVENT SCREEN</div><div class="home-title">LIVE 화면</div><div class="home-desc">QR · 실시간 품질 한마디 · AI BEST 3</div></button><button class="home-card" id="goParticipant"><div class="home-kicker">PARTICIPANT</div><div class="home-title">참가자 화면</div><div class="home-desc">한국어 / English로 품질 한마디 제출</div></button><button class="home-card" id="goAdmin"><div class="home-kicker">ADMIN</div><div class="home-title">관리자 화면</div><div class="home-desc">접수 시작 · 접수 마감 + AI 즉시 선정</div></button></div><section class="card"><h2 style="margin-top:0">운영 순서</h2><div class="flowline"><span>① 접수 시작</span><b>→</b><span>② QR 참여</span><b>→</b><span>③ 접수 마감 + AI BEST 3</span><b>→</b><span>④ LIVE 즉시 발표</span></div></section></div></div>
+<div id="homeView" class="hidden"><div class="wrap"><header class="hero"><h1>2026 DURING 품질공감데이</h1><p>행사 운영 화면을 선택해 주세요.</p></header><div class="home-grid"><button class="home-card" id="goLive"><div class="home-kicker">EVENT SCREEN</div><div class="home-title">LIVE 화면</div><div class="home-desc">QR · 실시간 품질 한마디 · BEST 3</div></button><button class="home-card" id="goParticipant"><div class="home-kicker">PARTICIPANT</div><div class="home-title">참가자 화면</div><div class="home-desc">한국어 / English로 품질 한마디 제출</div></button><button class="home-card" id="goAdmin"><div class="home-kicker">ADMIN</div><div class="home-title">관리자 화면</div><div class="home-desc">접수 시작 · 접수 마감 + AI 즉시 선정</div></button></div><section class="card"><h2 style="margin-top:0">운영 순서</h2><div class="flowline"><span>① 접수 시작</span><b>→</b><span>② QR 참여</span><b>→</b><span>③ 접수 마감 + BEST 3</span><b>→</b><span>④ LIVE 즉시 발표</span></div></section></div></div>
 <div id="participantView" class="hidden"><div class="wrap"><div class="lang-switch"><button id="langKo" class="lang-btn">한국어</button><button id="langEn" class="lang-btn">English</button></div><header class="hero"><h1 id="pHeroTitle"></h1><p id="pHeroSub"></p></header><section class="card"><span id="pStateBadge" class="badge">상태 확인중</span><form id="participantForm"><label id="nameLabel"></label><input id="pName" maxlength="40" required><label id="deptLabel"></label><input id="pDept" maxlength="60" required><div class="question-card"><div class="qnum">QUESTION</div><div class="qtitle" id="qTitle"></div><div class="qsub" id="qSub"></div><textarea id="pAnswer" maxlength="220" required></textarea></div><button id="pSubmit" class="btn" type="submit" style="width:100%;margin-top:16px"></button><div id="pMsg"></div></form></section></div></div>
-<div id="adminView" class="hidden"><div class="wrap"><header class="hero"><h1>2026 품질공감데이 관리자</h1><p>접수 운영 · AI BEST 3 즉시 선정</p></header><section class="card"><label>관리자 PIN</label><input id="aPin" type="password" placeholder="관리자 PIN 입력"><div class="row" style="margin-top:14px"><button class="btn" data-admin-action="START">접수 시작</button><button id="aCloseAi" class="btn cyan">접수 마감 + AI BEST 3 즉시 선정</button><button class="btn gray" data-admin-action="RESET">전체 초기화</button></div><div id="aMsg"></div></section><div class="admin-grid"><section class="card"><h2>현재 현황</h2><div class="row"><div><div class="small">접수상태</div><div id="aState" class="stat">-</div></div><div><div class="small">참여인원</div><div id="aCount" class="stat">0명</div></div></div><div id="aWinners"></div></section><section class="card"><h2>최근 응답</h2><div id="aResponses"></div></section></div></div></div>
+<div id="adminView" class="hidden"><div class="wrap"><header class="hero"><h1>2026 품질공감데이 관리자</h1><p>접수 운영 · BEST 3 자동 선정</p></header><section class="card"><label>관리자 PIN</label><input id="aPin" type="password" placeholder="관리자 PIN 입력"><div class="row" style="margin-top:14px"><button class="btn" data-admin-action="START">접수 시작</button><button id="aCloseAi" class="btn cyan">접수 마감 + BEST 3 자동 선정</button><button class="btn gray" data-admin-action="RESET">전체 초기화</button></div><div id="aMsg"></div></section><div class="admin-grid"><section class="card"><h2>현재 현황</h2><div class="row"><div><div class="small">접수상태</div><div id="aState" class="stat">-</div></div><div><div class="small">참여인원</div><div id="aCount" class="stat">0명</div></div></div><div id="aWinners"></div></section><section class="card"><h2>최근 응답</h2><div id="aResponses"></div></section></div></div></div>
 <div id="liveView" class="hidden live-body"><div class="live-wrap"><div class="live-head"><div><div class="eyebrow">DURING · QUALITY EMPATHY DAY 2026</div><div class="live-title">품질공감데이 LIVE</div><div class="live-sub">“여러분이 생각하는 품질은 무엇인가요?”</div></div><div class="row"><div class="pill">참여 <b id="lCount">0</b>명</div><div class="pill">상태 <b id="lState">확인중</b></div></div></div><div class="live-grid"><section class="live-panel"><h2>JOIN NOW</h2><div class="live-question">“내가 생각하는 품질이란 ______ 이다.”</div><div class="qr-duo"><div class="qr-card"><img id="qrKo" alt="한국어 참여 QR"><div class="qr-label">한국어</div><div class="qr-note">KOREAN</div></div><div class="qr-card"><img id="qrEn" alt="English participant QR"><div class="qr-label">ENGLISH</div><div class="qr-note">English</div></div></div>
     <div class="ai-note" style="margin-top:14px">
-      <div style="font-weight:900;color:#36c8ff;margin-bottom:8px">AI BEST 3 선정 기준</div>
+      <div style="font-weight:900;color:#36c8ff;margin-bottom:8px">BEST 3 자동 선정 기준</div>
       <div style="line-height:1.7">
         품질의 본질·고객 신뢰 <b>30점</b> · 현장 실천성 <b>25점</b> ·
         구체성·진정성 <b>20점</b> · 공감성 <b>15점</b> · 참신성 <b>10점</b>
       </div>
       <div style="margin-top:7px;font-size:12px;color:#89adca">
-        ※ 맞춤법·문장 길이·한국어/영어 능력은 평가하지 않습니다.
+        ※ 무료 자동평가 방식입니다. 맞춤법·문장 길이보다 품질 의미·현장 실천성·공감성·중복도를 점수화합니다.
       </div>
     </div></section><section class="live-panel"><div class="row" style="justify-content:space-between"><h2>LIVE VOICES</h2><span class="live-foot">최근 응답이 위에 표시됩니다.</span></div><div id="lWinners"></div><div id="lVoices" class="voice-list"></div></section></div></div></div>
 <button id="backBtn" class="back-btn hidden" type="button">← 뒤로가기</button><div id="modeNav" class="mode-nav hidden"><a id="navHome" href="#">메뉴</a><a id="navLive" href="#">LIVE</a><a id="navParticipant" href="#">참가자</a><a id="navAdmin" href="#">관리자</a></div>
@@ -1325,13 +1325,130 @@ function qrDataUri(text){
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="white"/><path d="${d}" fill="black"/></svg>`;
   return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
 }
-const CONFIG={SUPABASE_URL:"https://cetxhdgtwgxylqefzavu.supabase.co",SUPABASE_PUBLISHABLE_KEY:"sb_publishable_rkK2kmQ_QNA94mw81npqug_lsi7qP2x"};
+const CONFIG={SUPABASE_URL:"https://cetxhdgtwgxylqefzavu.supabase.co",SUPABASE_PUBLISHABLE_KEY:"sb_publishable_rkK2kmQ_QNA94mw81npqug_1si7qP2x"};
 const I18N={ko:{hero:"2026 DURING 품질공감데이",sub:"당신이 생각하는 품질을 한 문장으로 들려주세요.",name:"이름 / 닉네임 *",dept:"소속 *",namePh:"예: 김OO 또는 닉네임",deptPh:"예: 사출생산팀",q:"품질공감데이와 관련하여, 내가 생각하는 ‘품질’이란 무엇인가요?",qs:"정답은 없습니다. 품질의 의미와 내가 중요하게 생각하는 점을 한두 문장으로 적어주세요.",ph:"예: 품질은 다음 공정과 고객에게 보내는 약속입니다.",submit:"답변 제출하기",open:"접수중",closed:"접수마감",thanks:"참여해 주셔서 감사합니다.",required:"필수 항목을 입력해 주세요."},en:{hero:"2026 DURING Quality Empathy Day",sub:"Tell us what quality means to you in one or two sentences.",name:"Name / Nickname *",dept:"Department / Team *",namePh:"e.g. Alex or nickname",deptPh:"e.g. Injection Production Team",q:"For Quality Empathy Day, what does ‘quality’ mean to you?",qs:"There is no single correct answer. Share what quality means and what you value most.",ph:"e.g. Quality is a promise we send to the next process and to our customers.",submit:"Submit answer",open:"Open",closed:"Closed",thanks:"Thank you for participating.",required:"Please complete all required fields."}};
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));const apiBase=CONFIG.SUPABASE_URL.replace(/\/$/,"");const headers=()=>({apikey:CONFIG.SUPABASE_PUBLISHABLE_KEY,"Content-Type":"application/json"});
-async function api(path,options={}){const res=await fetch(apiBase+path,{...options,headers:{...headers(),...(options.headers||{})},cache:"no-store"});const txt=await res.text();if(!res.ok){let msg=txt;try{const j=JSON.parse(txt);msg=j.message||j.error||j.details||txt}catch(e){}throw new Error(msg||("HTTP "+res.status))}return txt?JSON.parse(txt):null}async function getState(){const d=await api("/rest/v1/quality_day_state?id=eq.1&select=*");return d?.[0]||{is_open:false,winners:[]}}async function getResponses(limit=300){return await api("/rest/v1/quality_day_responses?select=*&order=created_at.desc&limit="+limit)}async function submitResponse(data){return await api("/rest/v1/quality_day_responses",{method:"POST",headers:{Prefer:"return=representation"},body:JSON.stringify(data)})}async function adminAction(pin,action){return await api("/rest/v1/rpc/quality_day_admin_action",{method:"POST",body:JSON.stringify({p_pin:String(pin),p_action:action})})}async function setWinners(pin,winners){return await api("/rest/v1/rpc/quality_day_admin_set_winners",{method:"POST",body:JSON.stringify({p_pin:String(pin),p_winners:winners})})}async function aiSelect(pin,responses){const res=await fetch(apiBase+"/functions/v1/"+encodeURIComponent(CONFIG.AI_FUNCTION_NAME),{method:"POST",headers:headers(),body:JSON.stringify({pin:String(pin),responses})});const txt=await res.text();let data={};try{data=JSON.parse(txt)}catch(e){data={error:txt}}if(!res.ok)throw new Error(data.error||("AI HTTP "+res.status));return data}
-function currentBase(){const u=new URL(location.href);u.search="";u.hash="";return u.href}function modeUrl(mode,lang){const u=new URL(currentBase());u.searchParams.set("mode",mode);if(lang)u.searchParams.set("lang",lang);return u.href}function goMode(m){location.href=m==="home"?currentBase():modeUrl(m)}
-const params=new URLSearchParams(location.search),mode=params.get("mode")||"home";const viewId=mode==="participant"?"participantView":mode==="admin"?"adminView":mode==="live"?"liveView":"homeView";document.getElementById(viewId).classList.remove("hidden");document.body.className=mode==="live"?"live-body":"";goLive?.addEventListener("click",()=>goMode("live"));goParticipant?.addEventListener("click",()=>location.href=modeUrl("participant","ko"));goAdmin?.addEventListener("click",()=>goMode("admin"));if(mode!=="home"){backBtn.classList.remove("hidden");backBtn.textContent=params.get("lang")==="en"?"← Back":"← 뒤로가기";backBtn.addEventListener("click",()=>history.length>1?history.back():location.href=currentBase())}if(mode!=="home"&&mode!=="participant"){modeNav.classList.remove("hidden");navHome.href=currentBase();navLive.href=modeUrl("live");navParticipant.href=modeUrl("participant","ko");navAdmin.href=modeUrl("admin")}
-if(mode==="participant"){let lang=params.get("lang")==="en"?"en":"ko";const note=(t,c="notice")=>{pMsg.className=c;pMsg.textContent=t};function applyLang(){const t=I18N[lang];document.documentElement.lang=lang;langKo.classList.toggle("active",lang==="ko");langEn.classList.toggle("active",lang==="en");pHeroTitle.textContent=t.hero;pHeroSub.textContent=t.sub;nameLabel.textContent=t.name;deptLabel.textContent=t.dept;pName.placeholder=t.namePh;pDept.placeholder=t.deptPh;qTitle.textContent=t.q;qSub.textContent=t.qs;pAnswer.placeholder=t.ph;pSubmit.textContent=t.submit}langKo.addEventListener("click",()=>{lang="ko";history.replaceState(null,"",modeUrl("participant","ko"));applyLang()});langEn.addEventListener("click",()=>{lang="en";history.replaceState(null,"",modeUrl("participant","en"));applyLang()});async function refresh(){const t=I18N[lang];try{const s=await getState();pStateBadge.textContent=s.is_open?t.open:t.closed;pStateBadge.className="badge"+(s.is_open?"":" closed");pSubmit.disabled=!s.is_open}catch(e){pStateBadge.textContent="Error";pStateBadge.className="badge closed";pSubmit.disabled=true;note("Supabase: "+e.message,"notice error")}}participantForm.addEventListener("submit",async e=>{e.preventDefault();const t=I18N[lang];pSubmit.disabled=true;const name=pName.value.trim(),dept=pDept.value.trim(),answer=pAnswer.value.trim();if(!name||!dept||!answer){note(t.required,"notice error");pSubmit.disabled=false;return}try{await submitResponse({name,dept,answer,action:JSON.stringify({lang})});note(t.thanks,"notice ok");participantForm.reset();applyLang()}catch(e){note("Submission failed: "+e.message,"notice error")}await refresh()});applyLang();refresh();setInterval(refresh,5000)}
-if(mode==="live"){const koUrl=modeUrl("participant","ko"),enUrl=modeUrl("participant","en");const setQr=(id,url)=>{const img=document.getElementById(id);try{img.src=qrDataUri(url)}catch(e){img.style.display="none"}};setQr("qrKo",koUrl);setQr("qrEn",enUrl);async function refreshLive(){try{const[s,r]=await Promise.all([getState(),getResponses()]);lCount.textContent=r.length;lState.textContent=s.is_open?"접수중":"접수마감";const ws=Array.isArray(s.winners)?s.winners:[];lWinners.innerHTML=ws.length?'<div style="color:#36c8ff;font-weight:900;font-size:18px;margin:8px 0">AI PICK · 오늘의 품질공감 BEST 3</div><div class="winner-list">'+ws.map((w,i)=>`<article class="voice-card"><div class="rank">${i+1}위 · ${esc(w.score)}점</div><b>${esc(w.dept)} · ${esc(w.name)}</b><p>${esc(w.answer)}</p><small>${esc(w.reason||"")}</small></article>`).join("")+"</div>":'<div class="ai-note">접수 마감 후 AI가 전체 답변을 평가해 BEST 3를 즉시 표시합니다.</div>';lVoices.innerHTML=r.slice(0,8).map(x=>`<article class="voice-card"><b>${esc(x.dept)} · ${esc(x.name)}</b><p>${esc(x.answer)}</p></article>`).join("")}catch(e){lState.textContent="연결오류"}}refreshLive();setInterval(refreshLive,1500)}
-if(mode==="admin"){const pin=()=>aPin.value.trim(),note=(t,ok=false)=>{aMsg.className=ok?"notice ok":"notice error";aMsg.textContent=t};document.querySelectorAll("[data-admin-action]").forEach(b=>b.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");try{await adminAction(pin(),b.dataset.adminAction);note("처리되었습니다.",true);refreshAdmin()}catch(e){note("처리 실패: "+e.message)}}));aCloseAi.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");aCloseAi.disabled=true;try{note("1/3 접수를 마감합니다...");await adminAction(pin(),"CLOSE");const r=await getResponses();if(r.length<3)throw new Error("AI BEST 3 선정을 위해 최소 3명의 응답이 필요합니다.");note(`2/3 ${r.length}개 답변을 AI가 평가 중입니다...`);const result=await aiSelect(pin(),r);if(!Array.isArray(result.winners)||result.winners.length!==3)throw new Error("AI가 BEST 3 결과를 정상적으로 반환하지 않았습니다.");note("3/3 BEST 3 결과를 LIVE 화면에 반영 중입니다...");await setWinners(pin(),result.winners);note("AI BEST 3 선정 완료. LIVE 화면에 즉시 표시됩니다.",true);refreshAdmin()}catch(e){note("AI 선정 실패: "+e.message+" / Supabase Edge Function(select-winners) 설정을 확인해 주세요.")}finally{aCloseAi.disabled=false}});async function refreshAdmin(){try{const[s,r]=await Promise.all([getState(),getResponses()]);aState.textContent=s.is_open?"접수중":"접수마감";aCount.textContent=r.length+"명";const ws=Array.isArray(s.winners)?s.winners:[];aWinners.innerHTML=ws.length?"<h3>AI BEST 3</h3>"+ws.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.score)}점 · ${esc(w.dept)} ${esc(w.name)}</b><br>${esc(w.answer)}<div class="small">${esc(w.reason||"")}</div></div>`).join(""):"<div class='small'>아직 선정 결과가 없습니다.</div>";aResponses.innerHTML=r.slice(0,20).map(x=>`<div class="resp-row"><b>${esc(x.dept)} · ${esc(x.name)}</b><br>${esc(x.answer)}</div>`).join("")}catch(e){aState.textContent="연결오류";note("Supabase 연결 오류: "+e.message)}}refreshAdmin();setInterval(refreshAdmin,2500)}
+async function api(path,options={}){const res=await fetch(apiBase+path,{...options,headers:{...headers(),...(options.headers||{})},cache:"no-store"});const txt=await res.text();if(!res.ok){let msg=txt;try{const j=JSON.parse(txt);msg=j.message||j.error||j.details||txt}catch(e){}throw new Error(msg||("HTTP "+res.status))}return txt?JSON.parse(txt):null}async function getState(){const d=await api("/rest/v1/quality_day_state?id=eq.1&select=*");return d?.[0]||{is_open:false,winners:[]}}async function getResponses(limit=300){return await api("/rest/v1/quality_day_responses?select=*&order=created_at.desc&limit="+limit)}async function submitResponse(data){return await api("/rest/v1/quality_day_responses",{method:"POST",headers:{Prefer:"return=representation"},body:JSON.stringify(data)})}async function adminAction(pin,action){return await api("/rest/v1/rpc/quality_day_admin_action",{method:"POST",body:JSON.stringify({p_pin:String(pin),p_action:action})})}async function setWinners(pin,winners){return await api("/rest/v1/rpc/quality_day_admin_set_winners",{method:"POST",body:JSON.stringify({p_pin:String(pin),p_winners:winners})})}
+
+function tokensOf(s){
+  return normalizeAnswerText(s).split(" ").filter(x=>x.length>=2);
+}
+
+function jaccard(a,b){
+  const A=new Set(tokensOf(a)), B=new Set(tokensOf(b));
+  if(!A.size || !B.size) return 0;
+  let inter=0;
+  for(const x of A) if(B.has(x)) inter++;
+  return inter/(A.size+B.size-inter);
+}
+
+function countHits(text, words){
+  let n=0;
+  for(const w of words) if(text.includes(w)) n++;
+  return n;
+}
+
+function autoEvaluateResponses(responses){
+  const customerWords=["고객","신뢰","약속","만족","품질보증","customer","trust","promise","satisfaction"];
+  const practiceWords=["확인","공유","보고","멈춤","중지","예방","개선","준수","표준","책임","관리","점검","검사","재발방지","실천","행동","stop","check","share","report","prevent","improve","standard","responsibility","action"];
+  const empathyWords=["우리","함께","모두","다음 공정","다음공정","동료","협업","팀","공정간","together","everyone","team","next process"];
+  const essenceWords=["기본","정확","안전","일관","불량","제로","처음부터","원칙","완성","품질","quality","right first time","zero defect"];
+  const verbWords=["한다","하겠습니다","지킨다","확인한다","공유한다","예방한다","개선한다","준수한다","책임진다","protect","check","share","prevent","improve","follow"];
+
+  const evaluated = responses.map((r, idx)=>{
+    const raw=String(r.answer||"").trim();
+    const t=normalizeAnswerText(raw);
+
+    if(!raw) return {...r,score:0,reason:"내용 없음"};
+
+    // 1) 품질 본질/고객 신뢰 30
+    let s1 = Math.min(30,
+      countHits(t, customerWords)*8 +
+      countHits(t, essenceWords)*4
+    );
+
+    // 2) 현장 실천성 25
+    let s2 = Math.min(25,
+      countHits(t, practiceWords)*5 +
+      countHits(t, verbWords)*3
+    );
+
+    // 3) 구체성·진정성 20
+    const len = raw.length;
+    let s3 = 0;
+    if(len >= 12) s3 += 6;
+    if(len >= 25) s3 += 5;
+    if(len >= 45) s3 += 4;
+    if(/[,.]|그리고|때문|위해|통해|그래서|because|so that/i.test(raw)) s3 += 3;
+    if(countHits(t, practiceWords)>=1) s3 += 2;
+    s3 = Math.min(20,s3);
+
+    // 4) 공감성 15
+    let s4 = Math.min(15,
+      countHits(t, empathyWords)*5 +
+      (t.includes("다음 공정")||t.includes("next process")?4:0)
+    );
+
+    // 5) 참신성/중복도 10
+    let maxSim=0;
+    responses.forEach((other,j)=>{
+      if(j===idx) return;
+      maxSim=Math.max(maxSim,jaccard(raw,other.answer||""));
+    });
+    let s5 = Math.max(0, Math.round(10*(1-maxSim)));
+
+    let score = s1+s2+s3+s4+s5;
+
+    // Test/무의미 응답 패널티
+    const compact=t.replace(/\s/g,"");
+    if(/^(test|test\d+|테스트|abc|aaa|111|1234?)$/i.test(compact) || len < 5){
+      score = Math.min(score, 8);
+    }
+    if(/^(.)\1{3,}$/.test(compact)) score = Math.min(score,5);
+
+    score=Math.max(0,Math.min(100,Math.round(score)));
+
+    const strengths=[];
+    if(s1>=18) strengths.push("고객·신뢰 관점");
+    if(s2>=15) strengths.push("현장 실천성");
+    if(s3>=13) strengths.push("구체성");
+    if(s4>=8) strengths.push("공감성");
+    if(s5>=8) strengths.push("차별성");
+    const reason = strengths.length
+      ? strengths.slice(0,3).join(" · ")+"이 잘 드러난 답변"
+      : "품질의 의미가 비교적 명확하게 표현된 답변";
+
+    return {...r,score,reason,detail:{s1,s2,s3,s4,s5,maxSim}};
+  });
+
+  evaluated.sort((a,b)=>{
+    if(b.score!==a.score) return b.score-a.score;
+    return String(a.created_at||"").localeCompare(String(b.created_at||""));
+  });
+
+  // Top3 diversity guard: avoid near-duplicates when possible.
+  const winners=[];
+  for(const cand of evaluated){
+    if(winners.length===3) break;
+    const tooSimilar = winners.some(w=>jaccard(cand.answer||"",w.answer||"")>=0.72);
+    if(!tooSimilar) winners.push(cand);
+  }
+  if(winners.length<3){
+    for(const cand of evaluated){
+      if(winners.length===3) break;
+      if(!winners.some(w=>String(w.id)===String(cand.id))) winners.push(cand);
+    }
+  }
+
+  return winners.slice(0,3).map(w=>({
+    id:w.id,
+    name:w.name,
+    dept:w.dept,
+    answer:w.answer,
+    action:w.action||"",
+    score:w.score,
+    reason:w.reason
+  }));
+}
+
 </script></body></html>
