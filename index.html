@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<title>2026 품질공감데이 LIVE</title>
+</head>
+<body class="live-body">
+<div id="fileWarning" style="display:none;background:#fff3cd;color:#7a5200;padding:12px 20px;font-weight:800;text-align:center">
+⚠ 이 파일을 직접 열면 실시간 연결이 되지 않습니다. <b>START_QUALITY_DAY_V7.bat</b>를 실행해 주세요.
+</div>
+
+<div class="wrap">
+  <div class="live-head">
+    <div>
+      <div class="eyebrow">DURING · QUALITY EMPATHY DAY 2026</div>
+      <div class="live-title">품질공감데이 LIVE</div>
+      <div class="live-sub">우리의 한마디가 오늘의 품질문화를 만듭니다.</div>
+    </div>
+    <div class="row">
+      <div class="pill">참여 <b id="count">0</b>명</div>
+      <div class="pill">상태 <b id="openState">확인중</b></div>
+    </div>
+  </div>
+
+  <div class="live-grid">
+    <section class="live-panel">
+      <h2>JOIN NOW</h2>
+      <div class="question">“내가 생각하는 품질이란 ______ 이다.”</div>
+      <div class="join-row">
+        <img class="live-qr" src="participant_qr.png" alt="품질공감데이 참여 QR">
+        <div class="steps">
+          <b>1. QR 촬영</b><br>
+          2. 이름/소속 입력<br>
+          3. 나의 품질 한마디 작성<br>
+          4. LIVE 화면에서 함께 확인
+        </div>
+      </div>
+      <div class="live-foot" id="urlText">참여 주소: http://192.168.20.88:8877/participant.html</div>
+      <div class="live-foot">※ 문장력·맞춤법·사용 언어는 AI 평가요소에서 제외됩니다.</div>
+    </section>
+
+    <section class="live-panel live-voices">
+      <div class="row" style="justify-content:space-between">
+        <h2>LIVE VOICES</h2>
+        <span class="live-foot">최근 응답이 위에 표시됩니다.</span>
+      </div>
+      <div id="winners"></div>
+      <div id="voiceList" class="voice-list"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+if(location.protocol==='file:') document.getElementById('fileWarning').style.display='block';
+
+const countEl=document.getElementById('count');
+const openEl=document.getElementById('openState');
+const urlEl=document.getElementById('urlText');
+const voiceList=document.getElementById('voiceList');
+const winnerBox=document.getElementById('winners');
+
+function esc(s){
+  return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+async function refresh(){
+  try{
+    const res=await fetch('/api/status?t='+Date.now(),{cache:'no-store'});
+    if(!res.ok) throw new Error('status');
+    const data=await res.json();
+
+    countEl.textContent=data.count;
+    openEl.textContent=data.state.open?'접수중':'접수마감';
+    urlEl.textContent='참여 주소: '+data.participant_url;
+
+    const winners=Array.isArray(data.state.winners)?data.state.winners:[];
+    winnerBox.innerHTML=winners.length
+      ? '<div style="margin-bottom:12px;color:#36c8ff;font-weight:900;font-size:20px">AI PICK · 오늘의 품질공감 BEST 3</div>'+
+        winners.map((x,i)=>`<div class="voice-card winner"><div class="rank">${i+1}위 · ${esc(x.score)}점</div><b>${esc(x.dept)} · ${esc(x.name)}</b><p>${esc(x.answer)}</p><small>${esc(x.reason)}</small></div>`).join('')
+      : '';
+
+    voiceList.innerHTML=[...data.responses].reverse().slice(0,8)
+      .map(x=>`<article class="voice-card"><b>${esc(x.dept)} · ${esc(x.name)}</b><p>${esc(x.answer)}</p>${x.action?`<small>${esc(x.action)}</small>`:''}</article>`)
+      .join('');
+  }catch(err){
+    openEl.textContent='연결오류';
+    urlEl.textContent='서버 연결 확인: http://192.168.20.88:8877/live.html';
+  }
+}
+
+setInterval(refresh,1000);
+refresh();
+</script>
+</body>
+</html>
