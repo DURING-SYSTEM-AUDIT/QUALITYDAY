@@ -144,6 +144,60 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
   color:#d9f7ff;background:#0d324b;font-size:11px;line-height:1.45;text-align:left
 }
 
+
+/* ===== Quality Voice: all participation view ===== */
+.quality-participation{
+  margin-top:10px;padding:11px 14px;border:1px solid #31526c;border-radius:12px;background:#0b2943
+}
+.participation-main{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.participation-big{font-size:clamp(25px,2vw,36px);font-weight:950;color:#65e6bd}
+.participation-label{margin-left:4px;font-weight:800;color:#d7edf7}
+.participation-divider{width:1px;height:32px;background:#31526c}
+.participation-main b{font-size:clamp(12px,.8vw,15px)}
+.participation-main span{color:#9db6ca}
+.participation-rate{margin-left:auto;font-size:clamp(23px,1.8vw,32px);font-weight:950;color:#ffd166}
+.participation-track{height:7px;background:#082038;border-radius:99px;overflow:hidden;margin-top:8px}
+.participation-fill{height:100%;background:linear-gradient(90deg,#36c8ff,#65e6bd,#ffd166);border-radius:99px;transition:width .45s ease}
+.participation-foot{margin-top:6px;color:#8fb2ca;font-size:clamp(9px,.62vw,11px)}
+.quality-all-feed{
+  margin-top:8px;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:8px;
+  max-height:350px;
+  overflow-y:auto;
+  padding-right:5px;
+  scrollbar-width:thin;
+  scrollbar-color:#3a607c #0a2338
+}
+.quality-all-item{
+  background:#0c2943;border:1px solid #31526c;border-radius:10px;padding:9px 10px;min-width:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.08)
+}
+.quality-all-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px;align-items:center}
+.response-no{min-width:22px;height:22px;border-radius:7px;background:#164462;color:#65e6bd;font-size:10px;font-weight:950;display:flex;align-items:center;justify-content:center}
+.quality-all-head b{font-size:clamp(9px,.65vw,12px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.quality-all-head>span:last-child{font-size:clamp(8px,.52vw,10px);color:#7698af}
+.quality-original{margin-top:7px;color:#f1f8fc;font-size:clamp(10px,.68vw,13px);line-height:1.35;word-break:break-word}
+.quality-translation{
+  margin-top:7px;padding-top:6px;border-top:1px dashed #2f536c;color:#9fe6ff;font-size:clamp(9px,.62vw,11px);line-height:1.35
+}
+.quality-translation span{
+  display:inline-block;margin-right:6px;padding:2px 5px;border-radius:5px;background:#15475e;color:#65e6bd;font-size:9px;font-weight:900
+}
+.quality-translation.waiting{color:#7698af}
+.winner-translation{margin:-5px 0 7px;padding:5px 7px;border-radius:7px;background:#123752;color:#aee9ff;font-size:10px;line-height:1.35}
+@media(max-width:1500px){
+  .quality-all-feed{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:1100px){
+  .quality-all-feed{grid-template-columns:repeat(3,minmax(0,1fr));max-height:380px}
+}
+@media(max-width:760px){
+  .quality-all-feed{grid-template-columns:1fr;max-height:480px}
+  .participation-rate{margin-left:0}
+}
+
 </style></head><body>
 
 <div id="homeView" class="hidden"><div class="wrap">
@@ -1646,11 +1700,77 @@ function recentQuizResponses(rows,qid,limit=5){
      created_at:r.created_at||""
    }))
 }
-function recentQualityResponses(rows,limit=5){
- return rows.slice()
-   .sort((a,b)=>String(b.created_at||"").localeCompare(String(a.created_at||"")))
-   .slice(0,limit)
+function allQualityResponses(rows){
+ return rows.slice().sort((a,b)=>String(b.created_at||"").localeCompare(String(a.created_at||"")))
 }
+
+const QUALITY_TRANSLATION_STORAGE="qd_quality_translations_v1";
+let qualityTranslationCache=new Map();
+let translationServiceStatus="idle";
+let translationRetryAfter=0;
+
+try{
+ const saved=JSON.parse(localStorage.getItem(QUALITY_TRANSLATION_STORAGE)||"{}");
+ qualityTranslationCache=new Map(Object.entries(saved));
+}catch(e){}
+
+function saveTranslationCache(){
+ try{
+   const obj={};
+   for(const [k,v] of qualityTranslationCache.entries())obj[k]=v;
+   localStorage.setItem(QUALITY_TRANSLATION_STORAGE,JSON.stringify(obj));
+ }catch(e){}
+}
+function hasKoreanText(s){return /[가-힣]/.test(String(s||""))}
+function needsKoreanTranslation(s){
+ const t=String(s||"").trim();
+ return t.length>=2 && !hasKoreanText(t) && /[\p{L}]/u.test(t);
+}
+function qualityTranslationFor(row){
+ const v=qualityTranslationCache.get(String(row.id));
+ return v&&v.ko ? v.ko : "";
+}
+async function requestQualityTranslations(rows){
+ if(Date.now()<translationRetryAfter)return;
+ const pending=rows
+   .filter(r=>needsKoreanTranslation(r.answer)&&!qualityTranslationCache.has(String(r.id)))
+   .slice(0,20)
+   .map(r=>({id:String(r.id),text:String(r.answer||"").slice(0,500)}));
+
+ if(!pending.length){
+   if(translationServiceStatus==="idle")translationServiceStatus="ready";
+   return;
+ }
+
+ translationServiceStatus="working";
+ try{
+   const res=await fetch(`${apiBase}/functions/v1/translate-quality`,{
+     method:"POST",
+     headers:{
+       apikey:CONFIG.SUPABASE_PUBLISHABLE_KEY,
+       "Content-Type":"application/json"
+     },
+     body:JSON.stringify({items:pending})
+   });
+   const raw=await res.text();
+   if(!res.ok)throw new Error(raw||`HTTP ${res.status}`);
+   const data=raw?JSON.parse(raw):{};
+   for(const item of (data.translations||[])){
+     if(item&&item.id&&item.ko){
+       qualityTranslationCache.set(String(item.id),{
+         ko:String(item.ko),
+         sourceLanguage:String(item.sourceLanguage||"")
+       });
+     }
+   }
+   saveTranslationCache();
+   translationServiceStatus="ready";
+ }catch(e){
+   translationServiceStatus="unavailable";
+   translationRetryAfter=Date.now()+60000;
+ }
+}
+
 function recentTimeLabel(iso){
  try{
    return new Date(iso).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false});
@@ -1946,9 +2066,16 @@ if(mode==="live"){
    lQuestion.textContent="여러분에게 ‘품질’이란 무엇인가요?";
    lQuestionEn.textContent="What does quality mean to you?";
 
+   // 외국어 응답은 백그라운드에서 한국어 번역 요청
+   requestQualityTranslations(qrows);
+
    const realtime=autoEvaluateQuality(qrows);
    const winners=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:realtime;
-   const recent=recentQualityResponses(qrows,5);
+   const all=allQualityResponses(qrows);
+   const totalParticipants=participantCount(liveRaw);
+   const submitted=all.length;
+   const notSubmitted=Math.max(0,totalParticipants-submitted);
+   const rate=totalParticipants?Math.round(submitted*100/totalParticipants):0;
 
    if(winners.length){
      lResults.className="quality-voice-grid";
@@ -1956,6 +2083,7 @@ if(mode==="live"){
        <span class="winner-badge">${qs.reveal?"FINAL":"LIVE"} TOP ${i+1} · ${esc(w.score)}점</span>
        <b>${esc(w.dept)} · ${esc(w.name)}</b>
        <p>${esc(w.answer)}</p>
+       ${qualityTranslationFor(w)?`<div class="winner-translation">한국어 번역 · ${esc(qualityTranslationFor(w))}</div>`:""}
        <small>${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</small>
      </article>`).join("");
    }else{
@@ -1963,23 +2091,56 @@ if(mode==="live"){
      lResults.innerHTML='<div class="ai-note">아직 품질 한마디가 등록되지 않았습니다.</div>';
    }
 
-   const recentHtml=`<div class="live-section-title mint">실시간 품질 한마디 · 최근 ${Math.min(recent.length,5)}건</div>
-     <div class="quality-recent-feed">${recent.length?recent.map(r=>`
-       <div class="quality-recent-item">
-         <div class="quality-recent-head">
-           <span class="recent-dot"></span>
-           <b>${esc(r.dept)} · ${esc(r.name)}</b>
-           <span>${esc(recentTimeLabel(r.created_at))}</span>
-         </div>
-         <p>${esc(r.answer)}</p>
-       </div>`).join(""):'<div class="recent-empty">아직 품질 한마디가 등록되지 않았습니다.</div>'}</div>`;
+   const oldFeed=document.querySelector(".quality-all-feed");
+   const oldScroll=oldFeed?oldFeed.scrollTop:0;
+
+   const translationText=
+     translationServiceStatus==="working" ? "외국어 자동번역 중" :
+     translationServiceStatus==="ready" ? "외국어 → 한국어 자동번역 준비" :
+     translationServiceStatus==="unavailable" ? "자동번역 함수 미연결 · 원문은 정상 표시" :
+     "외국어 자동번역 대기";
+
+   const allHtml=`<div class="quality-participation">
+       <div class="participation-main">
+         <div><span class="participation-big">${submitted}</span><span class="participation-label">명 제출</span></div>
+         <div class="participation-divider"></div>
+         <div><b>전체 참여 ${totalParticipants}명</b><span> · 미제출 ${notSubmitted}명</span></div>
+         <div class="participation-rate">${rate}%</div>
+       </div>
+       <div class="participation-track"><div class="participation-fill" style="width:${rate}%"></div></div>
+       <div class="participation-foot">품질 한마디 참여율 · ${esc(translationText)} · 새 응답이 맨 위에 표시됩니다.</div>
+     </div>
+     <div class="live-section-title mint">실시간 품질 한마디 · 전체 ${submitted}건</div>
+     <div class="quality-all-feed">${all.length?all.map((r,i)=>{
+        const ko=qualityTranslationFor(r);
+        const foreign=needsKoreanTranslation(r.answer);
+        return `<div class="quality-all-item">
+          <div class="quality-all-head">
+            <span class="response-no">${submitted-i}</span>
+            <b>${esc(r.dept)} · ${esc(r.name)}</b>
+            <span>${esc(recentTimeLabel(r.created_at))}</span>
+          </div>
+          <div class="quality-original">${esc(r.answer)}</div>
+          ${foreign
+            ? `<div class="quality-translation ${ko?"":"waiting"}">
+                 <span>한국어</span>
+                 ${ko?esc(ko):(translationServiceStatus==="unavailable"?"자동번역 설정 후 표시됩니다.":"번역 중...")}
+               </div>`
+            : ""}
+        </div>`
+     }).join(""):'<div class="recent-empty">아직 품질 한마디가 등록되지 않았습니다.</div>'}</div>`;
 
    lMessage.innerHTML=`<div class="${qs.reveal?"live-message":"ai-note"}">
      ${qs.reveal?"최종 TOP 5를 공개합니다.":"실시간 자동평가 TOP 5입니다. 새 응답이 들어오면 순위가 바뀔 수 있습니다."}
      <br><small>평가기준: 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10</small>
-   </div>${recentHtml}`;
+   </div>${allHtml}`;
+
+   requestAnimationFrame(()=>{
+     const feed=document.querySelector(".quality-all-feed");
+     if(feed)feed.scrollTop=oldScroll;
+   });
  }
- function renderAll(qrows,quality,qs){
+function renderAll(qrows,quality,qs){
    const overall=quizOverallTop5(qrows),qw=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:autoEvaluateQuality(quality);
    let html='<div style="grid-column:1/-1;color:#36c8ff;font-weight:900;font-size:22px">QUIZ · 실시간 종합 TOP 5</div>';
    html+=(overall.length?overall.map((w,i)=>`<div class="summary-card"><div class="mini-q">${i+1}위 · ${esc(w.name)}</div><div class="mini-top">${w.correct}/${QUESTIONS.length} 정답</div><small>${esc(w.dept)} · 평균 정답 제출순위 ${w.avgCorrectRank===9999?"-":w.avgCorrectRank.toFixed(1)}<br>선정: 정답 수 우선 → 동점 시 응답속도 우선</small></div>`).join(""):'<div class="summary-card">아직 퀴즈 응답이 없습니다.</div>');
@@ -2051,7 +2212,7 @@ if(mode==="admin"){
      const liveTop=autoEvaluateQuality(quality);
      aReveal.textContent=qs.reveal?"품질 TOP5 숨김":"품질 한마디 TOP5 확정·공개";
      aCurrent.innerHTML=`<b>FINAL · 품질 한마디</b><br><span class="small">응답 ${quality.length}건 · TOP5 공개 ${qs.reveal?"ON":"OFF"}<br>평가기준: 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10</span>`;
-     aResponses.innerHTML='<h3>실시간 자동평가 TOP5</h3>'+(liveTop.length?liveTop.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>')+'<h3 style="margin-top:18px">실시간 최근 품질 한마디 5건</h3>'+quality.slice().reverse().slice(0,5).map(r=>`<div class="resp-row"><b>${esc(r.dept)} · ${esc(r.name)}</b><br>${esc(r.answer)}</div>`).join('');
+     aResponses.innerHTML='<h3>실시간 자동평가 TOP5</h3>'+(liveTop.length?liveTop.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>')+'<h3 style="margin-top:18px">품질 한마디 전체 '+quality.length+'건</h3>'+quality.slice().reverse().map(r=>`<div class="resp-row"><b>${esc(r.dept)} · ${esc(r.name)}</b><br>${esc(r.answer)}${qualityTranslationFor(r)?`<div class="small" style="margin-top:4px;color:#1683a4">한국어 번역: ${esc(qualityTranslationFor(r))}</div>`:""}</div>`).join('');
      return
    }
 
