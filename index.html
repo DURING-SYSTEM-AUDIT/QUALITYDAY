@@ -100,6 +100,50 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
  .leaderboard,.quality-voice-grid{grid-template-columns:1fr}
 }
 
+
+/* ===== Realtime response feed ===== */
+.live-section-title{margin-top:12px;font-weight:950;font-size:clamp(15px,1.05vw,19px);letter-spacing:.02em}
+.live-section-title.cyan{color:#36c8ff}
+.live-section-title.mint{color:#65e6bd}
+.live-section-title.gold{color:#ffd166}
+.recent-feed{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:8px}
+.recent-item{display:grid;grid-template-columns:10px minmax(0,1.15fr) minmax(0,.95fr) auto;align-items:center;gap:7px;background:#0c2943;border:1px solid #31526c;border-radius:10px;padding:9px 10px;min-width:0}
+.recent-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#61e5b8;box-shadow:0 0 9px rgba(97,229,184,.65)}
+.recent-person{min-width:0}
+.recent-person b{display:block;font-size:clamp(11px,.78vw,14px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recent-person small{display:block;color:#9db6ca;font-size:clamp(8px,.57vw,10px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recent-answer{font-size:clamp(9px,.62vw,11px);line-height:1.25;text-align:center}
+.recent-answer b,.recent-answer span{display:block}
+.recent-answer span{color:#9db6ca}
+.recent-time{font-size:clamp(8px,.55vw,10px);color:#7fa1b8}
+.correct-text{color:#65e6bd!important;font-weight:900}
+.wrong-text{color:#ff9a9a!important;font-weight:900}
+.recent-empty{grid-column:1/-1;background:#0c2943;border:1px dashed #31526c;border-radius:10px;padding:10px;color:#9db6ca;text-align:center}
+.quality-recent-feed{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:8px}
+.quality-recent-item{background:#0c2943;border:1px solid #31526c;border-radius:10px;padding:10px;min-width:0}
+.quality-recent-head{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:7px;align-items:center}
+.quality-recent-head b{font-size:clamp(10px,.72vw,13px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.quality-recent-head span:last-child{font-size:clamp(8px,.55vw,10px);color:#7fa1b8}
+.quality-recent-item p{margin:7px 0 0;color:#eef7ff;font-size:clamp(10px,.7vw,13px);line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:1200px){
+ .recent-feed,.quality-recent-feed{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:800px){
+ .recent-feed,.quality-recent-feed{grid-template-columns:1fr}
+}
+
+
+/* ===== Local PC test mode ===== */
+.local-test-btn{
+  margin-top:12px;width:100%;border:0;border-radius:10px;padding:12px 14px;
+  background:#12a8d6;color:#fff;font-size:14px;font-weight:900;cursor:pointer
+}
+.local-test-btn:hover{filter:brightness(1.08)}
+.local-test-help{
+  margin-top:8px;padding:9px 10px;border:1px dashed #82d8ef;border-radius:9px;
+  color:#d9f7ff;background:#0d324b;font-size:11px;line-height:1.45;text-align:left
+}
+
 </style></head><body>
 
 <div id="homeView" class="hidden"><div class="wrap">
@@ -180,6 +224,11 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
           <div class="qr-label">참여 QR · JOIN HERE</div>
           <div class="qr-note">한국어 / English는 휴대폰 화면에서 선택할 수 있습니다.</div>
           <div id="qrLinkText" class="qr-url"></div>
+          <button id="localTestParticipantBtn" type="button" class="local-test-btn hidden">PC 테스트 참가자 새 창 열기</button>
+          <div id="localTestHelp" class="local-test-help hidden">
+            같은 PC에서 참가자 화면을 새 창으로 열어 실시간 반영을 확인할 수 있습니다.<br>
+            버튼을 다시 누르면 새로운 테스트 참가자로 열립니다.
+          </div>
         </div>
         <div class="warm-quote">“QR은 처음 한 번만!”<br>Q1~Q10은 모두 개인전입니다.<br><br>정답도 중요하지만 속도도 중요!<br>문제별 빠른 정답 TOP 3에 도전하세요.</div>
       </div>
@@ -1582,6 +1631,32 @@ function correctTop3(rows,qid){
  }
  return out.sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at))).slice(0,3)
 }
+
+function recentQuizResponses(rows,qid,limit=5){
+ const q=QUESTIONS.find(x=>x.id===qid);
+ return rows
+   .filter(r=>r.quiz.questionId===qid)
+   .sort((a,b)=>String(b.created_at||"").localeCompare(String(a.created_at||"")))
+   .slice(0,limit)
+   .map(r=>({
+     name:r.name||"",
+     dept:r.dept||"",
+     choice:r.quiz.choice||"",
+     correct:q ? r.quiz.choice===q.correct : false,
+     created_at:r.created_at||""
+   }))
+}
+function recentQualityResponses(rows,limit=5){
+ return rows.slice()
+   .sort((a,b)=>String(b.created_at||"").localeCompare(String(a.created_at||"")))
+   .slice(0,limit)
+}
+function recentTimeLabel(iso){
+ try{
+   return new Date(iso).toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false});
+ }catch(e){return ""}
+}
+
 function quizOverallTop5(rows){
  const people=new Map();
 
@@ -1702,15 +1777,15 @@ if(mode!=="home"&&mode!=="participant"){
 /* PARTICIPANT */
 if(mode==="participant"){
  let lang=params.get("lang")==="en"?"en":"ko",selected=null,lastKey=null,lastState=null,lastRaw=[];
- let pid=localStorage.getItem("qd_individual_pid")||newPid();localStorage.setItem("qd_individual_pid",pid);
- pName.value=localStorage.getItem("qd_individual_name")||"";
- pDept.value=localStorage.getItem("qd_individual_dept")||"";
+ const testId=params.get("testid")||"";let pid=testId?("pc-test-"+testId):(localStorage.getItem("qd_individual_pid")||newPid());if(!testId)localStorage.setItem("qd_individual_pid",pid);
+ pName.value=testId?"":(localStorage.getItem("qd_individual_name")||"");
+ pDept.value=testId?"":(localStorage.getItem("qd_individual_dept")||"");
  const note=(t,c="notice")=>{pMsg.className=c;pMsg.textContent=t};
 
  function applyLang(){
    const t=I18N[lang];document.documentElement.lang=lang;
    langKo.classList.toggle("active",lang==="ko");langEn.classList.toggle("active",lang==="en");
-   pHeroTitle.textContent=t.hero;pHeroSub.textContent=t.sub;nameLabel.textContent=t.name;deptLabel.textContent=t.dept;pName.placeholder=t.namePh;
+   pHeroTitle.textContent=t.hero;pHeroSub.textContent=testId?(lang==="en"?"PC TEST MODE · This window is counted as a separate test participant.":"PC TEST MODE · 이 창은 별도 테스트 참가자로 집계됩니다."):t.sub;nameLabel.textContent=t.name;deptLabel.textContent=t.dept;pName.placeholder=t.namePh;
    pDept.options[0].textContent=lang==="en"?"Select your team":"소속을 선택하세요 / Select your team"
  }
  langKo.addEventListener("click",()=>{lang="ko";history.replaceState(null,"",modeUrl("participant","ko"));applyLang();renderCurrent()});
@@ -1761,7 +1836,7 @@ if(mode==="participant"){
    if(!name||!dept)return note(t.required,"notice error");
    const qs=getQuizState(lastState),cq=Number(qs.currentQuestion)||1;
    try{
-     pSubmit.disabled=true;localStorage.setItem("qd_individual_name",name);localStorage.setItem("qd_individual_dept",dept);
+     pSubmit.disabled=true;if(!testId){localStorage.setItem("qd_individual_name",name);localStorage.setItem("qd_individual_dept",dept);}
      if(cq===QUALITY_STAGE){
        const answer=pQualityText.value.trim();
        if(answer.length<5){pSubmit.disabled=false;return note(lang==="en"?"Please write at least one short sentence.":"품질에 대한 생각을 한 문장 이상 적어주세요.","notice error")}
@@ -1787,8 +1862,25 @@ if(mode==="participant"){
 if(mode==="live"){
  const joinUrl=modeUrl("participant");
  const qrImg=document.getElementById("qrMain"),qrText=document.getElementById("qrLinkText");
- if(location.protocol==="file:"){qrImg.style.display="none";qrText.className="qr-local-warning";qrText.innerHTML="현재 PC의 로컬 HTML로 실행 중입니다.<br>휴대폰 QR 참여는 GitHub Pages 주소에서 LIVE 화면을 열어야 정상 작동합니다."}
- else{try{qrImg.src=qrDataUri(joinUrl);qrText.textContent=joinUrl}catch(e){qrImg.style.display="none";qrText.className="qr-local-warning";qrText.textContent="QR 생성 오류: "+e.message}}
+ if(location.protocol==="file:"){
+   qrImg.style.display="none";
+   qrText.className="qr-local-warning";
+   qrText.innerHTML="현재 PC 로컬 테스트 모드입니다.<br>아래 버튼으로 참가자 창을 열어 실시간 반영을 확인할 수 있습니다.";
+   localTestParticipantBtn.classList.remove("hidden");
+   localTestHelp.classList.remove("hidden");
+ }else{
+   try{qrImg.src=qrDataUri(joinUrl);qrText.textContent=joinUrl}
+   catch(e){qrImg.style.display="none";qrText.className="qr-local-warning";qrText.textContent="QR 생성 오류: "+e.message}
+ }
+
+ localTestParticipantBtn.addEventListener("click",()=>{
+   const u=new URL(modeUrl("participant","ko"));
+   u.searchParams.set("testid",Date.now().toString()+"-"+Math.random().toString(36).slice(2,7));
+   const w=window.open(u.href,"_blank","width=520,height=850,resizable=yes,scrollbars=yes");
+   if(!w){
+     qrText.innerHTML="팝업이 차단되었습니다. 브라우저 주소창 오른쪽의 팝업 차단 아이콘에서 허용 후 다시 눌러주세요.";
+   }
+ });
 
  let liveState=null,liveRaw=[];
 
@@ -1815,7 +1907,7 @@ if(mode==="live"){
 
    const overall=quizOverallTop5(rows);
    const overallHtml=overall.length
-     ? `<div style="margin-top:14px;color:#36c8ff;font-weight:900;font-size:18px">실시간 스피드퀴즈 종합 TOP 5</div>
+     ? `<div class="live-section-title cyan">실시간 스피드퀴즈 종합 TOP 5</div>
         <div class="leaderboard">${overall.map((w,i)=>`
           <div class="leader-card">
             <div class="place">${i+1}위</div>
@@ -1823,26 +1915,69 @@ if(mode==="live"){
             <div class="score">${w.correct}/${QUESTIONS.length} 정답 · ${esc(w.dept)}<br>
             <small>평균 정답 제출순위 ${w.avgCorrectRank===9999?"-":w.avgCorrectRank.toFixed(1)}</small></div>
           </div>`).join("")}</div>`
-     : '<div class="ai-note" style="margin-top:14px">아직 스피드퀴즈 응답이 없습니다.</div>';
+     : '<div class="ai-note" style="margin-top:12px">아직 스피드퀴즈 응답이 없습니다.</div>';
+
+   const recent=recentQuizResponses(rows,q.id,5);
+   const recentHtml=`<div class="live-section-title mint">방금 올라온 응답 · 최근 ${Math.min(recent.length,5)}건</div>
+     <div class="recent-feed">${recent.length?recent.map(r=>`
+       <div class="recent-item">
+         <span class="recent-dot"></span>
+         <div class="recent-person"><b>${esc(r.name)}</b><small>${esc(r.dept)}</small></div>
+         <div class="recent-answer">${qs.reveal
+           ? `<b>${esc(r.choice)} 선택</b><span class="${r.correct?"correct-text":"wrong-text"}">${r.correct?"정답":"오답"}</span>`
+           : `<b>응답 완료</b><span>Answer submitted</span>`}
+         </div>
+         <div class="recent-time">${esc(recentTimeLabel(r.created_at))}</div>
+       </div>`).join(""):'<div class="recent-empty">아직 이 문제에 제출된 응답이 없습니다.</div>'}</div>`;
 
    if(!qs.reveal){
-     lMessage.innerHTML='<div class="ai-note">최종 순위는 ① 정답 수 우선 → ② 동점 시 정답 제출속도 우선으로 선정합니다.</div>'+overallHtml;
+     lMessage.innerHTML='<div class="ai-note">최종 순위는 ① 정답 수 우선 → ② 동점 시 정답 제출속도 우선입니다. 정답 공개 전에는 선택 답안을 숨깁니다.</div>'+recentHtml+overallHtml;
      return
    }
 
    lMessage.innerHTML=`<div class="live-message">${esc(q.messageKo)}<br><small>${esc(q.messageEn)}</small></div>
-   <div style="color:#ffd166;font-weight:900;font-size:20px;margin-top:14px">이 문제 빠른 정답 TOP 3</div>
+   <div class="live-section-title gold">이 문제 빠른 정답 TOP 3</div>
    ${top3Html(rows,q.id)}
+   ${recentHtml}
    ${overallHtml}`;
  }
  function renderQuality(qrows,qs){
-   lQLbl.textContent="FINAL · QUALITY VOICE";lQuestion.textContent="여러분에게 ‘품질’이란 무엇인가요?";lQuestionEn.textContent="What does quality mean to you?";
-   const realtime=autoEvaluateQuality(qrows),winners=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:realtime;
+   lQLbl.textContent="FINAL · QUALITY VOICE";
+   lQuestion.textContent="여러분에게 ‘품질’이란 무엇인가요?";
+   lQuestionEn.textContent="What does quality mean to you?";
+
+   const realtime=autoEvaluateQuality(qrows);
+   const winners=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:realtime;
+   const recent=recentQualityResponses(qrows,5);
+
    if(winners.length){
      lResults.className="quality-voice-grid";
-     lResults.innerHTML=winners.map((w,i)=>`<article class="quality-voice-card ${qs.reveal?"winner":""}"><span class="winner-badge">${qs.reveal?"FINAL":"LIVE"} TOP ${i+1} · ${esc(w.score)}점</span><b>${esc(w.dept)} · ${esc(w.name)}</b><p>${esc(w.answer)}</p><small>${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</small></article>`).join("");
-     lMessage.innerHTML=`<div class="${qs.reveal?"live-message":"ai-note"}">${qs.reveal?"최종 TOP 3를 공개합니다.":"실시간 자동평가 TOP 5입니다. 새 응답이 들어오면 순위가 바뀔 수 있습니다."}<br><small>평가기준: 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10</small></div>`
-   }else{lResults.className="quality-voice-grid";lResults.innerHTML='<div class="ai-note">아직 품질 한마디가 등록되지 않았습니다.</div>';lMessage.innerHTML='<div class="ai-note">응답이 등록되면 실시간 TOP 3 자동평가가 시작됩니다.</div>'}
+     lResults.innerHTML=winners.map((w,i)=>`<article class="quality-voice-card ${qs.reveal?"winner":""}">
+       <span class="winner-badge">${qs.reveal?"FINAL":"LIVE"} TOP ${i+1} · ${esc(w.score)}점</span>
+       <b>${esc(w.dept)} · ${esc(w.name)}</b>
+       <p>${esc(w.answer)}</p>
+       <small>${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</small>
+     </article>`).join("");
+   }else{
+     lResults.className="quality-voice-grid";
+     lResults.innerHTML='<div class="ai-note">아직 품질 한마디가 등록되지 않았습니다.</div>';
+   }
+
+   const recentHtml=`<div class="live-section-title mint">실시간 품질 한마디 · 최근 ${Math.min(recent.length,5)}건</div>
+     <div class="quality-recent-feed">${recent.length?recent.map(r=>`
+       <div class="quality-recent-item">
+         <div class="quality-recent-head">
+           <span class="recent-dot"></span>
+           <b>${esc(r.dept)} · ${esc(r.name)}</b>
+           <span>${esc(recentTimeLabel(r.created_at))}</span>
+         </div>
+         <p>${esc(r.answer)}</p>
+       </div>`).join(""):'<div class="recent-empty">아직 품질 한마디가 등록되지 않았습니다.</div>'}</div>`;
+
+   lMessage.innerHTML=`<div class="${qs.reveal?"live-message":"ai-note"}">
+     ${qs.reveal?"최종 TOP 5를 공개합니다.":"실시간 자동평가 TOP 5입니다. 새 응답이 들어오면 순위가 바뀔 수 있습니다."}
+     <br><small>평가기준: 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10</small>
+   </div>${recentHtml}`;
  }
  function renderAll(qrows,quality,qs){
    const overall=quizOverallTop5(qrows),qw=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:autoEvaluateQuality(quality);
@@ -1906,8 +2041,8 @@ if(mode==="admin"){
    if(qs.showAll||qs.currentQuestion===0){
      const overall=quizOverallTop5(qr),qw=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:autoEvaluateQuality(quality);
      aReveal.textContent="현재 문제 정답 공개";
-     aCurrent.innerHTML=`<b>현재 화면:</b> 시상 · 전체 결과<br><div class="prize-note">Q1~Q10 개인전 · 문제별 빠른 정답 TOP3 · 품질 한마디 100점 평가 TOP3</div>`;
-     aResponses.innerHTML='<h3>QUIZ · 실시간 종합 TOP5</h3>'+(overall.length?overall.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right;font-weight:900">${w.correct}/${QUESTIONS.length} 정답 · ${esc(w.dept)}</span></div>`).join(''):'<div class="small">아직 퀴즈 응답이 없습니다.</div>')+'<h3 style="margin-top:22px">QUALITY VOICE TOP3</h3>'+(qw.length?qw.map((w,i)=>`<div class="resp-row"><b>TOP ${i+1} · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>');
+     aCurrent.innerHTML=`<b>현재 화면:</b> 시상 · 전체 결과<br><div class="prize-note">Q1~Q10 개인전 · 문제별 빠른 정답 TOP3 · 품질 한마디 100점 평가 TOP5</div>`;
+     aResponses.innerHTML='<h3>QUIZ · 실시간 종합 TOP5</h3>'+(overall.length?overall.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right;font-weight:900">${w.correct}/${QUESTIONS.length} 정답 · ${esc(w.dept)}</span></div>`).join(''):'<div class="small">아직 퀴즈 응답이 없습니다.</div>')+'<h3 style="margin-top:22px">QUALITY VOICE TOP5</h3>'+(qw.length?qw.map((w,i)=>`<div class="resp-row"><b>TOP ${i+1} · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>');
      return
    }
 
@@ -1915,8 +2050,8 @@ if(mode==="admin"){
    if(qn===QUALITY_STAGE){
      const liveTop=autoEvaluateQuality(quality);
      aReveal.textContent=qs.reveal?"품질 TOP5 숨김":"품질 한마디 TOP5 확정·공개";
-     aCurrent.innerHTML=`<b>FINAL · 품질 한마디</b><br><span class="small">응답 ${quality.length}건 · TOP3 공개 ${qs.reveal?"ON":"OFF"}<br>평가기준: 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10</span>`;
-     aResponses.innerHTML='<h3>실시간 자동평가 TOP3</h3>'+(liveTop.length?liveTop.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>')+'<h3 style="margin-top:18px">최근 응답</h3>'+quality.slice().reverse().slice(0,15).map(r=>`<div class="resp-row"><b>${esc(r.dept)} · ${esc(r.name)}</b><br>${esc(r.answer)}</div>`).join('');
+     aCurrent.innerHTML=`<b>FINAL · 품질 한마디</b><br><span class="small">응답 ${quality.length}건 · TOP5 공개 ${qs.reveal?"ON":"OFF"}<br>평가기준: 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10</span>`;
+     aResponses.innerHTML='<h3>실시간 자동평가 TOP5</h3>'+(liveTop.length?liveTop.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>')+'<h3 style="margin-top:18px">실시간 최근 품질 한마디 5건</h3>'+quality.slice().reverse().slice(0,5).map(r=>`<div class="resp-row"><b>${esc(r.dept)} · ${esc(r.name)}</b><br>${esc(r.answer)}</div>`).join('');
      return
    }
 
@@ -1925,6 +2060,8 @@ if(mode==="admin"){
    aCurrent.innerHTML=`<b>Q${qi} · 개인전</b> ${esc(q.ko)}<br><span class="small">정답: ${q.correct} · 정답 공개 ${qs.reveal?"ON":"OFF"}</span>`;
    let base=q.options.map(o=>`<div class="resp-row"><b>${o.v}. ${esc(o.ko)} ${o.v===q.correct?'✓':''}</b><span style="float:right;font-weight:900">${c[o.v]||0}명</span><div class="small" style="margin-top:3px">${esc(o.en)}</div></div>`).join('')+`<div class="small" style="margin-top:8px">현재 문제 응답 ${total}건</div>`;
    base+='<h3 style="margin-top:18px">빠른 정답 TOP3</h3>'+(top.length?top.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right">${esc(w.dept)}</span></div>`).join(''):'<div class="small">아직 정답자가 없습니다.</div>');
+   const recent=recentQuizResponses(qr,q.id,5);
+   base+='<h3 style="margin-top:18px">실시간 최근 응답 5건</h3>'+(recent.length?recent.map(r=>`<div class="resp-row"><b>${esc(r.name)}</b> · ${esc(r.dept)}<span style="float:right">${esc(recentTimeLabel(r.created_at))}</span><div class="small">${qs.reveal?`${esc(r.choice)} 선택 · ${r.correct?"정답":"오답"}`:"응답 완료 · 정답 공개 전 선택값 숨김"}</div></div>`).join(''):'<div class="small">아직 응답이 없습니다.</div>');
    aResponses.innerHTML=base
  }
 
