@@ -141,8 +141,8 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
       <button id="pSubmit" class="btn" type="button" style="width:100%;margin-top:16px">응답 보내기</button>
       <button id="pNextCheck" class="btn participant-next hidden" type="button">다음 문제 확인 ▶</button>
       <div id="pMsg"></div>
-      <button id="pNewTester" class="btn gray" type="button" style="width:100%;margin-top:12px;background:#e6edf7;color:#173454">테스트용 신규 참가자로 다시 참여</button>
-      <div class="small" style="margin-top:7px">테스트용: 같은 기기에서 다른 참가자처럼 제출할 수 있습니다. 기존 응답은 유지되므로 행사 전 관리자 초기화를 진행하세요.</div>
+      <button id="pNewTester" class="btn gray" type="button" style="width:100%;margin-top:12px;background:#e6edf7;color:#173454">테스트용 신규 참가자 ID 발급</button>
+      <div class="small" style="margin-top:7px">테스트용: 참가자 ID만 변경합니다. 현재 화면이 EVENT COMPLETE이면 관리자가 Q1을 다시 열어야 합니다. 실제 행사 전에는 관리자 전체 초기화가 필요합니다.</div>
     </div>
   </section>
 </div></div>
@@ -153,6 +153,7 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
     <label>관리자 PIN</label><input id="aPin" type="password" placeholder="관리자 PIN 입력"><div class="small" style="margin-top:6px">10월 최초 설정 PIN: 2026 · 실제 적용값은 Supabase DB 기준</div><div style="margin-top:10px"><button id="verifyPinBtn" class="btn gray" type="button">PIN 확인 (데이터 변경 없음)</button></div>
     <div class="row" style="margin-top:14px">
       <button id="aStart" class="btn">접수 시작 + Q1</button>
+       <button id="aTestResume" class="btn" type="button" style="background:#166a73">테스트 Q1 재개 (기록 유지)</button>
       <button id="aReveal" class="btn cyan">현재 문제 정답 공개</button>
       <button id="aAll" class="btn cyan">TOP5 · 전체 결과</button>
       <button id="aClose" class="btn gray">접수 마감</button>
@@ -1545,7 +1546,7 @@ function getQuizState(state){
  const w=state?.winners;let x=null;
  if(Array.isArray(w))x=w.find(v=>v&&typeof v==="object"&&v.kind==="warmup_state")||null;
  else if(w&&typeof w==="object"&&w.kind==="warmup_state")x=w;
- if(x)return {...x,qualityWinners:Array.isArray(x.qualityWinners)?x.qualityWinners:[],stageStarts:{}};
+ if(x)return {...x,qualityWinners:Array.isArray(x.qualityWinners)?x.qualityWinners:[],stageStarts:x.stageStarts||{}};
  return {kind:"warmup_state",currentQuestion:1,reveal:false,showAll:false,qualityWinners:[],stageStarts:{}}
 }
 function makeQuizState(q=1,reveal=false,showAll=false,qualityWinners=[],stageStarts={}){
@@ -1695,22 +1696,23 @@ if(mode==="participant"){
    if(!confirm(lang==="en"?"Create a new test participant on this device? Previous responses remain saved.":"새 테스트 참가자로 참여하시겠습니까? 기존 응답은 서버에 남습니다."))return;
    pid=newPid();localStorage.setItem("qd_individual_pid",pid);selected=null;lastKey=null;
    pQualityText.value="";pQualityText.disabled=false;pMsg.textContent="";
-   note(lang==="en"?"New test participant ready. Please select an answer and submit.":"새 테스트 참가자로 전환했습니다. 현재 문제에 다시 응답할 수 있습니다.","notice ok");
    renderCurrent();
+   const st=getQuizState(lastState);
+   if(!st.showAll&&st.currentQuestion!==0&&lastState?.is_open&&!st.reveal)note(lang==="en"?"New test identity is ready. Submit the currently open question.":"신규 테스트 참가자 ID가 생성되었습니다. 현재 열린 문제를 제출하세요.","notice ok");
  });
  langKo.addEventListener("click",()=>{lang="ko";history.replaceState(null,"",modeUrl("participant","ko"));applyLang();renderCurrent()});
  langEn.addEventListener("click",()=>{lang="en";history.replaceState(null,"",modeUrl("participant","en"));applyLang();renderCurrent()});
 
  function renderCurrent(){
    const t=I18N[lang],qs=getQuizState(lastState);
-   pStateBadge.textContent=lastState?.is_open?t.open:t.closed;pStateBadge.className="badge"+(lastState?.is_open?"":" closed");
+   pStateBadge.textContent=(qs.showAll||qs.currentQuestion===0)?(lang==="en"?"Event complete":"행사 종료 · 관리자 재개 필요"):(lastState?.is_open?t.open:t.closed);pStateBadge.className="badge"+((!lastState?.is_open||qs.showAll||qs.currentQuestion===0)?" closed":"");
 
    if(qs.showAll||qs.currentQuestion===0){
      pQuestionState.textContent="EVENT COMPLETE";pStep.textContent="THANK YOU";pProgress.style.width="100%";
      pQuestion.textContent=lang==="en"?"Thank you for joining!":"참여해 주셔서 감사합니다!";
      pQuestionEn.textContent=lang==="en"?"Please see the LIVE screen for today's awards.":"LIVE 화면에서 오늘의 TOP5 결과를 확인해 주세요.";
      pOptions.innerHTML="";pQualityText.classList.add("hidden");pSubmit.classList.add("hidden");pNextCheck.classList.add("hidden");
-     note(lang==="en"?"Please check the LIVE screen for the awards.":"퀴즈 및 품질 한마디 TOP5를 LIVE에서 발표합니다.","notice ok");return
+     note(lang==="en"?"The event is in ALL RESULTS mode. Ask the host to open Q1 from the Admin panel to resume testing.":"현재 서버가 전체 결과(EVENT COMPLETE) 상태입니다. 관리자 화면에서 [테스트 Q1 재개]를 먼저 눌러야 제출할 수 있습니다.","notice error");return
    }
 
    const cq=Number(qs.currentQuestion)||1;
@@ -1878,6 +1880,17 @@ if(mode==="admin"){
  aQButtons.querySelectorAll(".qjump").forEach(b=>b.addEventListener("click",()=>setStage(Number(b.dataset.q),false,false)));
  aPrev.addEventListener("click",()=>{const qs=getQuizState(lastState);if(qs.showAll||qs.currentQuestion===0)return setStage(QUALITY_STAGE,false,false);setStage(Math.max(1,Number(qs.currentQuestion||1)-1),false,false)});
  aNext.addEventListener("click",()=>{const qs=getQuizState(lastState);if(qs.showAll||qs.currentQuestion===0)return note("현재 전체 결과 화면입니다. Q1~Q10 또는 품질 한마디 버튼으로 이동할 수 있습니다.");const q=Number(qs.currentQuestion||1);if(q>=QUALITY_STAGE)return setStage(0,true,true);setStage(q+1,false,false)});
+ aTestResume.addEventListener("click",async()=>{
+   if(!pin())return note("관리자 PIN을 입력해 주세요.");
+   aTestResume.disabled=true;
+   try{
+     // Server must be explicitly moved out of EVENT COMPLETE; participant-side ID rotation cannot do so.
+     await adminAction(pin(),"START");
+     await setWinners(pin(),makeQuizState(1,false,false,[],{q1:new Date().toISOString()}));
+     note("테스트 Q1을 다시 열었습니다. 기존 응답은 유지됩니다. 참가자 페이지에서 '테스트용 신규 참가자 ID 발급' 후 제출하세요. ※ 본 행사 전에는 반드시 전체 초기화 필요.",true);
+     await refreshAdmin();
+   }catch(e){note("테스트 재개 실패: "+e.message)}finally{aTestResume.disabled=false}
+ });
  aStart.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");try{await adminAction(pin(),"START");await setWinners(pin(),makeQuizState(1,false,false,[],{q1:new Date().toISOString()}));note("접수를 시작하고 Q1 개인전을 열었습니다.",true);refreshAdmin()}catch(e){note("시작 실패: "+e.message)}});
  aReveal.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");try{const qs=getQuizState(lastState),q=Number(qs.currentQuestion||1);if(q===0)return note("전체 결과 화면에서는 정답 공개가 필요하지 않습니다.");if(q===QUALITY_STAGE&&!qs.reveal){const quality=qualityRows(lastRaw);if(!quality.length)return note("품질 한마디 응답이 아직 없습니다.");await setWinners(pin(),makeQuizState(QUALITY_STAGE,true,false,autoEvaluateQuality(quality),qs.stageStarts||{}));note("품질 한마디 TOP5를 확정하고 LIVE에 공개했습니다.",true)}else{await setWinners(pin(),makeQuizState(q,!qs.reveal,false,qs.qualityWinners,qs.stageStarts||{}));note(!qs.reveal?"공개했습니다.":"다시 숨겼습니다.",true)}refreshAdmin()}catch(e){note("처리 실패: "+e.message)}});
  aAll.addEventListener("click",()=>setStage(0,true,true));
