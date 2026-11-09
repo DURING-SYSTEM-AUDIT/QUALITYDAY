@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>2026 DURING 품질공감데이</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;font-family:"Malgun Gothic","Segoe UI",Arial,sans-serif}button,input,textarea{font:inherit}button{touch-action:manipulation}
@@ -54,16 +54,44 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
 @media(max-width:950px){.team-grid,.team-rank-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.team-grid,.team-rank-grid{grid-template-columns:1fr}}
 
+
+/* ===== Bilingual quiz readability ===== */
+.option-btn{min-height:86px;padding:13px 14px}
+.option-main{display:flex;align-items:flex-start;gap:4px;font-weight:900;font-size:clamp(15px,1.05vw,18px);line-height:1.35}
+.option-main .option-letter{flex:0 0 auto}
+.option-sub{margin:7px 0 0 35px;color:#72849a;font-size:clamp(11px,.82vw,14px);font-weight:700;line-height:1.35}
+.quiz-question{font-size:clamp(21px,1.7vw,27px);line-height:1.35}
+.quiz-question-en{font-size:clamp(12px,.95vw,15px);line-height:1.4}
+.live-warm-q{font-size:clamp(25px,2.15vw,40px);line-height:1.22;word-break:keep-all}
+.live-warm-en{font-size:clamp(12px,1vw,17px);line-height:1.35;word-break:keep-all}
+.result-row{grid-template-columns:minmax(300px,1.25fr) minmax(230px,1.65fr) 95px;gap:14px}
+.result-label{font-size:clamp(14px,1.08vw,19px);line-height:1.25;min-width:0;word-break:keep-all}
+.result-label-main{display:flex;align-items:flex-start;gap:6px}
+.result-label-main .option-letter{flex:0 0 auto}
+.result-label-en{margin:4px 0 0 42px;color:#93b3cf;font-size:clamp(10px,.72vw,13px);font-weight:700;line-height:1.3}
+.bar-track{height:clamp(26px,3.5vh,40px)}
+.bar-value{font-size:clamp(14px,1vw,18px)}
+@media(max-width:1100px){
+ .result-row{grid-template-columns:minmax(260px,1.35fr) minmax(180px,1.2fr) 82px;gap:10px}
+ .live-warm-q{font-size:clamp(23px,2.1vw,34px)}
+}
+@media(max-width:760px){
+ .result-row{grid-template-columns:1fr;gap:6px}
+ .result-label-en{margin-left:36px}
+ .bar-value{text-align:left}
+ .option-btn{min-height:auto}
+}
+
 </style></head><body>
 
 <div id="homeView" class="hidden"><div class="wrap">
-  <header class="hero"><div class="warm-kicker">WARM-UP · TOGETHER</div><h1>2026 DURING 품질공감데이</h1><p>팀 퀴즈 · 개인전 · 품질 한마디로 함께 웃고 참여하는 WARM-UP입니다.</p></header>
+  <header class="hero"><div class="warm-kicker">WARM-UP · TOGETHER</div><h1>2026 DURING 품질공감데이</h1><p>회사 이야기 · 현장 공감 · 개인 퀴즈 · 품질 한마디로 함께 웃고 참여하는 WARM-UP입니다.</p></header>
   <div class="home-grid">
-    <button class="home-card" id="goLive"><div class="home-kicker">EVENT SCREEN</div><div class="home-title">LIVE 화면</div><div class="home-desc">큰 QR · 팀전/개인전 · 실시간 결과</div></button>
+    <button class="home-card" id="goLive"><div class="home-kicker">EVENT SCREEN</div><div class="home-title">LIVE 화면</div><div class="home-desc">큰 QR · 개인전 10문제 · 실시간 정답자 TOP3</div></button>
     <button class="home-card" id="goParticipant"><div class="home-kicker">PARTICIPANT</div><div class="home-title">참가자 화면</div><div class="home-desc">한국어 / English로 현재 질문에 참여</div></button>
-    <button class="home-card" id="goAdmin"><div class="home-kicker">ADMIN</div><div class="home-title">관리자 화면</div><div class="home-desc">접수 시작 · 팀전 Q1~Q4 · 개인전 Q5 · 품질 BEST3</div></button>
+    <button class="home-card" id="goAdmin"><div class="home-kicker">ADMIN</div><div class="home-title">관리자 화면</div><div class="home-desc">접수 시작 · 개인전 Q1~Q10 · 품질 한마디 TOP3</div></button>
   </div>
-  <section class="card"><h2 style="margin-top:0">행사 진행 흐름</h2><div class="flowline"><span>① 접수 시작</span><b>→</b><span>② Q1~Q4 팀전</span><b>→</b><span>③ Q5 개인전</span><b>→</b><span>④ 품질 한마디</span><b>→</b><span>⑤ 시상</span></div></section>
+  <section class="card"><h2 style="margin-top:0">행사 진행 흐름</h2><div class="flowline"><span>① 접수 시작</span><b>→</b><span>② Q1~Q10 개인전</span><b>→</b><span>③ 문제별 빠른 정답 TOP3</span><b>→</b><span>④ 품질 한마디</span><b>→</b><span>⑤ TOP3 시상</span></div></section>
 </div></div>
 
 <div id="participantView" class="hidden"><div class="wrap">
@@ -73,7 +101,17 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
     <div class="row" style="justify-content:space-between"><span id="pStateBadge" class="badge">상태 확인중</span><span id="pQuestionState" class="small"></span></div>
     <div id="identityBox">
       <label id="nameLabel">이름 / 닉네임 *</label><input id="pName" maxlength="40" placeholder="예: 김OO 또는 닉네임">
-      <label id="deptLabel">소속 *</label><input id="pDept" maxlength="60" placeholder="예: 사출생산팀"><label id="teamLabel">팀 선택 *</label><select id="pTeam"><option value="">팀을 선택하세요</option><option value="A">A팀</option><option value="B">B팀</option><option value="C">C팀</option><option value="D">D팀</option><option value="E">E팀</option><option value="F">F팀</option></select>
+      <label id="deptLabel">소속 / Team *</label>
+      <select id="pDept">
+        <option value="">소속을 선택하세요 / Select your team</option>
+        <option value="사출생산팀">사출생산팀 (Injection Production Team)</option>
+        <option value="권선생산팀">권선생산팀 (Winding Production Team)</option>
+        <option value="전장생산팀">전장생산팀 (Electrical Production Team)</option>
+        <option value="품질보증팀">품질보증팀 (Quality Assurance Team)</option>
+        <option value="품질경영팀">품질경영팀 (Quality Management Team)</option>
+        <option value="생산관리팀">생산관리팀 (Production Control Team)</option>
+        <option value="설비보전팀">설비보전팀 (Equipment Maintenance Team)</option>
+      </select>
     </div>
     <div id="quizArea" class="question-card">
       <div class="quiz-step" id="pStep">QUESTION</div>
@@ -90,7 +128,7 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
 </div></div>
 
 <div id="adminView" class="hidden"><div class="wrap">
-  <header class="hero"><div class="warm-kicker">WARM-UP CONTROL</div><h1>2026 품질공감데이 관리자</h1><p>현재 질문을 선택하면 참가자·LIVE 화면이 동시에 전환됩니다. <span style="opacity:.72;font-size:12px">BUILD 2026-11-09 GH-01</span></p></header>
+  <header class="hero"><div class="warm-kicker">WARM-UP CONTROL</div><h1>2026 품질공감데이 관리자</h1><p>현재 질문을 선택하면 참가자·LIVE 화면이 동시에 전환됩니다.</p></header>
   <section class="card">
     <label>관리자 PIN</label><input id="aPin" type="password" placeholder="관리자 PIN 입력"><div class="small" style="margin-top:6px">10월 최초 설정 PIN: 2026 · 실제 적용값은 Supabase DB 기준</div><div style="margin-top:10px"><button id="verifyPinBtn" class="btn gray" type="button">PIN 확인 (데이터 변경 없음)</button></div>
     <div class="row" style="margin-top:14px">
@@ -125,13 +163,13 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
           <div class="qr-note">한국어 / English는 휴대폰 화면에서 선택할 수 있습니다.</div>
           <div id="qrLinkText" class="qr-url"></div>
         </div>
-        <div class="warm-quote">“QR은 처음 한 번만!”<br>Q1~Q4는 팀원들과 상의하고 답을 선택합니다.<br><br>Q5는 개인전!<br>정답자 중 빠른 TOP 3에 도전하세요.</div>
+        <div class="warm-quote">“QR은 처음 한 번만!”<br>Q1~Q10은 모두 개인전입니다.<br><br>정답도 중요하지만 속도도 중요!<br>문제별 빠른 정답 TOP 3에 도전하세요.</div>
       </div>
-      <div class="warm-note" style="margin-top:14px">Q1~Q4는 A~F팀 단체전이며 팀 내 최다 선택 답을 팀 답으로 판정합니다. Q5는 개인전으로 정답자 중 빠른 TOP 3를 선정합니다. 마지막 ‘내가 생각하는 품질’은 별도 BEST 3를 선정합니다.</div>
+      <div class="warm-note" style="margin-top:14px">Q1~Q10은 전원 개인전입니다. 문제별 정답자 중 빠른 순 TOP 3를 표시합니다. 마지막 ‘여러분에게 품질이란 무엇인가요?’는 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10 기준으로 TOP 3를 선정합니다.</div>
     </section>
     <section class="live-panel">
       <div id="lSingleView"><div class="live-warm-head"><div id="lQLbl" class="live-warm-label">QUESTION</div><div id="lQuestion" class="live-warm-q"></div><div id="lQuestionEn" class="live-warm-en"></div></div><div id="lResults" class="result-bars"></div><div id="lMessage"></div></div>
-      <div id="lAllView" class="hidden"><div class="live-warm-head"><div class="live-warm-label">ALL RESULTS</div><div class="live-warm-q">오늘의 WARM-UP 결과 · AWARDS</div><div class="live-warm-en">Team Quiz · Individual TOP 3 · Quality Voice BEST 3.</div></div><div id="lAllResults" class="all-summary"></div></div>
+      <div id="lAllView" class="hidden"><div class="live-warm-head"><div class="live-warm-label">ALL RESULTS</div><div class="live-warm-q">오늘의 WARM-UP 결과 · AWARDS</div><div class="live-warm-en">Individual Quiz TOP 3 · Quality Voice TOP 3.</div></div><div id="lAllResults" class="all-summary"></div></div>
     </section>
   </div>
   <div id="hostControls" class="host-controls">
@@ -1437,127 +1475,369 @@ function qrDataUri(text){
   return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
 }
 const CONFIG={SUPABASE_URL:"https://xbdzlzhduovldywvusmz.supabase.co",SUPABASE_PUBLISHABLE_KEY:"sb_publishable_xXYvOHDjf-Yq-39-5yqZmw_CTQlU1AK"};
-const QUIZ_VERSION="warmup-2026-team-v1";
-const QUALITY_VERSION="quality-voice-2026-v1";
-const TEAMS=["A","B","C","D","E","F"];
+
+const QUIZ_VERSION="warmup-2026-individual-v2";
+const QUALITY_VERSION="quality-voice-2026-v2";
+const QUALITY_STAGE=11;
+
 const QUESTIONS=[
- {id:"q1",round:"team",ko:"2026년, 듀링은 창립 몇 년째를 맞이했을까요?",en:"In 2026, how many years has DURING been in business?",options:[{v:"A",ko:"29년",en:"29 years"},{v:"B",ko:"34년",en:"34 years"},{v:"C",ko:"39년",en:"39 years"},{v:"D",ko:"44년",en:"44 years"}],correct:"C",messageKo:"정답은 39년! 오랜 시간 현장에서 쌓인 경험과 사람들의 노력이 오늘의 듀링을 만들었습니다.",messageEn:"The answer is 39 years — built by people, experience, and trust over time."},
- {id:"q2",round:"team",ko:"듀링의 39년을 ‘개월’로 바꾸면 몇 개월일까요?",en:"How many months are there in 39 years?",options:[{v:"A",ko:"390개월",en:"390 months"},{v:"B",ko:"429개월",en:"429 months"},{v:"C",ko:"468개월",en:"468 months"},{v:"D",ko:"507개월",en:"507 months"}],correct:"C",messageKo:"39 × 12 = 468개월. 숫자로 보니 듀링이 함께 쌓아온 시간이 더 크게 느껴집니다.",messageEn:"39 × 12 = 468 months. It makes DURING's journey feel even longer."},
- {id:"q3",round:"team",ko:"10명이 서로 ‘한 번씩만’ 악수한다면, 총 몇 번의 악수가 이루어질까요?",en:"If 10 people each shake hands with every other person once, how many handshakes occur?",options:[{v:"A",ko:"40번",en:"40"},{v:"B",ko:"45번",en:"45"},{v:"C",ko:"50번",en:"50"},{v:"D",ko:"90번",en:"90"}],correct:"B",messageKo:"정답은 45번! 서로 연결될수록 관계는 빠르게 늘어납니다. 좋은 품질도 결국 사람과 사람 사이의 연결에서 만들어집니다.",messageEn:"The answer is 45. Quality also grows through strong connections between people."},
- {id:"q4",round:"team",ko:"제조현장에서 말하는 기본 ‘4M’에 포함되지 않는 것은 무엇일까요?",en:"Which item is NOT part of the classic 4M used in manufacturing?",options:[{v:"A",ko:"Man · 사람",en:"Man"},{v:"B",ko:"Machine · 설비",en:"Machine"},{v:"C",ko:"Material · 자재",en:"Material"},{v:"D",ko:"Measurement · 측정",en:"Measurement"}],correct:"D",messageKo:"기본 4M은 Man, Machine, Material, Method입니다. Measurement는 확장된 분류에서 추가로 사용됩니다.",messageEn:"The classic 4M is Man, Machine, Material, and Method."},
- {id:"q5",round:"individual",ko:"개인전! 주요 치수는 아직 규격 안이지만 측정값이 계속 한쪽으로 치우치고 있습니다. 가장 적절한 행동은?",en:"Individual round! A key dimension is still within spec, but values keep drifting in one direction. What is the best action?",options:[{v:"A",ko:"규격 안이므로 그대로 생산한다",en:"Keep producing because it is still within spec"},{v:"B",ko:"불량이 발생하면 그때 확인한다",en:"Wait until an actual defect occurs"},{v:"C",ko:"측정값을 평균값으로 맞춰 기록한다",en:"Adjust the recorded value toward the average"},{v:"D",ko:"추세를 확인하고 조건·설비·측정 상태를 점검한다",en:"Check the trend and review process, equipment, and measurement conditions"}],correct:"D",messageKo:"정답은 D. 품질은 ‘NG가 난 뒤’보다 ‘평소와 다를 때’ 먼저 확인하는 습관에서 시작합니다.",messageEn:"The answer is D. Prevention starts by checking abnormal trends before defects occur."}
+ {id:"q1",ko:"2026년, 듀링은 창립 몇 년째를 맞이했을까요?",en:"In 2026, how many years has DURING been in business?",options:[{v:"A",ko:"29년",en:"29 years"},{v:"B",ko:"34년",en:"34 years"},{v:"C",ko:"39년",en:"39 years"},{v:"D",ko:"44년",en:"44 years"}],correct:"C",messageKo:"정답은 39년! 오랜 시간 현장에서 쌓인 경험과 사람들의 노력이 오늘의 듀링을 만들었습니다.",messageEn:"The answer is 39 years — built by people, experience, and trust over time."},
+ {id:"q2",ko:"신규 개발품이 양산에 들어가는 건물의 정식 명칭은 무엇일까요?",en:"Which building is used when new development products enter mass production?",options:[{v:"A",ko:"창조동",en:"Creation Building"},{v:"B",ko:"혁신동",en:"Innovation Building"},{v:"C",ko:"미래동",en:"Future Building"},{v:"D",ko:"도약동",en:"Leap Building"}],correct:"C",messageKo:"정답은 미래동! 개발에서 양산으로 넘어가는 다음 단계를 떠올리기 좋은 문제입니다.",messageEn:"The answer is Future Building."},
+ {id:"q3",ko:"다음 중 듀링의 주요 생산 공정과 가장 거리가 먼 것은 무엇일까요?",en:"Which process is least related to DURING's major production processes?",options:[{v:"A",ko:"사출",en:"Injection molding"},{v:"B",ko:"권선",en:"Coil winding"},{v:"C",ko:"조립",en:"Assembly"},{v:"D",ko:"주조",en:"Casting"}],correct:"D",messageKo:"듀링의 주요 생산 공정은 사출 · 권선 · 조립입니다.",messageEn:"DURING's major processes are injection molding, winding, and assembly."},
+ {id:"q4",ko:"듀링의 39년을 ‘개월’로 바꾸면 몇 개월일까요?",en:"How many months are there in 39 years?",options:[{v:"A",ko:"390개월",en:"390 months"},{v:"B",ko:"429개월",en:"429 months"},{v:"C",ko:"468개월",en:"468 months"},{v:"D",ko:"507개월",en:"507 months"}],correct:"C",messageKo:"39 × 12 = 468개월. 숫자로 보니 함께 쌓아온 시간이 더 크게 느껴집니다.",messageEn:"39 × 12 = 468 months."},
+ {id:"q5",ko:"10명이 서로 ‘한 번씩만’ 악수한다면, 총 몇 번의 악수가 이루어질까요?",en:"If 10 people each shake hands with every other person once, how many handshakes occur?",options:[{v:"A",ko:"40번",en:"40"},{v:"B",ko:"45번",en:"45"},{v:"C",ko:"50번",en:"50"},{v:"D",ko:"90번",en:"90"}],correct:"B",messageKo:"정답은 45번! 사람과 사람이 연결될수록 관계도 빠르게 늘어납니다.",messageEn:"The answer is 45."},
+ {id:"q6",ko:"제조현장에서 말하는 기본 ‘4M’에 포함되지 않는 것은 무엇일까요?",en:"Which item is NOT part of the classic 4M used in manufacturing?",options:[{v:"A",ko:"Man · 사람",en:"Man"},{v:"B",ko:"Machine · 설비",en:"Machine"},{v:"C",ko:"Material · 자재",en:"Material"},{v:"D",ko:"Measurement · 측정",en:"Measurement"}],correct:"D",messageKo:"기본 4M은 Man, Machine, Material, Method입니다.",messageEn:"The classic 4M is Man, Machine, Material, and Method."},
+ {id:"q7",ko:"‘품질 완벽주의자’가 아침에 눈뜨자마자 하는 첫 마디는?",en:"What is the first thing a 'quality perfectionist' says after waking up in the morning?",options:[{v:"A",ko:"오늘도 표준 준수로 무불량 달성하자!",en:"Let’s follow the standard and achieve zero defects today!"},{v:"B",ko:"5분만 더 자자",en:"Just five more minutes of sleep"},{v:"C",ko:"아, 집 가고 싶다",en:"I already want to go home"},{v:"D",ko:"배고프다",en:"I’m hungry"}],correct:"A",messageKo:"정답은 A! 물론 실제 아침 첫마디는 사람마다 다르겠지만, 오늘 하루도 ‘표준 준수와 무불량’의 마음으로 가볍게 시작해 봅시다.",messageEn:"The answer is A! It is a fun warm-up, but the message is simple: follow the standard and aim for zero defects."},
+ {id:"q8",ko:"다음 중 ‘명품 듀링’을 만드는 주체는 누구인가요?",en:"Who creates 'Premium DURING' quality?",options:[{v:"A",ko:"대표님",en:"The CEO"},{v:"B",ko:"품질팀",en:"The Quality Team"},{v:"C",ko:"생산팀",en:"The Production Team"},{v:"D",ko:"듀링의 모든 임직원",en:"Every DURING employee"}],correct:"D",messageKo:"정답은 D! 명품 품질은 특정 부서 한 곳이 아니라 모든 임직원이 각자의 자리에서 함께 만들어 갑니다.",messageEn:"The answer is D. Premium quality is created by every employee, not by one department alone."},
+ {id:"q9",ko:"듀링의 지속 가능한 성장을 이끄는 가장 확실한 동력은 무엇일까요?",en:"What is the strongest driver of DURING's sustainable growth?",options:[{v:"A",ko:"전 임직원의 철저한 품질 의식과 자부심",en:"Strong quality awareness and pride from every employee"},{v:"B",ko:"운과 요행",en:"Luck and chance"},{v:"C",ko:"가격 할인",en:"Price discounts"},{v:"D",ko:"무조건 빠른 출하",en:"Shipping as fast as possible, no matter what"}],correct:"A",messageKo:"정답은 A! 지속 가능한 성장은 모든 임직원이 품질을 자기 일로 생각하고 자부심을 갖는 데서 시작합니다.",messageEn:"The answer is A. Sustainable growth starts with quality awareness and pride across the whole company."},
+ {id:"q10",ko:"품질을 가장 잘 만드는 사람은 누구일까요?",en:"Who contributes most directly to making quality?",options:[{v:"A",ko:"품질부서만",en:"Only the Quality team"},{v:"B",ko:"검사자만",en:"Only inspectors"},{v:"C",ko:"관리자만",en:"Only managers"},{v:"D",ko:"각자의 공정과 역할을 지키는 우리 모두",en:"Everyone who owns their process and role"}],correct:"D",messageKo:"정답은 우리 모두! 품질은 한 부서가 검사해서 만드는 것이 아니라 각자의 공정에서 함께 만들어집니다.",messageEn:"The answer is everyone. Quality is built in every process."}
 ];
-const I18N={ko:{hero:"2026 DURING 품질공감데이",sub:"현재 LIVE 질문에 함께 참여해 주세요.",name:"이름 / 닉네임 *",dept:"소속 *",team:"팀 선택 *",namePh:"예: 김OO 또는 닉네임",deptPh:"예: 사출생산팀",submit:"정답 보내기",open:"참여 가능",closed:"접수 마감",required:"이름/소속/팀과 답변을 확인해 주세요.",thanks:"응답 완료! 다음 문제를 기다려 주세요.",already:"이 질문에는 이미 참여했습니다. 다음 질문을 기다려 주세요.",waiting:"진행자가 다음 질문을 준비 중입니다.",qualitySubmit:"품질 한마디 제출하기",qualityQ:"내가 생각하는 ‘품질’이란 무엇인가요?",qualitySub:"정답은 없습니다. 여러분이 생각하는 품질을 한두 문장으로 들려주세요.",qualityPh:"예: 품질은 다음 공정과 고객에게 보내는 약속입니다.",qualityThanks:"품질 한마디가 등록되었습니다. LIVE 화면에서 함께 확인해 주세요."},en:{hero:"2026 DURING Quality Empathy Day",sub:"Join the current LIVE question.",name:"Name / Nickname *",dept:"Department / Team *",team:"Quiz Team *",namePh:"e.g. Alex or nickname",deptPh:"e.g. Injection Production Team",submit:"Send answer",open:"Open",closed:"Closed",required:"Please enter your name/department/team and answer.",thanks:"Answer sent! Please wait for the next question.",already:"You already answered this question. Please wait for the next one.",waiting:"Waiting for the host to open the next question.",qualitySubmit:"Submit Quality Voice",qualityQ:"What does ‘quality’ mean to you?",qualitySub:"There is no single correct answer. Share what quality means to you in one or two sentences.",qualityPh:"e.g. Quality is a promise to the next process and to our customers.",qualityThanks:"Your Quality Voice has been submitted. Please look at the LIVE screen."}};
+
+const I18N={
+ ko:{hero:"2026 DURING 품질공감데이",sub:"현재 LIVE 질문에 함께 참여해 주세요.",name:"이름 / 닉네임 *",dept:"소속 / Team *",namePh:"예: 김OO 또는 닉네임",submit:"정답 보내기",open:"참여 가능",closed:"접수 마감",required:"이름/소속과 답변을 확인해 주세요.",thanks:"응답 완료! 다음 문제를 기다려 주세요.",already:"이 질문에는 이미 참여했습니다. 다음 질문을 기다려 주세요.",qualitySubmit:"품질 한마디 제출하기",qualityQ:"여러분에게 ‘품질’이란 무엇인가요?",qualitySub:"정답은 없습니다. 여러분이 생각하는 품질을 한두 문장으로 들려주세요.",qualityPh:"예: 품질은 다음 공정과 고객에게 보내는 약속입니다.",qualityThanks:"품질 한마디가 등록되었습니다. 실시간 TOP3 평가에 반영됩니다."},
+ en:{hero:"2026 DURING Quality Empathy Day",sub:"Join the current LIVE question.",name:"Name / Nickname *",dept:"Department / Team *",namePh:"e.g. Alex or nickname",submit:"Send answer",open:"Open",closed:"Closed",required:"Please enter your name/department and answer.",thanks:"Answer sent! Please wait for the next question.",already:"You already answered this question. Please wait for the next one.",qualitySubmit:"Submit Quality Voice",qualityQ:"What does ‘quality’ mean to you?",qualitySub:"There is no single correct answer. Share what quality means to you in one or two sentences.",qualityPh:"e.g. Quality is a promise to the next process and to our customers.",qualityThanks:"Your Quality Voice is submitted and included in the live TOP 3 evaluation."}
+};
+
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-const apiBase=CONFIG.SUPABASE_URL.replace(/\/$/,"");const headers=()=>({apikey:CONFIG.SUPABASE_PUBLISHABLE_KEY,"Content-Type":"application/json"});
-async function api(path,options={}){const res=await fetch(apiBase+path,{...options,headers:{...headers(),...(options.headers||{})},cache:"no-store"});const txt=await res.text();if(!res.ok){let msg=txt;try{const j=JSON.parse(txt);msg=j.message||j.error||j.details||txt}catch(e){}throw new Error(msg||("HTTP "+res.status))}return txt?JSON.parse(txt):null}
+const apiBase=CONFIG.SUPABASE_URL.replace(/\/$/,"");
+const headers=()=>({apikey:CONFIG.SUPABASE_PUBLISHABLE_KEY,"Content-Type":"application/json"});
+
+async function api(path,options={}){
+ const res=await fetch(apiBase+path,{...options,headers:{...headers(),...(options.headers||{})},cache:"no-store"});
+ const txt=await res.text();
+ if(!res.ok){let msg=txt;try{const j=JSON.parse(txt);msg=j.message||j.error||j.details||txt}catch(e){}throw new Error(msg||("HTTP "+res.status))}
+ return txt?JSON.parse(txt):null
+}
 async function getState(){const d=await api("/rest/v1/quality_day_state?id=eq.1&select=*");return d?.[0]||{is_open:false,winners:[]}}
-async function getResponses(limit=700){return await api("/rest/v1/quality_day_responses?select=*&order=created_at.asc&limit="+limit)}
+async function getResponses(limit=1200){return await api("/rest/v1/quality_day_responses?select=*&order=created_at.asc&limit="+limit)}
 async function submitResponse(data){return await api("/rest/v1/quality_day_responses",{method:"POST",headers:{Prefer:"return=representation"},body:JSON.stringify(data)})}
 async function adminAction(pin,action){return await api("/rest/v1/rpc/quality_day_admin_action",{method:"POST",body:JSON.stringify({p_pin:String(pin),p_action:action})})}
-async function verifyAdminPin(pin){if(!String(pin||"").trim())throw new Error("PIN을 입력해 주세요.");try{await adminAction(pin,"VERIFY");return true}catch(e){const m=String(e.message||e);if(m.includes("INVALID_ACTION"))return true;if(m.includes("INVALID_PIN"))throw new Error("PIN 불일치: Supabase DB에 저장된 관리자 PIN을 확인해 주세요.");throw e}}
-
 async function setWinners(pin,winners){return await api("/rest/v1/rpc/quality_day_admin_set_winners",{method:"POST",body:JSON.stringify({p_pin:String(pin),p_winners:winners})})}
+async function verifyAdminPin(pin){if(!String(pin||"").trim())throw new Error("PIN을 입력해 주세요.");return await adminAction(pin,"VERIFY")}
+
 function currentBase(){const u=new URL(location.href);u.search="";u.hash="";return u.href}
 function modeUrl(mode,lang){const u=new URL(currentBase());u.searchParams.set("mode",mode);if(lang)u.searchParams.set("lang",lang);return u.href}
 function goMode(m){location.href=m==="home"?currentBase():modeUrl(m)}
 function newPid(){try{return crypto.randomUUID()}catch(e){return "p"+Date.now()+Math.random().toString(36).slice(2)}}
 function safeJson(s){try{return JSON.parse(s)}catch(e){return null}}
-function getQuizState(state){const w=state?.winners;let x=null;if(Array.isArray(w))x=w.find(v=>v&&typeof v==="object"&&v.kind==="warmup_state")||null;else if(w&&typeof w==="object"&&w.kind==="warmup_state")x=w;if(x)return {...x,qualityWinners:Array.isArray(x.qualityWinners)?x.qualityWinners:[]};return {kind:"warmup_state",currentQuestion:1,reveal:false,showAll:false,qualityWinners:[]}}
-function makeQuizState(q=1,reveal=false,showAll=false,qualityWinners=[]){return [{kind:"warmup_state",version:QUIZ_VERSION,currentQuestion:q,reveal,showAll,qualityWinners:Array.isArray(qualityWinners)?qualityWinners:[],updatedAt:new Date().toISOString()}]}
-function parseQuizRow(r){const a=safeJson(r.answer);const meta=safeJson(r.action);if(!a||a.version!==QUIZ_VERSION||!a.questionId)return null;return {...r,quiz:a,meta:meta||{}}}
-function quizRows(rows){const out=[],seen=new Set();for(const r of rows){const p=parseQuizRow(r);if(!p)continue;const pid=p.meta?.pid||((p.name||"")+"|"+(p.dept||""));const k=pid+"|"+p.quiz.questionId;if(seen.has(k))continue;seen.add(k);out.push(p)}return out}
-function qualityRows(rows){const out=[],seen=new Set();for(const r of rows){const meta=safeJson(r.action)||{};if(meta?.type!=="quality_voice"||meta?.version!==QUALITY_VERSION||!String(r.answer||"").trim())continue;const pid=meta.pid||((r.name||"")+"|"+(r.dept||""));if(seen.has(pid))continue;seen.add(pid);out.push({...r,meta})}return out}
-function participantCount(raw){const s=new Set();for(const r of raw){const m=safeJson(r.action)||{};if(m.pid)s.add(m.pid);else if(r.name||r.dept)s.add((r.name||"")+"|"+(r.dept||""))}return s.size}
+
+function getQuizState(state){
+ const w=state?.winners;let x=null;
+ if(Array.isArray(w))x=w.find(v=>v&&typeof v==="object"&&v.kind==="warmup_state")||null;
+ else if(w&&typeof w==="object"&&w.kind==="warmup_state")x=w;
+ if(x)return {...x,qualityWinners:Array.isArray(x.qualityWinners)?x.qualityWinners:[]};
+ return {kind:"warmup_state",currentQuestion:1,reveal:false,showAll:false,qualityWinners:[]}
+}
+function makeQuizState(q=1,reveal=false,showAll=false,qualityWinners=[]){
+ return [{kind:"warmup_state",version:QUIZ_VERSION,currentQuestion:q,reveal,showAll,qualityWinners:Array.isArray(qualityWinners)?qualityWinners:[],updatedAt:new Date().toISOString()}]
+}
+function parseQuizRow(r){
+ const a=safeJson(r.answer),meta=safeJson(r.action);
+ if(!a||a.version!==QUIZ_VERSION||!a.questionId)return null;
+ return {...r,quiz:a,meta:meta||{}}
+}
+function quizRows(rows){
+ const out=[],seen=new Set();
+ for(const r of rows){const p=parseQuizRow(r);if(!p)continue;const pid=p.meta?.pid||((p.name||"")+"|"+(p.dept||""));const k=pid+"|"+p.quiz.questionId;if(seen.has(k))continue;seen.add(k);out.push(p)}
+ return out
+}
+function qualityRows(rows){
+ const out=[],seen=new Set();
+ for(const r of rows){const meta=safeJson(r.action)||{};if(meta?.type!=="quality_voice"||meta?.version!==QUALITY_VERSION||!String(r.answer||"").trim())continue;const pid=meta.pid||((r.name||"")+"|"+(r.dept||""));if(seen.has(pid))continue;seen.add(pid);out.push({...r,meta})}
+ return out
+}
+function participantCount(raw){
+ const s=new Set();
+ for(const r of raw){const m=safeJson(r.action)||{};if(m.pid)s.add(m.pid);else if(r.name||r.dept)s.add((r.name||"")+"|"+(r.dept||""))}
+ return s.size
+}
 function countsFor(rows,qid){const c={};for(const r of rows){if(r.quiz.questionId===qid)c[r.quiz.choice]=(c[r.quiz.choice]||0)+1}return c}
-function teamDecision(rows,team,qid){const subset=rows.filter(r=>r.meta?.team===team&&r.quiz.questionId===qid);const counts={};for(const r of subset)counts[r.quiz.choice]=(counts[r.quiz.choice]||0)+1;const max=Math.max(0,...Object.values(counts));if(!max)return {answer:"",count:0,total:0,tie:false};const tops=Object.entries(counts).filter(([,n])=>n===max).map(([v])=>v);return {answer:tops.length===1?tops[0]:"",count:max,total:subset.length,tie:tops.length>1}}
-function teamScoreboard(rows){const teamQs=QUESTIONS.filter(q=>q.round==="team");return TEAMS.map(team=>{let score=0,played=0;const detail=[];for(const q of teamQs){const d=teamDecision(rows,team,q.id);if(d.total){played++;if(d.answer===q.correct)score++;detail.push({qid:q.id,answer:d.answer,tie:d.tie,total:d.total,correct:d.answer===q.correct})}}const people=new Set(rows.filter(r=>r.meta?.team===team).map(r=>r.meta?.pid||r.name+"|"+r.dept)).size;return {team,score,played,people,detail}}).sort((a,b)=>b.score-a.score||b.played-a.played||a.team.localeCompare(b.team))}
-function teamRoundCards(rows,qid){return TEAMS.map(team=>{const d=teamDecision(rows,team,qid);return {team,...d}})}
-function individualTop3(rows){const q=QUESTIONS.find(x=>x.round==="individual");if(!q)return[];const seen=new Set(),out=[];for(const r of rows){if(r.quiz.questionId!==q.id||r.quiz.choice!==q.correct)continue;const pid=r.meta?.pid||((r.name||"")+"|"+(r.dept||""));if(seen.has(pid))continue;seen.add(pid);out.push({name:r.name||"",dept:r.dept||"",team:r.meta?.team||"",created_at:r.created_at||""})}return out.sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at))).slice(0,3)}
+
+function correctTop3(rows,qid){
+ const q=QUESTIONS.find(x=>x.id===qid);if(!q)return[];
+ const seen=new Set(),out=[];
+ for(const r of rows){
+   if(r.quiz.questionId!==qid||r.quiz.choice!==q.correct)continue;
+   const pid=r.meta?.pid||((r.name||"")+"|"+(r.dept||""));
+   if(seen.has(pid))continue;seen.add(pid);
+   out.push({name:r.name||"",dept:r.dept||"",created_at:r.created_at||""})
+ }
+ return out.sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at))).slice(0,3)
+}
+function quizOverallTop3(rows){
+ const people=new Map();
+ for(const q of QUESTIONS){
+   const correct=rows.filter(r=>r.quiz.questionId===q.id&&r.quiz.choice===q.correct).sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at)));
+   correct.forEach((r,idx)=>{
+     const pid=r.meta?.pid||((r.name||"")+"|"+(r.dept||""));
+     if(!people.has(pid))people.set(pid,{name:r.name||"",dept:r.dept||"",correct:0,rankSum:0,answered:0});
+     const p=people.get(pid);p.correct++;p.rankSum+=(idx+1)
+   })
+ }
+ for(const r of rows){
+   const pid=r.meta?.pid||((r.name||"")+"|"+(r.dept||""));
+   if(!people.has(pid))people.set(pid,{name:r.name||"",dept:r.dept||"",correct:0,rankSum:9999,answered:0});
+   people.get(pid).answered++
+ }
+ return [...people.values()].sort((a,b)=>b.correct-a.correct||(a.rankSum/Math.max(1,a.correct))-(b.rankSum/Math.max(1,b.correct))||b.answered-a.answered).slice(0,3)
+}
+
 function normalizeAnswerText(s){return String(s||"").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu," ").replace(/\s+/g," ").trim()}
 function scoreTokens(s){return normalizeAnswerText(s).split(" ").filter(x=>x.length>=2)}
 function answerSimilarity(a,b){const A=new Set(scoreTokens(a)),B=new Set(scoreTokens(b));if(!A.size||!B.size)return 0;let same=0;for(const x of A)if(B.has(x))same++;return same/(A.size+B.size-same)}
 function keywordHits(text,words){let n=0;for(const w of words)if(text.includes(w))n++;return n}
+
 function autoEvaluateQuality(responses){
- const customer=["고객","신뢰","약속","만족","보증","customer","trust","promise","satisfaction"];
- const practice=["확인","공유","보고","멈춤","중지","예방","개선","준수","표준","책임","관리","점검","검사","재발","실천","행동","stop","check","share","report","prevent","improve","standard","responsibility","action"];
- const empathy=["우리","함께","모두","다음 공정","다음공정","동료","협업","팀","together","everyone","team","next process"];
- const essence=["기본","정확","안전","일관","불량","제로","처음부터","원칙","완성","품질","quality","right first time","zero defect"];
- const actionWords=["한다","하겠습니다","지킨다","확인한다","공유한다","예방한다","개선한다","준수한다","책임진다","protect","check","share","prevent","improve","follow"];
- const evaluated=responses.map((r,idx)=>{const raw=String(r.answer||"").trim(),t=normalizeAnswerText(raw),len=raw.length;if(!raw)return {...r,score:0,reason:"내용 없음"};const s1=Math.min(30,keywordHits(t,customer)*8+keywordHits(t,essence)*4);const s2=Math.min(25,keywordHits(t,practice)*5+keywordHits(t,actionWords)*3);let s3=0;if(len>=12)s3+=6;if(len>=25)s3+=5;if(len>=45)s3+=4;if(/[,.]|그리고|때문|위해|통해|그래서|because|so that/i.test(raw))s3+=3;if(keywordHits(t,practice)>=1)s3+=2;s3=Math.min(20,s3);const s4=Math.min(15,keywordHits(t,empathy)*5+((t.includes("다음 공정")||t.includes("next process"))?4:0));let maxSim=0;responses.forEach((o,j)=>{if(j!==idx)maxSim=Math.max(maxSim,answerSimilarity(raw,o.answer||""))});const s5=Math.max(0,Math.round(10*(1-maxSim)));let score=Math.round(s1+s2+s3+s4+s5);const compact=t.replace(/\s/g,"");if(/^(test|test\d+|테스트|abc|aaa|111|1234?)$/i.test(compact)||len<5)score=Math.min(score,8);if(/^(.)\1{3,}$/.test(compact))score=Math.min(score,5);score=Math.max(0,Math.min(100,score));const strengths=[];if(s1>=18)strengths.push("품질의 본질·고객 신뢰");if(s2>=15)strengths.push("현장 실천성");if(s3>=13)strengths.push("구체성·진정성");if(s4>=8)strengths.push("공감성");if(s5>=8)strengths.push("참신성");const reason=(strengths.length?strengths.slice(0,3).join(" · ")+"이 잘 드러난 답변":"품질의 의미가 비교적 명확하게 표현된 답변");return {...r,score,reason}});
- evaluated.sort((a,b)=>b.score-a.score||String(a.created_at||"").localeCompare(String(b.created_at||"")));const winners=[];for(const c of evaluated){if(winners.length===3)break;if(!winners.some(w=>answerSimilarity(c.answer||"",w.answer||"")>=0.72))winners.push(c)}for(const c of evaluated){if(winners.length===3)break;if(!winners.some(w=>String(w.id)===String(c.id)))winners.push(c)}return winners.slice(0,3).map(w=>({id:w.id,name:w.name,dept:w.dept,answer:w.answer,score:w.score,reason:w.reason}))
+ const PURPOSE=["고객","신뢰","약속","만족","품질","원칙","기본","안전","정확","다음 공정","다음공정","customer","trust","promise","quality","safety","right first time"];
+ const PRACTICE=["확인","점검","멈춤","중지","보고","공유","예방","개선","준수","표준","관리","검사","재발","실천","행동","책임","check","stop","report","share","prevent","improve","standard","action","responsibility"];
+ const EMPATHY=["우리","함께","모두","동료","협업","팀","다음 공정","다음공정","고객","together","everyone","team","next process","customer"];
+ const ACTION=["한다","하겠습니다","지킨다","확인한다","공유한다","예방한다","개선한다","준수한다","책임진다","check","share","prevent","improve","follow","protect"];
+ const evaluated=responses.map((r,idx)=>{
+   const raw=String(r.answer||"").trim(),t=normalizeAnswerText(raw),len=raw.length;
+   if(!raw)return {...r,score:0,reason:"내용 없음",breakdown:{purpose:0,practice:0,specific:0,empathy:0,creative:0}};
+   const purpose=Math.min(30,keywordHits(t,PURPOSE)*5+((t.includes("고객")||t.includes("customer"))?5:0)+((t.includes("품질")||t.includes("quality"))?3:0));
+   const practice=Math.min(25,keywordHits(t,PRACTICE)*4+keywordHits(t,ACTION)*2);
+   let specific=0;if(len>=10)specific+=5;if(len>=20)specific+=5;if(len>=35)specific+=4;if(len>=55)specific+=2;
+   if(/[,.]|그리고|때문|위해|통해|그래서|하면|할 때|because|so that|when/i.test(raw))specific+=2;
+   if(keywordHits(t,PRACTICE)>=1)specific+=2;specific=Math.min(20,specific);
+   const empathy=Math.min(15,keywordHits(t,EMPATHY)*4+((t.includes("다음 공정")||t.includes("next process"))?3:0));
+   let maxSim=0;responses.forEach((o,j)=>{if(j!==idx)maxSim=Math.max(maxSim,answerSimilarity(raw,o.answer||""))});
+   let creative=Math.max(0,Math.round(10*(1-maxSim)));
+   const compact=t.replace(/\s/g,"");let score=purpose+practice+specific+empathy+creative;
+   if(/^(test|test\d+|테스트|abc|aaa|111|1234?)$/i.test(compact)||len<5)score=Math.min(score,8);
+   if(/^(.)\1{3,}$/.test(compact))score=Math.min(score,5);
+   score=Math.max(0,Math.min(100,Math.round(score)));
+   const breakdown={purpose,practice,specific,empathy,creative};
+   const strengths=[];if(purpose>=20)strengths.push("취지");if(practice>=16)strengths.push("실천성");if(specific>=13)strengths.push("구체성");if(empathy>=9)strengths.push("공감성");if(creative>=8)strengths.push("창의성");
+   const reason=(strengths.length?strengths.slice(0,3).join(" · ")+"이 돋보이는 답변":"품질에 대한 생각이 비교적 명확하게 표현된 답변");
+   return {...r,score,reason,breakdown}
+ });
+ evaluated.sort((a,b)=>b.score-a.score||String(a.created_at||"").localeCompare(String(b.created_at||"")));
+ const winners=[];
+ for(const c of evaluated){if(winners.length===3)break;if(!winners.some(w=>answerSimilarity(c.answer||"",w.answer||"")>=0.72))winners.push(c)}
+ for(const c of evaluated){if(winners.length===3)break;if(!winners.some(w=>String(w.id)===String(c.id)))winners.push(c)}
+ return winners.slice(0,3).map(w=>({id:w.id,name:w.name,dept:w.dept,answer:w.answer,score:w.score,reason:w.reason,breakdown:w.breakdown}))
+}
+function qualityBreakdownText(w){const b=w?.breakdown||{};return `취지 ${b.purpose??0}/30 · 실천성 ${b.practice??0}/25 · 구체성 ${b.specific??0}/20 · 공감성 ${b.empathy??0}/15 · 창의성 ${b.creative??0}/10`}
+
+const params=new URLSearchParams(location.search),mode=params.get("mode")||"home";
+const viewId=mode==="participant"?"participantView":mode==="admin"?"adminView":mode==="live"?"liveView":"homeView";
+document.getElementById(viewId).classList.remove("hidden");
+document.body.className=mode==="live"?"live-body":"";
+
+if(typeof goLive!=="undefined")goLive.addEventListener("click",()=>goMode("live"));
+if(typeof goParticipant!=="undefined")goParticipant.addEventListener("click",()=>location.href=modeUrl("participant","ko"));
+if(typeof goAdmin!=="undefined")goAdmin.addEventListener("click",()=>goMode("admin"));
+
+if(mode!=="home"){
+ backBtn.classList.remove("hidden");
+ backBtn.textContent=params.get("lang")==="en"?"← Back":"← 뒤로가기";
+ backBtn.addEventListener("click",()=>history.length>1?history.back():location.href=currentBase())
+}
+if(mode!=="home"&&mode!=="participant"){
+ modeNav.classList.remove("hidden");
+ navHome.href=currentBase();navLive.href=modeUrl("live");navParticipant.href=modeUrl("participant","ko");navAdmin.href=modeUrl("admin")
 }
 
-const params=new URLSearchParams(location.search),mode=params.get("mode")||"home";const viewId=mode==="participant"?"participantView":mode==="admin"?"adminView":mode==="live"?"liveView":"homeView";document.getElementById(viewId).classList.remove("hidden");document.body.className=mode==="live"?"live-body":"";
-if(typeof goLive!=="undefined")goLive.addEventListener("click",()=>goMode("live"));if(typeof goParticipant!=="undefined")goParticipant.addEventListener("click",()=>location.href=modeUrl("participant","ko"));if(typeof goAdmin!=="undefined")goAdmin.addEventListener("click",()=>goMode("admin"));
-if(mode!=="home"){backBtn.classList.remove("hidden");backBtn.textContent=params.get("lang")==="en"?"← Back":"← 뒤로가기";backBtn.addEventListener("click",()=>history.length>1?history.back():location.href=currentBase())}
-if(mode!=="home"&&mode!=="participant"){modeNav.classList.remove("hidden");navHome.href=currentBase();navLive.href=modeUrl("live");navParticipant.href=modeUrl("participant","ko");navAdmin.href=modeUrl("admin")}
-
+/* PARTICIPANT */
 if(mode==="participant"){
  let lang=params.get("lang")==="en"?"en":"ko",selected=null,lastKey=null,lastState=null,lastRaw=[];
- let pid=localStorage.getItem("qd_warm_pid")||newPid();localStorage.setItem("qd_warm_pid",pid);
- pName.value=localStorage.getItem("qd_warm_name")||"";pDept.value=localStorage.getItem("qd_warm_dept")||"";pTeam.value=localStorage.getItem("qd_warm_team")||"";
+ let pid=localStorage.getItem("qd_individual_pid")||newPid();localStorage.setItem("qd_individual_pid",pid);
+ pName.value=localStorage.getItem("qd_individual_name")||"";
+ pDept.value=localStorage.getItem("qd_individual_dept")||"";
  const note=(t,c="notice")=>{pMsg.className=c;pMsg.textContent=t};
- function applyLang(){const t=I18N[lang];document.documentElement.lang=lang;langKo.classList.toggle("active",lang==="ko");langEn.classList.toggle("active",lang==="en");pHeroTitle.textContent=t.hero;pHeroSub.textContent=t.sub;nameLabel.textContent=t.name;deptLabel.textContent=t.dept;teamLabel.textContent=t.team;pName.placeholder=t.namePh;pDept.placeholder=t.deptPh;pTeam.options[0].textContent=lang==="en"?"Select team":"팀을 선택하세요"}
- langKo.addEventListener("click",()=>{lang="ko";history.replaceState(null,"",modeUrl("participant","ko"));applyLang();renderCurrent()});langEn.addEventListener("click",()=>{lang="en";history.replaceState(null,"",modeUrl("participant","en"));applyLang();renderCurrent()});
- function renderCurrent(){const t=I18N[lang],qs=getQuizState(lastState);pStateBadge.textContent=lastState?.is_open?t.open:t.closed;pStateBadge.className="badge"+(lastState?.is_open?"":" closed");
-   if(qs.showAll||qs.currentQuestion===0){pQuestionState.textContent="EVENT COMPLETE";pStep.textContent="THANK YOU";pProgress.style.width="100%";pQuestion.textContent=lang==="en"?"Thank you for joining!":"참여해 주셔서 감사합니다!";pQuestionEn.textContent=lang==="en"?"Please see the LIVE screen for today's awards.":"LIVE 화면에서 오늘의 시상 결과를 함께 확인해 주세요.";pOptions.innerHTML="";pOptions.classList.remove("hidden");pQualityText.classList.add("hidden");pSubmit.classList.add("hidden");pNextCheck.classList.add("hidden");note(lang==="en"?"Team ranking, individual TOP 3 and Quality Voice BEST 3 will be shown on LIVE.":"팀 퀴즈 순위 · 개인전 TOP3 · 품질 한마디 BEST3를 LIVE에서 발표합니다.","notice ok");return}
-   const cq=Number(qs.currentQuestion)||1;
-   if(cq===6){const key="quality";if(lastKey!==key){selected=null;lastKey=key;pMsg.textContent="";pMsg.className=""}const qr=qualityRows(lastRaw),mine=qr.find(r=>r.meta?.pid===pid);pQuestionState.textContent="QUALITY VOICE";pStep.textContent=lang==="en"?"FINAL · QUALITY VOICE":"FINAL · 품질 한마디";pProgress.style.width="100%";pQuestion.textContent=t.qualityQ;pQuestionEn.textContent=t.qualitySub;pOptions.innerHTML="";pOptions.classList.add("hidden");pQualityText.classList.remove("hidden");pQualityText.placeholder=t.qualityPh;pSubmit.classList.remove("hidden");pSubmit.textContent=t.qualitySubmit;pSubmit.disabled=!lastState?.is_open||!!mine;pNextCheck.classList.toggle("hidden",!mine);if(mine){pQualityText.value=mine.answer||"";pQualityText.disabled=true;note(lang==="en"?"Your Quality Voice is submitted. Please wait for the BEST 3 reveal.":"품질 한마디가 등록되었습니다. BEST 3 발표를 기다려 주세요.","notice ok")}else{pQualityText.disabled=false;if(!lastState?.is_open)note(t.closed,"notice error")}return}
-   const qi=Math.max(1,Math.min(5,cq)),q=QUESTIONS[qi-1],key=q.id;if(lastKey!==key){selected=null;lastKey=key;pMsg.textContent="";pMsg.className="";pNextCheck.classList.add("hidden")}
-   pQuestionState.textContent=q.round==="team"?(lang==="en"?`Q${qi} · TEAM ROUND`:`Q${qi} · 팀전`):(lang==="en"?`Q${qi} · INDIVIDUAL`:`Q${qi} · 개인전`);
-   pStep.innerHTML=`QUESTION ${qi} · QUIZ <span class="round-chip ${q.round==="individual"?"individual":""}">${q.round==="team"?(lang==="en"?"TEAM":"팀전"):(lang==="en"?"INDIVIDUAL":"개인전")}</span>`;
-   pProgress.style.width=(qi*16.6)+"%";pQuestion.textContent=lang==="en"?q.en:q.ko;pQuestionEn.textContent=lang==="en"?q.ko:q.en;pOptions.classList.remove("hidden");pQualityText.classList.add("hidden");pQualityText.disabled=false;
-   const rows=quizRows(lastRaw),mine=rows.find(r=>r.meta?.pid===pid&&r.quiz.questionId===q.id);
-   pOptions.innerHTML=q.options.map(o=>`<button type="button" class="option-btn ${selected===o.v?"selected":""}" data-v="${o.v}"><span class="option-letter">${o.v}</span>${esc(lang==="en"?o.en:o.ko)}</button>`).join("");
-   pOptions.querySelectorAll(".option-btn").forEach(b=>b.addEventListener("click",()=>{if(mine||!lastState?.is_open)return;selected=b.dataset.v;renderCurrent()}));pSubmit.classList.remove("hidden");pSubmit.textContent=t.submit;pSubmit.disabled=!lastState?.is_open||!!mine;
-   if(mine){note(t.already,"notice ok");pNextCheck.classList.remove("hidden");pOptions.querySelectorAll(".option-btn").forEach(b=>b.classList.toggle("selected",b.dataset.v===mine.quiz.choice))}else{pNextCheck.classList.add("hidden");if(!lastState?.is_open)note(t.closed,"notice error")}
+
+ function applyLang(){
+   const t=I18N[lang];document.documentElement.lang=lang;
+   langKo.classList.toggle("active",lang==="ko");langEn.classList.toggle("active",lang==="en");
+   pHeroTitle.textContent=t.hero;pHeroSub.textContent=t.sub;nameLabel.textContent=t.name;deptLabel.textContent=t.dept;pName.placeholder=t.namePh;
+   pDept.options[0].textContent=lang==="en"?"Select your team":"소속을 선택하세요 / Select your team"
  }
- pSubmit.addEventListener("click",async()=>{const t=I18N[lang],name=pName.value.trim(),dept=pDept.value.trim(),team=pTeam.value.trim();if(!name||!dept||!team)return note(t.required,"notice error");const qs=getQuizState(lastState),cq=Number(qs.currentQuestion)||1;try{pSubmit.disabled=true;localStorage.setItem("qd_warm_name",name);localStorage.setItem("qd_warm_dept",dept);localStorage.setItem("qd_warm_team",team);if(cq===6){const answer=pQualityText.value.trim();if(answer.length<5){pSubmit.disabled=false;return note(lang==="en"?"Please write at least a short sentence.":"품질에 대한 생각을 한 문장 이상 적어주세요.","notice error")}await submitResponse({name,dept,answer,action:JSON.stringify({pid,lang,team,type:"quality_voice",version:QUALITY_VERSION})});note(t.qualityThanks,"notice ok")}else{if(!selected){pSubmit.disabled=false;return note(t.required,"notice error")}const qi=Math.max(1,Math.min(5,cq)),q=QUESTIONS[qi-1],o=q.options.find(x=>x.v===selected);await submitResponse({name,dept,answer:JSON.stringify({version:QUIZ_VERSION,questionId:q.id,choice:selected,label:o?.ko||"",round:q.round}),action:JSON.stringify({pid,lang,team,type:"quiz",version:QUIZ_VERSION})});note(t.thanks,"notice ok")}pNextCheck.classList.remove("hidden");await refresh()}catch(e){note("Submission failed: "+e.message,"notice error");pSubmit.disabled=false}});
- pNextCheck.addEventListener("click",async()=>{const before=getQuizState(lastState).currentQuestion;await refresh();const after=getQuizState(lastState).currentQuestion;if(after===before)note(lang==="en"?"The host has not opened the next stage yet. It will switch automatically.":"진행자가 아직 다음 단계를 열지 않았습니다. 열리면 자동으로 전환됩니다.","notice")});
+ langKo.addEventListener("click",()=>{lang="ko";history.replaceState(null,"",modeUrl("participant","ko"));applyLang();renderCurrent()});
+ langEn.addEventListener("click",()=>{lang="en";history.replaceState(null,"",modeUrl("participant","en"));applyLang();renderCurrent()});
+
+ function renderCurrent(){
+   const t=I18N[lang],qs=getQuizState(lastState);
+   pStateBadge.textContent=lastState?.is_open?t.open:t.closed;pStateBadge.className="badge"+(lastState?.is_open?"":" closed");
+
+   if(qs.showAll||qs.currentQuestion===0){
+     pQuestionState.textContent="EVENT COMPLETE";pStep.textContent="THANK YOU";pProgress.style.width="100%";
+     pQuestion.textContent=lang==="en"?"Thank you for joining!":"참여해 주셔서 감사합니다!";
+     pQuestionEn.textContent=lang==="en"?"Please see the LIVE screen for today's awards.":"LIVE 화면에서 오늘의 TOP3 결과를 확인해 주세요.";
+     pOptions.innerHTML="";pQualityText.classList.add("hidden");pSubmit.classList.add("hidden");pNextCheck.classList.add("hidden");
+     note(lang==="en"?"Please check the LIVE screen for the awards.":"퀴즈 및 품질 한마디 TOP3를 LIVE에서 발표합니다.","notice ok");return
+   }
+
+   const cq=Number(qs.currentQuestion)||1;
+   if(cq===QUALITY_STAGE){
+     const key="quality";if(lastKey!==key){selected=null;lastKey=key;pMsg.textContent="";pMsg.className=""}
+     const qrows=qualityRows(lastRaw),mine=qrows.find(r=>r.meta?.pid===pid);
+     pQuestionState.textContent="QUALITY VOICE";pStep.textContent=lang==="en"?"FINAL · QUALITY VOICE":"FINAL · 품질 한마디";pProgress.style.width="100%";
+     pQuestion.textContent=t.qualityQ;pQuestionEn.textContent=t.qualitySub;pOptions.innerHTML="";pOptions.classList.add("hidden");
+     pQualityText.classList.remove("hidden");pQualityText.placeholder=t.qualityPh;pSubmit.classList.remove("hidden");pSubmit.textContent=t.qualitySubmit;
+     pSubmit.disabled=!lastState?.is_open||!!mine;pNextCheck.classList.toggle("hidden",!mine);
+     if(mine){pQualityText.value=mine.answer||"";pQualityText.disabled=true;note(lang==="en"?"Submitted. Please watch the LIVE ranking.":"품질 한마디가 등록되었습니다. LIVE 실시간 TOP3를 확인해 주세요.","notice ok")}
+     else{pQualityText.disabled=false;if(!lastState?.is_open)note(t.closed,"notice error")}
+     return
+   }
+
+   const qi=Math.max(1,Math.min(QUESTIONS.length,cq)),q=QUESTIONS[qi-1],key=q.id;
+   if(lastKey!==key){selected=null;lastKey=key;pMsg.textContent="";pMsg.className="";pNextCheck.classList.add("hidden")}
+   pQuestionState.textContent=lang==="en"?`Q${qi} · INDIVIDUAL`:`Q${qi} · 개인전`;
+   pStep.innerHTML=`QUESTION ${qi} / ${QUESTIONS.length} · QUIZ <span class="round-chip individual">${lang==="en"?"INDIVIDUAL":"개인전"}</span>`;
+   pProgress.style.width=Math.round(qi*100/(QUESTIONS.length+1))+"%";
+   pQuestion.textContent=lang==="en"?q.en:q.ko;pQuestionEn.textContent=lang==="en"?q.ko:q.en;
+   pOptions.classList.remove("hidden");pQualityText.classList.add("hidden");
+   const rows=quizRows(lastRaw),mine=rows.find(r=>r.meta?.pid===pid&&r.quiz.questionId===q.id);
+   pOptions.innerHTML=q.options.map(o=>`<button type="button" class="option-btn ${selected===o.v?"selected":""}" data-v="${o.v}"><div class="option-main"><span class="option-letter">${o.v}</span><span>${esc(lang==="en"?o.en:o.ko)}</span></div><div class="option-sub">${esc(lang==="en"?o.ko:o.en)}</div></button>`).join("");
+   pOptions.querySelectorAll(".option-btn").forEach(b=>b.addEventListener("click",()=>{if(mine||!lastState?.is_open)return;selected=b.dataset.v;renderCurrent()}));
+   pSubmit.classList.remove("hidden");pSubmit.textContent=t.submit;pSubmit.disabled=!lastState?.is_open||!!mine;
+   if(mine){note(t.already,"notice ok");pNextCheck.classList.remove("hidden");pOptions.querySelectorAll(".option-btn").forEach(b=>b.classList.toggle("selected",b.dataset.v===mine.quiz.choice))}
+   else{pNextCheck.classList.add("hidden");if(!lastState?.is_open)note(t.closed,"notice error")}
+ }
+
+ pSubmit.addEventListener("click",async()=>{
+   const t=I18N[lang],name=pName.value.trim(),dept=pDept.value.trim();
+   if(!name||!dept)return note(t.required,"notice error");
+   const qs=getQuizState(lastState),cq=Number(qs.currentQuestion)||1;
+   try{
+     pSubmit.disabled=true;localStorage.setItem("qd_individual_name",name);localStorage.setItem("qd_individual_dept",dept);
+     if(cq===QUALITY_STAGE){
+       const answer=pQualityText.value.trim();
+       if(answer.length<5){pSubmit.disabled=false;return note(lang==="en"?"Please write at least one short sentence.":"품질에 대한 생각을 한 문장 이상 적어주세요.","notice error")}
+       await submitResponse({name,dept,answer,action:JSON.stringify({pid,lang,type:"quality_voice",version:QUALITY_VERSION})});
+       note(t.qualityThanks,"notice ok")
+     }else{
+       if(!selected){pSubmit.disabled=false;return note(t.required,"notice error")}
+       const qi=Math.max(1,Math.min(QUESTIONS.length,cq)),q=QUESTIONS[qi-1],o=q.options.find(x=>x.v===selected);
+       await submitResponse({name,dept,answer:JSON.stringify({version:QUIZ_VERSION,questionId:q.id,choice:selected,label:o?.ko||"",round:"individual"}),action:JSON.stringify({pid,lang,type:"quiz",version:QUIZ_VERSION})});
+       note(t.thanks,"notice ok")
+     }
+     pNextCheck.classList.remove("hidden");await refresh()
+   }catch(e){note("Submission failed: "+e.message,"notice error");pSubmit.disabled=false}
+ });
+
+ pNextCheck.addEventListener("click",async()=>{const before=getQuizState(lastState).currentQuestion;await refresh();const after=getQuizState(lastState).currentQuestion;if(after===before)note(lang==="en"?"The host has not opened the next stage yet.":"진행자가 아직 다음 문제를 열지 않았습니다. 열리면 자동으로 전환됩니다.","notice")});
+
  async function refresh(){try{const[s,r]=await Promise.all([getState(),getResponses()]);lastState=s;lastRaw=r;renderCurrent()}catch(e){pStateBadge.textContent="Error";pStateBadge.className="badge closed";note("Supabase: "+e.message,"notice error")}}
- applyLang();refresh();setInterval(refresh,1300)
+ applyLang();refresh();setInterval(refresh,1200)
 }
 
+/* LIVE */
 if(mode==="live"){
  const joinUrl=modeUrl("participant");
  const qrImg=document.getElementById("qrMain"),qrText=document.getElementById("qrLinkText");
- if(location.protocol==="file:"){qrImg.style.display="none";qrText.className="qr-local-warning";qrText.innerHTML="현재 PC의 로컬 HTML로 실행 중입니다.<br>휴대폰 QR 참여는 GitHub Pages 주소에서 LIVE 화면을 열어야 정상 작동합니다."}else{try{qrImg.src=qrDataUri(joinUrl);qrText.textContent=joinUrl}catch(e){qrImg.style.display="none";qrText.className="qr-local-warning";qrText.textContent="QR 생성 오류: "+e.message}}
+ if(location.protocol==="file:"){qrImg.style.display="none";qrText.className="qr-local-warning";qrText.innerHTML="현재 PC의 로컬 HTML로 실행 중입니다.<br>휴대폰 QR 참여는 GitHub Pages 주소에서 LIVE 화면을 열어야 정상 작동합니다."}
+ else{try{qrImg.src=qrDataUri(joinUrl);qrText.textContent=joinUrl}catch(e){qrImg.style.display="none";qrText.className="qr-local-warning";qrText.textContent="QR 생성 오류: "+e.message}}
+
  let liveState=null,liveRaw=[];
- function teamBoardHtml(rows){const board=teamScoreboard(rows);const best=board.length?board[0].score:-1;return `<div class="team-grid">${board.map(x=>`<div class="team-card ${x.score===best&&best>0?"win":""}"><div class="team-name">${x.team}팀</div><div class="team-score">${x.score}점</div><div class="team-detail">진행 ${x.played}/4문제 · 참여 ${x.people}명</div></div>`).join("")}</div>`}
- function currentTeamRoundHtml(rows,qid){return `<div class="team-grid">${teamRoundCards(rows,qid).map(x=>`<div class="team-card"><div class="team-name">${x.team}팀</div><div class="team-score">${x.tie?"동률":(x.answer||"-")}</div><div class="team-detail">${x.total?`응답 ${x.total}명 · 최다 ${x.count}표`:"아직 응답 없음"}</div></div>`).join("")}</div>`}
- function individualWinnersHtml(rows){const top=individualTop3(rows);return top.length?`<div class="leaderboard">${top.map((w,i)=>`<div class="leader-card"><div class="place">${i+1}위</div><div class="name">${esc(w.name)}</div><div class="score">${esc(w.dept)} · ${esc(w.team)}팀</div></div>`).join("")}</div>`:'<div class="ai-note">아직 Q5 정답자가 없습니다.</div>'}
- function renderQuiz(q,counts,qs,rows){const total=Object.values(counts).reduce((a,b)=>a+b,0),idx=QUESTIONS.indexOf(q)+1;lQLbl.innerHTML=`QUESTION ${idx} · ${q.round==="team"?"TEAM ROUND":"INDIVIDUAL FINAL"}`;lQuestion.textContent=q.ko;lQuestionEn.textContent=q.en;lResults.className="result-bars";lResults.innerHTML=q.options.map(o=>{const n=counts[o.v]||0,p=total?Math.round(n*100/total):0,correct=qs.reveal&&q.correct===o.v;return `<div class="result-row ${correct?"correct-glow":""}"><div class="result-label"><span class="option-letter">${o.v}</span>${esc(o.ko)}</div><div class="bar-track"><div class="bar-fill" style="width:${p}%"></div></div><div class="bar-value">${n}명 · ${p}%</div></div>`}).join("");if(!qs.reveal){lMessage.innerHTML=q.round==="team"?'<div class="ai-note">팀원들과 상의한 뒤 QR에서 답을 선택해 주세요. 팀 내 최다 선택 답을 팀 답으로 판정합니다.</div>':'<div class="ai-note">개인전입니다. 정답자 중 빠른 응답 순으로 TOP 3를 선정합니다.</div>';return}lMessage.innerHTML=`<div class="live-message">${esc(q.messageKo)}<br><small>${esc(q.messageEn)}</small></div>`+(q.round==="team"?currentTeamRoundHtml(rows,q.id)+teamBoardHtml(rows):'<div style="color:#ffd166;font-weight:900;font-size:20px;margin-top:14px">Q5 개인전 TOP 3</div>'+individualWinnersHtml(rows))}
- function renderQuality(qrows,qs){lQLbl.textContent="FINAL · QUALITY VOICE";lQuestion.textContent="내가 생각하는 ‘품질’이란 무엇인가요?";lQuestionEn.textContent="What does quality mean to you?";const winners=Array.isArray(qs.qualityWinners)?qs.qualityWinners:[];if(qs.reveal&&winners.length){lResults.className="quality-voice-grid";lResults.innerHTML=winners.map((w,i)=>`<article class="quality-voice-card winner"><span class="winner-badge">BEST ${i+1} · ${esc(w.score)}점</span><b>${esc(w.dept)} · ${esc(w.name)}</b><p>${esc(w.answer)}</p><small>${esc(w.reason||"")}</small></article>`).join("");lMessage.innerHTML='<div class="live-message">문장력이나 맞춤법이 아니라 품질의 의미 · 현장 실천성 · 구체성 · 공감성 · 참신성을 기준으로 선정했습니다.</div>'}else{lResults.className="quality-voice-grid";lResults.innerHTML=qrows.slice(-8).reverse().map(r=>`<article class="quality-voice-card"><b>${esc(r.dept)} · ${esc(r.name)}</b><p>${esc(r.answer)}</p></article>`).join("")||'<div class="ai-note">아직 품질 한마디가 등록되지 않았습니다.</div>';lMessage.innerHTML='<div class="ai-note">모든 답변이 모이면 진행자가 BEST 3를 선정·공개합니다.</div>'}}
- function renderAll(qrows,quality,qs){const board=teamScoreboard(qrows),individual=individualTop3(qrows),qw=Array.isArray(qs.qualityWinners)?qs.qualityWinners:[];let html='<div style="grid-column:1/-1;color:#36c8ff;font-weight:900;font-size:22px">TEAM QUIZ · Q1~Q4 최종 순위</div>';html+=board.map((x,i)=>`<div class="summary-card"><div class="mini-q">${i+1}위 · ${x.team}팀</div><div class="mini-top">${x.score}/4점</div><small>팀 내 최다 선택 답 기준 · 동률 답변은 해당 문제 0점</small></div>`).join("");html+='<div style="grid-column:1/-1;color:#ffd166;font-weight:900;font-size:22px;margin-top:4px">Q5 개인전 TOP 3</div>';html+=(individual.length?individual.map((w,i)=>`<div class="summary-card"><div class="mini-q">${i+1}위 · ${esc(w.name)}</div><div class="mini-top">${esc(w.dept)} · ${esc(w.team)}팀</div><small>Q5 정답자 중 빠른 응답 순</small></div>`).join(""):'<div class="summary-card">Q5 정답자가 없습니다.</div>');html+='<div style="grid-column:1/-1;color:#ffb86b;font-weight:900;font-size:22px;margin-top:4px">QUALITY VOICE BEST 3</div>';html+=(qw.length?qw.map((w,i)=>`<div class="summary-card"><div class="mini-q">BEST ${i+1} · ${esc(w.dept)} ${esc(w.name)}</div><div class="mini-top">${esc(w.answer)}</div><small>${esc(w.reason||"")}</small></div>`).join(""):'<div class="summary-card">품질 한마디 BEST 3는 아직 공개되지 않았습니다.</div>');lAllResults.innerHTML=html}
- async function refreshLive(){try{const[s,raw]=await Promise.all([getState(),getResponses()]);liveState=s;liveRaw=raw;const qr=quizRows(raw),quality=qualityRows(raw),qs=getQuizState(s);lCount.textContent=participantCount(raw);lState.textContent=s.is_open?"참여중":"마감";if(qs.showAll||qs.currentQuestion===0){lSingleView.classList.add("hidden");lAllView.classList.remove("hidden");renderAll(qr,quality,qs);hostStatus.textContent="시상 · 전체 결과"}else{lAllView.classList.add("hidden");lSingleView.classList.remove("hidden");const cq=Number(qs.currentQuestion)||1;if(cq===6){renderQuality(quality,qs);hostStatus.textContent=qs.reveal?"품질 BEST3 공개":"품질 한마디 접수";hostReveal.textContent=qs.reveal?"BEST3 숨김":"BEST3 선정·공개"}else{const qi=Math.max(1,Math.min(5,cq)),q=QUESTIONS[qi-1];renderQuiz(q,countsFor(qr,q.id),qs,qr);hostStatus.textContent=`Q${qi} · ${q.round==="team"?"팀전":"개인전"} · ${qs.reveal?"정답 공개":"진행"}`;hostReveal.textContent=qs.reveal?"정답 숨김":"정답 공개"}}}catch(e){lState.textContent="연결오류";hostStatus.textContent="연결오류"}}
- const getHostPin=()=>{let p=sessionStorage.getItem("qd_warm_host_pin")||"";if(!p){p=prompt("LIVE 진행용 관리자 PIN을 입력해 주세요.")||"";if(p)sessionStorage.setItem("qd_warm_host_pin",p)}return p};
- async function hostSet(q,reveal=false,showAll=false,qualityWinners=null){const p=getHostPin();if(!p)return;try{const current=getQuizState(liveState),qw=qualityWinners===null?current.qualityWinners:qualityWinners;await setWinners(p,makeQuizState(q,reveal,showAll,qw));await refreshLive()}catch(e){hostStatus.textContent="전환 실패: "+e.message;if(String(e.message).includes("INVALID_PIN"))sessionStorage.removeItem("qd_warm_host_pin")}}
- hostPrev.addEventListener("click",()=>{const qs=getQuizState(liveState);if(qs.showAll||qs.currentQuestion===0)return hostSet(6,false,false);const q=Number(qs.currentQuestion||1);hostSet(Math.max(1,q-1),false,false)});
- hostNext.addEventListener("click",()=>{const qs=getQuizState(liveState);if(qs.showAll||qs.currentQuestion===0)return;const q=Number(qs.currentQuestion||1);if(q>=6)return hostSet(0,true,true);hostSet(q+1,false,false)});
- hostReveal.addEventListener("click",async()=>{const qs=getQuizState(liveState);if(qs.showAll||qs.currentQuestion===0)return;const q=Number(qs.currentQuestion||1);if(q===6&&!qs.reveal){const quality=qualityRows(liveRaw);if(quality.length<3){hostStatus.textContent="BEST 3 선정을 위해 최소 3개의 품질 한마디가 필요합니다.";return}const winners=autoEvaluateQuality(quality);return hostSet(6,true,false,winners)}hostSet(q,!qs.reveal,false)});
- hostAll.addEventListener("click",()=>hostSet(0,true,true));refreshLive();setInterval(refreshLive,1100)
+
+ function top3Html(rows,qid){
+   const top=correctTop3(rows,qid);
+   return top.length?`<div class="leaderboard">${top.map((w,i)=>`<div class="leader-card"><div class="place">${i+1}위 · 빠른 정답</div><div class="name">${esc(w.name)}</div><div class="score">${esc(w.dept)}</div></div>`).join("")}</div>`:'<div class="ai-note">아직 정답자가 없습니다.</div>'
+ }
+ function renderQuiz(q,counts,qs,rows){
+   const total=Object.values(counts).reduce((a,b)=>a+b,0),idx=QUESTIONS.indexOf(q)+1;
+   lQLbl.textContent=`QUESTION ${idx} / ${QUESTIONS.length} · INDIVIDUAL`;lQuestion.textContent=q.ko;lQuestionEn.textContent=q.en;lResults.className="result-bars";
+   lResults.innerHTML=q.options.map(o=>{const n=counts[o.v]||0,p=total?Math.round(n*100/total):0,correct=qs.reveal&&q.correct===o.v;return `<div class="result-row ${correct?"correct-glow":""}"><div class="result-label"><div class="result-label-main"><span class="option-letter">${o.v}</span><span>${esc(o.ko)}</span></div><div class="result-label-en">${esc(o.en)}</div></div><div class="bar-track"><div class="bar-fill" style="width:${p}%"></div></div><div class="bar-value">${n}명 · ${p}%</div></div>`}).join("");
+   if(!qs.reveal){lMessage.innerHTML='<div class="ai-note">전원 개인전입니다. 정답자 중 빠른 순으로 TOP 3가 결정됩니다.</div>';return}
+   lMessage.innerHTML=`<div class="live-message">${esc(q.messageKo)}<br><small>${esc(q.messageEn)}</small></div><div style="color:#ffd166;font-weight:900;font-size:20px;margin-top:14px">이 문제 빠른 정답 TOP 3</div>${top3Html(rows,q.id)}`
+ }
+ function renderQuality(qrows,qs){
+   lQLbl.textContent="FINAL · QUALITY VOICE";lQuestion.textContent="여러분에게 ‘품질’이란 무엇인가요?";lQuestionEn.textContent="What does quality mean to you?";
+   const realtime=autoEvaluateQuality(qrows),winners=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:realtime;
+   if(winners.length){
+     lResults.className="quality-voice-grid";
+     lResults.innerHTML=winners.map((w,i)=>`<article class="quality-voice-card ${qs.reveal?"winner":""}"><span class="winner-badge">${qs.reveal?"FINAL":"LIVE"} TOP ${i+1} · ${esc(w.score)}점</span><b>${esc(w.dept)} · ${esc(w.name)}</b><p>${esc(w.answer)}</p><small>${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</small></article>`).join("");
+     lMessage.innerHTML=`<div class="${qs.reveal?"live-message":"ai-note"}">${qs.reveal?"최종 TOP 3를 공개합니다.":"실시간 자동평가 TOP 3입니다. 새 응답이 들어오면 순위가 바뀔 수 있습니다."}<br><small>평가기준: 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10</small></div>`
+   }else{lResults.className="quality-voice-grid";lResults.innerHTML='<div class="ai-note">아직 품질 한마디가 등록되지 않았습니다.</div>';lMessage.innerHTML='<div class="ai-note">응답이 등록되면 실시간 TOP 3 자동평가가 시작됩니다.</div>'}
+ }
+ function renderAll(qrows,quality,qs){
+   const overall=quizOverallTop3(qrows),qw=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:autoEvaluateQuality(quality);
+   let html='<div style="grid-column:1/-1;color:#36c8ff;font-weight:900;font-size:22px">QUIZ · 종합 정답 TOP 3</div>';
+   html+=(overall.length?overall.map((w,i)=>`<div class="summary-card"><div class="mini-q">${i+1}위 · ${esc(w.name)}</div><div class="mini-top">${w.correct}/${QUESTIONS.length} 정답</div><small>${esc(w.dept)} · 참여 ${w.answered}문제</small></div>`).join(""):'<div class="summary-card">아직 퀴즈 응답이 없습니다.</div>');
+   html+='<div style="grid-column:1/-1;color:#ffb86b;font-weight:900;font-size:22px;margin-top:4px">QUALITY VOICE TOP 3</div>';
+   html+=(qw.length?qw.map((w,i)=>`<div class="summary-card"><div class="mini-q">TOP ${i+1} · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</div><div class="mini-top">${esc(w.answer)}</div><small>${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</small></div>`).join(""):'<div class="summary-card">품질 한마디가 아직 없습니다.</div>');
+   lAllResults.innerHTML=html
+ }
+ async function refreshLive(){
+   try{
+     const[s,raw]=await Promise.all([getState(),getResponses()]);liveState=s;liveRaw=raw;
+     const qr=quizRows(raw),quality=qualityRows(raw),qs=getQuizState(s);lCount.textContent=participantCount(raw);lState.textContent=s.is_open?"참여중":"마감";
+     if(qs.showAll||qs.currentQuestion===0){lSingleView.classList.add("hidden");lAllView.classList.remove("hidden");renderAll(qr,quality,qs);hostStatus.textContent="시상 · 전체 결과"}
+     else{
+       lAllView.classList.add("hidden");lSingleView.classList.remove("hidden");const cq=Number(qs.currentQuestion)||1;
+       if(cq===QUALITY_STAGE){renderQuality(quality,qs);hostStatus.textContent=qs.reveal?"품질 TOP3 확정":"품질 한마디 실시간 평가";hostReveal.textContent=qs.reveal?"TOP3 숨김":"TOP3 확정·공개"}
+       else{const qi=Math.max(1,Math.min(QUESTIONS.length,cq)),q=QUESTIONS[qi-1];renderQuiz(q,countsFor(qr,q.id),qs,qr);hostStatus.textContent=`Q${qi} · 개인전 · ${qs.reveal?"정답 공개":"진행"}`;hostReveal.textContent=qs.reveal?"정답 숨김":"정답 공개"}
+     }
+   }catch(e){lState.textContent="연결오류";hostStatus.textContent="연결오류: "+e.message}
+ }
+ const getHostPin=()=>{let p=sessionStorage.getItem("qd_individual_host_pin")||"";if(!p){p=prompt("LIVE 진행용 관리자 PIN을 입력해 주세요.")||"";if(p)sessionStorage.setItem("qd_individual_host_pin",p)}return p};
+ async function hostSet(q,reveal=false,showAll=false,qualityWinners=null){
+   const p=getHostPin();if(!p)return;
+   try{const current=getQuizState(liveState),qw=qualityWinners===null?current.qualityWinners:qualityWinners;await setWinners(p,makeQuizState(q,reveal,showAll,qw));await refreshLive()}
+   catch(e){hostStatus.textContent="전환 실패: "+e.message;if(String(e.message).includes("INVALID_PIN"))sessionStorage.removeItem("qd_individual_host_pin")}
+ }
+ hostPrev.addEventListener("click",()=>{const qs=getQuizState(liveState);if(qs.showAll||qs.currentQuestion===0)return hostSet(QUALITY_STAGE,false,false);const q=Number(qs.currentQuestion||1);hostSet(Math.max(1,q-1),false,false)});
+ hostNext.addEventListener("click",()=>{const qs=getQuizState(liveState);if(qs.showAll||qs.currentQuestion===0)return;const q=Number(qs.currentQuestion||1);if(q>=QUALITY_STAGE)return hostSet(0,true,true);hostSet(q+1,false,false)});
+ hostReveal.addEventListener("click",async()=>{const qs=getQuizState(liveState);if(qs.showAll||qs.currentQuestion===0)return;const q=Number(qs.currentQuestion||1);if(q===QUALITY_STAGE&&!qs.reveal){const quality=qualityRows(liveRaw);if(quality.length<3){hostStatus.textContent="TOP3 선정을 위해 최소 3개의 품질 한마디가 필요합니다.";return}return hostSet(QUALITY_STAGE,true,false,autoEvaluateQuality(quality))}hostSet(q,!qs.reveal,false)});
+ hostAll.addEventListener("click",()=>hostSet(0,true,true));
+ refreshLive();setInterval(refreshLive,1100)
 }
 
+/* ADMIN */
 if(mode==="admin"){
  const pin=()=>aPin.value.trim(),note=(t,ok=false)=>{aMsg.className=ok?"notice ok":"notice error";aMsg.textContent=t};let lastState=null,lastRaw=[];
- aQButtons.innerHTML=QUESTIONS.map((q,i)=>`<button class="qjump" data-q="${i+1}">Q${i+1}${q.round==="individual"?" · 개인":""}</button>`).join("")+`<button class="qjump" data-q="6">품질 한마디</button>`;
+ aQButtons.innerHTML=QUESTIONS.map((q,i)=>`<button class="qjump" data-q="${i+1}">Q${i+1}</button>`).join("")+`<button class="qjump" data-q="${QUALITY_STAGE}">품질 한마디</button>`;
+
  verifyPinBtn.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");verifyPinBtn.disabled=true;try{await verifyAdminPin(pin());note("PIN 확인 성공: 관리자 인증 정상입니다. 접수상태는 변경되지 않았습니다.",true)}catch(e){note("PIN 확인 실패: "+e.message)}finally{verifyPinBtn.disabled=false}});
- async function setStage(q,reveal=false,showAll=false,qualityWinners=null){if(!pin())return note("관리자 PIN을 입력해 주세요.");try{const qs=getQuizState(lastState),qw=qualityWinners===null?qs.qualityWinners:qualityWinners;await setWinners(pin(),makeQuizState(q,reveal,showAll,qw));note(showAll?"시상 · 전체 결과 화면으로 전환했습니다.":(q===6?"품질 한마디 화면으로 전환했습니다.":`Q${q} 화면으로 전환했습니다.`),true);refreshAdmin()}catch(e){note("전환 실패: "+e.message)}}
+
+ async function setStage(q,reveal=false,showAll=false,qualityWinners=null){
+   if(!pin())return note("관리자 PIN을 입력해 주세요.");
+   try{const qs=getQuizState(lastState),qw=qualityWinners===null?qs.qualityWinners:qualityWinners;await setWinners(pin(),makeQuizState(q,reveal,showAll,qw));note(showAll?"시상 · 전체 결과 화면으로 전환했습니다.":(q===QUALITY_STAGE?"품질 한마디 화면으로 전환했습니다.":`Q${q} 화면으로 전환했습니다.`),true);refreshAdmin()}
+   catch(e){note("전환 실패: "+e.message)}
+ }
  aQButtons.querySelectorAll(".qjump").forEach(b=>b.addEventListener("click",()=>setStage(Number(b.dataset.q),false,false)));
- aPrev.addEventListener("click",()=>{const qs=getQuizState(lastState);if(qs.showAll||qs.currentQuestion===0)return setStage(6,false,false);setStage(Math.max(1,Number(qs.currentQuestion||1)-1),false,false)});
- aNext.addEventListener("click",()=>{const qs=getQuizState(lastState);if(qs.showAll||qs.currentQuestion===0)return note("현재 전체 결과 화면입니다. Q1~Q5 또는 품질 한마디 버튼으로 이동할 수 있습니다.");const q=Number(qs.currentQuestion||1);if(q>=6)return setStage(0,true,true);setStage(q+1,false,false)});
- aStart.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");try{await adminAction(pin(),"START");await setWinners(pin(),makeQuizState(1,false,false,[]));note("접수를 시작하고 Q1 팀전을 열었습니다.",true);refreshAdmin()}catch(e){note("시작 실패: "+e.message)}});
- aReveal.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");try{const qs=getQuizState(lastState),q=Number(qs.currentQuestion||1);if(q===0)return note("전체 결과 화면에서는 정답 공개가 필요하지 않습니다.");if(q===6&&!qs.reveal){const quality=qualityRows(lastRaw);if(quality.length<3)return note("BEST 3 선정을 위해 최소 3개의 품질 한마디가 필요합니다.");const winners=autoEvaluateQuality(quality);await setWinners(pin(),makeQuizState(6,true,false,winners));note("품질 한마디 BEST 3를 선정하고 LIVE에 공개했습니다.",true)}else{await setWinners(pin(),makeQuizState(q,!qs.reveal,false,qs.qualityWinners));note(!qs.reveal?(q===6?"품질 BEST 3를 공개했습니다.":"정답을 공개했습니다."):(q===6?"품질 BEST 3를 숨겼습니다.":"정답을 다시 숨겼습니다."),true)}refreshAdmin()}catch(e){note("처리 실패: "+e.message)}});
+ aPrev.addEventListener("click",()=>{const qs=getQuizState(lastState);if(qs.showAll||qs.currentQuestion===0)return setStage(QUALITY_STAGE,false,false);setStage(Math.max(1,Number(qs.currentQuestion||1)-1),false,false)});
+ aNext.addEventListener("click",()=>{const qs=getQuizState(lastState);if(qs.showAll||qs.currentQuestion===0)return note("현재 전체 결과 화면입니다. Q1~Q10 또는 품질 한마디 버튼으로 이동할 수 있습니다.");const q=Number(qs.currentQuestion||1);if(q>=QUALITY_STAGE)return setStage(0,true,true);setStage(q+1,false,false)});
+ aStart.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");try{await adminAction(pin(),"START");await setWinners(pin(),makeQuizState(1,false,false,[]));note("접수를 시작하고 Q1 개인전을 열었습니다.",true);refreshAdmin()}catch(e){note("시작 실패: "+e.message)}});
+ aReveal.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");try{const qs=getQuizState(lastState),q=Number(qs.currentQuestion||1);if(q===0)return note("전체 결과 화면에서는 정답 공개가 필요하지 않습니다.");if(q===QUALITY_STAGE&&!qs.reveal){const quality=qualityRows(lastRaw);if(quality.length<3)return note("TOP3 선정을 위해 최소 3개의 품질 한마디가 필요합니다.");await setWinners(pin(),makeQuizState(QUALITY_STAGE,true,false,autoEvaluateQuality(quality)));note("품질 한마디 TOP3를 확정하고 LIVE에 공개했습니다.",true)}else{await setWinners(pin(),makeQuizState(q,!qs.reveal,false,qs.qualityWinners));note(!qs.reveal?"공개했습니다.":"다시 숨겼습니다.",true)}refreshAdmin()}catch(e){note("처리 실패: "+e.message)}});
  aAll.addEventListener("click",()=>setStage(0,true,true));
  aClose.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");try{await adminAction(pin(),"CLOSE");note("접수를 마감했습니다.",true);refreshAdmin()}catch(e){note("마감 실패: "+e.message)}});
  aReset.addEventListener("click",async()=>{if(!pin())return note("관리자 PIN을 입력해 주세요.");if(!confirm("전체 응답과 진행 상태를 초기화할까요?"))return;try{await adminAction(pin(),"RESET");await setWinners(pin(),makeQuizState(1,false,false,[]));note("초기화했습니다. 접수 시작 + Q1 버튼을 눌러 다시 진행하세요.",true);refreshAdmin()}catch(e){note("초기화 실패: "+e.message)}});
- function renderAdmin(s,raw){const qs=getQuizState(s),qr=quizRows(raw),quality=qualityRows(raw);document.querySelectorAll(".qjump").forEach(b=>b.classList.toggle("active",Number(b.dataset.q)===Number(qs.currentQuestion)));aState.textContent=s.is_open?"참여중":"마감";aCount.textContent=participantCount(raw)+"명";
-   if(qs.showAll||qs.currentQuestion===0){const board=teamScoreboard(qr),ind=individualTop3(qr),qw=qs.qualityWinners||[];aReveal.textContent="현재 문제 정답 공개";aCurrent.innerHTML=`<b>현재 화면:</b> 시상 · 전체 결과<br><div class="prize-note">Q1~Q4는 팀 다수결 점수, Q5는 정답자 빠른 순, 품질 한마디는 BEST 3입니다.</div>`;aResponses.innerHTML='<h3>TEAM QUIZ · Q1~Q4</h3>'+board.map((x,i)=>`<div class="resp-row"><b>${i+1}위 · ${x.team}팀</b><span style="float:right;font-weight:900">${x.score}/4점</span></div>`).join('')+'<h3 style="margin-top:22px">Q5 개인전 TOP3</h3>'+(ind.length?ind.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right">${esc(w.dept)} · ${esc(w.team)}팀</span></div>`).join(''):'<div class="small">Q5 정답자가 없습니다.</div>')+'<h3 style="margin-top:22px">QUALITY VOICE BEST3</h3>'+(qw.length?qw.map((w,i)=>`<div class="resp-row"><b>BEST ${i+1} · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디 BEST3를 공개하지 않았습니다.</div>');return}
-   const qn=Number(qs.currentQuestion)||1;if(qn===6){aReveal.textContent=qs.reveal?"품질 BEST3 숨김":"품질 한마디 TOP3 선정·공개";aCurrent.innerHTML=`<b>FINAL · 품질 한마디</b><br><span class="small">응답 ${quality.length}건 · TOP3 공개 ${qs.reveal?"ON":"OFF"}</span>`;aResponses.innerHTML=quality.slice().reverse().slice(0,20).map(r=>`<div class="resp-row"><b>${esc(r.dept)} · ${esc(r.name)} · ${esc(r.meta?.team||"-")}팀</b><br>${esc(r.answer)}</div>`).join('')||'<div class="small">아직 품질 한마디가 없습니다.</div>';return}
-   aReveal.textContent=qs.reveal?"현재 문제 정답 숨김":"현재 문제 정답 공개";const qi=Math.max(1,Math.min(5,qn)),q=QUESTIONS[qi-1],c=countsFor(qr,q.id),total=Object.values(c).reduce((a,b)=>a+b,0);aCurrent.innerHTML=`<b>Q${qi} · ${q.round==="team"?"팀전":"개인전"}</b> ${esc(q.ko)}<br><span class="small">정답: ${q.correct} · 정답 공개 ${qs.reveal?"ON":"OFF"}</span>`;let base=q.options.map(o=>`<div class="resp-row"><b>${o.v}. ${esc(o.ko)} ${o.v===q.correct?'✓':''}</b><span style="float:right;font-weight:900">${c[o.v]||0}명</span></div>`).join('')+`<div class="small" style="margin-top:8px">현재 문제 응답 ${total}건</div>`;if(q.round==="team"){base+='<h3 style="margin-top:18px">팀별 현재 판정</h3>'+teamRoundCards(qr,q.id).map(x=>`<div class="resp-row"><b>${x.team}팀</b><span style="float:right;font-weight:900">${x.tie?"동률":(x.answer||"-")} · ${x.total}명</span></div>`).join('')}else if(qs.reveal){const ind=individualTop3(qr);base+='<h3 style="margin-top:18px">개인전 TOP3</h3>'+(ind.length?ind.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right">${esc(w.dept)} · ${esc(w.team)}팀</span></div>`).join(''):'<div class="small">정답자가 없습니다.</div>')}aResponses.innerHTML=base
+
+ function renderAdmin(s,raw){
+   const qs=getQuizState(s),qr=quizRows(raw),quality=qualityRows(raw);
+   document.querySelectorAll(".qjump").forEach(b=>b.classList.toggle("active",Number(b.dataset.q)===Number(qs.currentQuestion)));
+   aState.textContent=s.is_open?"참여중":"마감";aCount.textContent=participantCount(raw)+"명";
+
+   if(qs.showAll||qs.currentQuestion===0){
+     const overall=quizOverallTop3(qr),qw=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:autoEvaluateQuality(quality);
+     aReveal.textContent="현재 문제 정답 공개";
+     aCurrent.innerHTML=`<b>현재 화면:</b> 시상 · 전체 결과<br><div class="prize-note">Q1~Q10 개인전 · 문제별 빠른 정답 TOP3 · 품질 한마디 100점 평가 TOP3</div>`;
+     aResponses.innerHTML='<h3>QUIZ · 종합 TOP3</h3>'+(overall.length?overall.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right;font-weight:900">${w.correct}/${QUESTIONS.length} 정답 · ${esc(w.dept)}</span></div>`).join(''):'<div class="small">아직 퀴즈 응답이 없습니다.</div>')+'<h3 style="margin-top:22px">QUALITY VOICE TOP3</h3>'+(qw.length?qw.map((w,i)=>`<div class="resp-row"><b>TOP ${i+1} · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>');
+     return
+   }
+
+   const qn=Number(qs.currentQuestion)||1;
+   if(qn===QUALITY_STAGE){
+     const liveTop=autoEvaluateQuality(quality);
+     aReveal.textContent=qs.reveal?"품질 TOP3 숨김":"품질 한마디 TOP3 확정·공개";
+     aCurrent.innerHTML=`<b>FINAL · 품질 한마디</b><br><span class="small">응답 ${quality.length}건 · TOP3 공개 ${qs.reveal?"ON":"OFF"}<br>평가기준: 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10</span>`;
+     aResponses.innerHTML='<h3>실시간 자동평가 TOP3</h3>'+(liveTop.length?liveTop.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>')+'<h3 style="margin-top:18px">최근 응답</h3>'+quality.slice().reverse().slice(0,15).map(r=>`<div class="resp-row"><b>${esc(r.dept)} · ${esc(r.name)}</b><br>${esc(r.answer)}</div>`).join('');
+     return
+   }
+
+   const qi=Math.max(1,Math.min(QUESTIONS.length,qn)),q=QUESTIONS[qi-1],c=countsFor(qr,q.id),total=Object.values(c).reduce((a,b)=>a+b,0),top=correctTop3(qr,q.id);
+   aReveal.textContent=qs.reveal?"현재 문제 정답 숨김":"현재 문제 정답 공개";
+   aCurrent.innerHTML=`<b>Q${qi} · 개인전</b> ${esc(q.ko)}<br><span class="small">정답: ${q.correct} · 정답 공개 ${qs.reveal?"ON":"OFF"}</span>`;
+   let base=q.options.map(o=>`<div class="resp-row"><b>${o.v}. ${esc(o.ko)} ${o.v===q.correct?'✓':''}</b><span style="float:right;font-weight:900">${c[o.v]||0}명</span><div class="small" style="margin-top:3px">${esc(o.en)}</div></div>`).join('')+`<div class="small" style="margin-top:8px">현재 문제 응답 ${total}건</div>`;
+   base+='<h3 style="margin-top:18px">빠른 정답 TOP3</h3>'+(top.length?top.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right">${esc(w.dept)}</span></div>`).join(''):'<div class="small">아직 정답자가 없습니다.</div>');
+   aResponses.innerHTML=base
  }
+
  async function refreshAdmin(){try{const[s,raw]=await Promise.all([getState(),getResponses()]);lastState=s;lastRaw=raw;renderAdmin(s,raw)}catch(e){aState.textContent="연결오류";note("Supabase 연결 오류: "+e.message)}}
- refreshAdmin();setInterval(refreshAdmin,1300)
+ refreshAdmin();setInterval(refreshAdmin,1200)
 }
+
 </script></body></html>
