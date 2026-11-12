@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>2026 DURING 품질공감데이</title>
-<!-- BUILD 2026-11-12 QUIZ-V3-3S5S -->
+<!-- BUILD 2026-11-12 QUIZ + EXHIBITION INTEGRATED -->
 <style>
 *{box-sizing:border-box}html,body{margin:0;font-family:"Malgun Gothic","Segoe UI",Arial,sans-serif}button,input,textarea{font:inherit}button{touch-action:manipulation}
 :root{--navy:#06182b;--panel:#102a47;--panel2:#0c2138;--line:#294a68;--cyan:#36c8ff;--blue:#2f69e8;--white:#f4f8ff;--bg:#f4f7fb;--text:#10233f;--border:#dce4ef}
@@ -14,7 +14,7 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
 .lang-switch{display:flex;gap:8px;justify-content:flex-end;margin-bottom:12px}.lang-btn{border:1px solid #bfcddd;background:#fff;color:#173454;border-radius:999px;padding:9px 14px;font-weight:900;cursor:pointer}.lang-btn.active{background:#173f70;color:#fff;border-color:#173f70}
 .question-card{border:1px solid #dce5ef;border-radius:16px;padding:20px;margin-top:16px;background:#fbfdff}.qnum{font-size:12px;font-weight:900;color:#2f69e8;letter-spacing:1px;margin-bottom:7px}.qtitle{font-size:22px;font-weight:900;line-height:1.45;margin-bottom:8px}.qsub{font-size:13px;color:#71859b;margin-bottom:12px}
 .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.resp-row{padding:11px 0;border-bottom:1px solid #e5eaf1}.resp-row:last-child{border-bottom:0}
-.home-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}.home-card{appearance:none;text-align:left;background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;cursor:pointer;color:var(--text);min-height:180px}.home-kicker{font-size:12px;font-weight:900;letter-spacing:1.5px;color:#2f69e8;margin-bottom:12px}.home-title{font-size:26px;font-weight:900;margin-bottom:10px}.home-desc{font-size:15px;line-height:1.6;color:#667a92}.flowline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-weight:800}
+.home-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}.home-card{appearance:none;text-align:left;background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;cursor:pointer;color:var(--text);min-height:180px}.home-kicker{font-size:12px;font-weight:900;letter-spacing:1.5px;color:#2f69e8;margin-bottom:12px}.home-title{font-size:26px;font-weight:900;margin-bottom:10px}.home-desc{font-size:15px;line-height:1.6;color:#667a92}.flowline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-weight:800}
 .back-btn{position:fixed;z-index:55;right:14px;left:auto;top:14px;border:1px solid #cdd8e5;background:rgba(255,255,255,.95);color:#163252;border-radius:999px;padding:9px 14px;font-weight:900;cursor:pointer}.mode-nav{position:fixed;z-index:50;right:14px;top:14px;display:flex;gap:8px;align-items:center}.mode-nav .back-btn{position:static;right:auto;left:auto;top:auto;z-index:auto;padding:8px 11px;font-size:12px}.mode-nav a{background:rgba(255,255,255,.94);border:1px solid #cdd8e5;border-radius:999px;padding:8px 11px;text-decoration:none;color:#163252;font-size:12px;font-weight:900}
 .live-body{background:var(--navy);color:var(--white);min-height:100vh;overflow-x:hidden}.live-wrap{width:100%;max-width:none;min-height:100vh;margin:0;padding:16px 24px 18px;display:flex;flex-direction:column}.live-head{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:12px;flex:0 0 auto}.eyebrow{color:var(--cyan);font-weight:900;letter-spacing:2px;font-size:14px}.live-title{font-size:clamp(36px,3.25vw,58px);font-weight:600;letter-spacing:1px;line-height:1.05}.live-sub{color:#9bb9d6;font-size:clamp(14px,1.15vw,19px);margin-top:6px}.pill{border:1px solid #315577;border-radius:999px;padding:11px 17px;color:#dceeff;font-size:16px}.live-grid{display:grid;grid-template-columns:minmax(430px,34vw) minmax(0,1fr);gap:14px;flex:1;min-height:0}.live-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;height:100%;min-height:0}.live-panel h2{margin:0 0 12px;color:var(--cyan);font-size:15px;letter-spacing:2px}.live-question{font-size:25px;font-weight:900;line-height:1.25;margin:8px 0 18px;white-space:nowrap;letter-spacing:-0.5px}
 .qr-duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}.qr-card{background:#fff;border-radius:15px;padding:11px;text-align:center;color:#153452}.qr-card img{width:180px;height:180px;object-fit:contain;display:block;margin:auto}.qr-label{font-weight:900;margin:5px 0 2px}.qr-note{font-size:11px;color:#6f8093}.live-foot{font-size:12px;color:#79a4ca;margin-top:10px;word-break:break-all}.voice-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.voice-card{border:1px solid #315577;background:var(--panel2);border-radius:14px;padding:14px;min-width:0}.voice-card b{color:#e7f5ff}.voice-card p{font-size:18px;line-height:1.45;margin:8px 0}.voice-card small{color:#7fa4c7}.rank{font-weight:900;color:#3d8cff;margin-bottom:7px}.winner-list{display:grid;gap:8px;margin-bottom:12px}.ai-note{border:1px solid #2f5e82;background:#0a2037;border-radius:12px;padding:12px;color:#b8d9f5;margin-bottom:12px}
@@ -33,7 +33,7 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
 .live-join-small{display:grid;grid-template-columns:minmax(155px,1fr) minmax(155px,1fr);gap:14px;align-items:start}.live-join-small .qr-card img{width:clamp(145px,13vw,205px);height:clamp(145px,13vw,205px)}.live-join-small .qr-card{padding:12px}.live-join-small .warm-quote{grid-column:1/-1}.warm-quote{color:#ffe0a3;font-weight:800;line-height:1.55;font-size:clamp(14px,1.05vw,18px);text-align:center}.live-panel:first-child .warm-note{font-size:15px;margin-top:12px}.live-panel:nth-child(2){display:flex;flex-direction:column}.live-panel:nth-child(2)>#lSingleView,.live-panel:nth-child(2)>#lAllView{height:100%}.host-controls{position:fixed;right:18px;bottom:16px;z-index:80;display:flex;gap:8px;align-items:center;background:rgba(5,19,34,.88);border:1px solid #3a5e7d;border-radius:16px;padding:9px;backdrop-filter:blur(8px);box-shadow:0 8px 28px rgba(0,0,0,.25)}.host-controls button{border:1px solid #466987;background:#112d49;color:#e9f5ff;border-radius:11px;padding:10px 13px;font-weight:900;cursor:pointer}.host-controls button.next{background:#1767c9;border-color:#2e83e6}.host-controls button.reveal{background:#8c6414;border-color:#c39431}.host-status{font-size:12px;color:#a9c6de;padding:0 6px;white-space:nowrap}.admin-next-row{display:flex;gap:10px;margin-top:14px}.admin-next-row .btn{flex:1;min-height:52px;font-size:17px}.participant-next{width:100%;margin-top:10px;background:#173f70}.participant-next:disabled{opacity:.55}
 @media(max-width:950px){.option-grid{grid-template-columns:1fr}.result-row{grid-template-columns:1fr;gap:7px}.bar-value{text-align:left}.all-summary{grid-template-columns:1fr}.live-join-small{grid-template-columns:1fr 1fr}.host-controls{position:sticky;right:auto;bottom:auto;margin-top:12px;justify-content:center;flex-wrap:wrap}.host-status{width:100%;text-align:center}.live-panel:nth-child(2){min-height:520px}}
 
-/* ===== V3: objective quiz + Quality Voice TOP3 ===== */
+/* ===== V3: objective quiz + Quality Voice TOP5 ===== */
 .quality-text{width:100%;min-height:150px;margin-top:8px;border:1px solid #c9d6e6;border-radius:14px;padding:15px;font-size:17px;line-height:1.55;background:#fff;color:#122b46}
 .quality-voice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.quality-voice-card{border:1px solid #315577;background:#0b223b;border-radius:14px;padding:16px;line-height:1.45}.quality-voice-card b{color:#ffd166}.quality-voice-card p{margin:9px 0 0;font-size:clamp(16px,1.2vw,21px);color:#edf7ff}.quality-voice-card.winner{border:2px solid #ffd166;box-shadow:0 0 0 2px rgba(255,209,102,.12) inset}.winner-badge{display:inline-block;background:#ffd166;color:#4c3600;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:900;margin-bottom:6px}.leaderboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}.leader-card{background:#0b223b;border:1px solid #315577;border-radius:14px;padding:16px;text-align:center}.leader-card .place{color:#ffd166;font-size:14px;font-weight:900}.leader-card .name{font-size:22px;font-weight:900;margin:6px 0}.leader-card .score{color:#a9d9ff;font-weight:900}.prize-note{background:#fff4d8;border:1px solid #ffd783;color:#6b4b00;border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;margin-top:12px}
 @media(max-width:950px){.quality-voice-grid,.leaderboard{grid-template-columns:1fr}.quality-text{min-height:130px}}
@@ -206,20 +206,48 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
   .back-btn{right:8px;top:8px}
 }
 
+
+/* Integrated exhibition */
+.ex-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.ex-tile{background:#fff;border:1px solid #dce4ef;border-radius:18px;overflow:hidden;cursor:pointer;text-align:left;width:100%;padding:0}.ex-tile img{width:100%;height:170px;object-fit:cover;background:#e8eff8}.ex-tile-body{padding:15px}.ex-tile b{display:block;font-size:18px}.ex-tile .small{line-height:1.55}.ex-tile .ex-defect{color:#c04a2d;font-weight:800;margin-top:8px}.ex-section{background:#f5f8fd;border:1px solid #e0e8f2;border-radius:14px;padding:15px;margin-top:12px;white-space:pre-wrap;line-height:1.7}.ex-section h3{margin:0 0 6px;color:#194678}.ex-photo-main{width:100%;max-height:480px;object-fit:contain;border:1px solid #e2e9f2;border-radius:14px;background:#f8fafc}.ex-form{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.ex-form .wide{grid-column:1/-1}.ex-admin-list{display:grid;gap:7px;margin:15px 0}.ex-admin-row{display:flex;justify-content:space-between;gap:9px;align-items:center;background:#f5f8fd;padding:9px;border-radius:10px}.ex-admin-row button{padding:8px 12px}.ex-photos{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.ex-photo-entry{width:145px;border:1px solid #dae5ed;border-radius:10px;padding:5px;text-align:center}.ex-photo-entry img{width:100%;height:95px;object-fit:cover}.ex-photo-entry button{font-size:12px;padding:6px;margin-top:4px}.ex-status{padding:7px 10px;border-radius:10px;background:#eff7ff;color:#245078;display:inline-block;font-weight:800;font-size:12px}
+@media(max-width:850px){.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ex-form{grid-template-columns:1fr}}
+@media(max-width:570px){.ex-grid{grid-template-columns:1fr}.ex-tile img{height:220px}}
+
+/* V5.1: prevent top-right navigation overlap and improve empty/preview states */
+body:has(#exhibitionView:not(.hidden)) .mode-nav,body:has(#adminView:not(.hidden)) .mode-nav{position:relative;top:auto;right:auto;max-width:1120px;margin:10px auto 0;justify-content:flex-end;padding:0 14px;flex-wrap:wrap}
+body:has(#exhibitionView:not(.hidden)) .back-btn:not(.mode-nav .back-btn){position:relative;top:auto;right:auto}
+.ex-empty{grid-column:1/-1;background:#fff;border:1px solid #d6e5f6;border-radius:18px;padding:28px;box-shadow:0 7px 22px rgba(10,39,73,.05);line-height:1.8}
+.ex-empty h3{color:#123d6b;margin:0 0 10px;font-size:22px}.ex-empty p{color:#647b98;margin:4px 0}.ex-empty a{display:inline-block;margin-top:13px;background:#2362c4;color:#fff;text-decoration:none;font-weight:900;border-radius:12px;padding:12px 16px}
+.ex-alert{border:1px solid #f0d9b2;background:#fffaef;color:#865a18;padding:12px 15px;border-radius:12px;margin:0 0 16px;font-size:13px;line-height:1.6}
+/* V5: premium exhibition based on the original product exhibition HTML */
+.ex-wrap{max-width:1120px;padding-bottom:55px}.ex-hero{background:linear-gradient(125deg,#0b263f,#173e69 60%,#245ca7);padding:34px 36px;box-shadow:0 12px 35px rgba(9,36,71,.12)}
+.ex-hero h1{font-size:clamp(28px,4.5vw,43px);letter-spacing:-1.4px;line-height:1.26;margin:8px 0 15px}.ex-hero p{line-height:1.75;opacity:.85}
+.ex-filter-card{box-shadow:0 4px 17px rgba(18,57,89,.04);padding:17px}.ex-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.ex-tile{border:1px solid #dae5f1;border-radius:19px;box-shadow:0 8px 24px rgba(16,45,70,.06);transition:transform .17s,box-shadow .17s}.ex-tile:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(16,45,70,.12)}.ex-tile img{height:205px;object-fit:contain;background:#f0f4fa;padding:10px}.ex-tile-body{padding:18px}.ex-tile b{font-size:19px;margin:8px 0;line-height:1.3}.ex-tile .ex-defect{padding:10px;background:#fff4f0;border-radius:10px;color:#ab472e;margin:11px 0}
+.ex-gallery-layout{display:grid;grid-template-columns:1.15fr 1fr;gap:21px;align-items:stretch}.ex-white{background:#fff;border:1px solid #dbe5f0;border-radius:20px;padding:22px;box-shadow:0 6px 24px rgba(26,59,99,.045)}
+.ex-gallery-main{background:#eff4fa;border-radius:15px;height:365px;display:flex;align-items:center;justify-content:center;overflow:hidden}.ex-gallery-main img{height:100%;width:100%;object-fit:contain;padding:12px}.ex-thumbs{display:flex;gap:10px;margin-top:12px;overflow:auto;padding-bottom:5px}.ex-thumb{flex:0 0 105px;border:2px solid #d9e3ef;border-radius:11px;background:#f7faff;padding:5px;cursor:pointer}.ex-thumb.active{border-color:#2e70d1;background:#eaf3ff}.ex-thumb img{width:100%;height:65px;object-fit:cover;border-radius:6px}
+.ex-product-title{font-size:clamp(24px,3vw,33px);color:#0a2749;font-weight:900;margin:12px 0}.ex-eyebrow{font-size:12px;letter-spacing:1px;color:#1975af;font-weight:900}.ex-summary{font-size:17px;color:#3b5571;line-height:1.8;margin:14px 0}.ex-tag{display:inline-block;border-radius:99px;background:#e9f2fd;color:#205d9e;padding:7px 11px;margin:0 6px 7px 0;font-size:12px;font-weight:800}
+.ex-section-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:18px}.ex-info{border-radius:17px;border:1px solid #dce7f2;padding:20px;background:#fff;line-height:1.75;white-space:pre-wrap}.ex-info h3{font-size:17px;color:#174b82;margin:0 0 12px;letter-spacing:-.5px}.ex-info p{margin:0;color:#29435e;white-space:pre-wrap}.ex-info.wide{grid-column:1/-1}.ex-info.soft{background:#f1f7ff}.ex-info.warning{background:#fff6f0;border-color:#f5d8c8}.ex-info.warning h3{color:#9b472a}.ex-info.point{border:1px solid #bfd9f2;background:#f1f7ff}.ex-process-steps{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.ex-process-step{background:#e5f1ff;padding:8px 11px;border-radius:9px;font-weight:800;font-size:13px;color:#215a96}.ex-q-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:8px}.ex-q-point{background:#e9f3ff;border-left:4px solid #2d7fca;padding:11px;border-radius:8px;color:#1b507c;font-weight:800}
+.ex-message{margin-top:18px;background:linear-gradient(110deg,#102f4f,#1d4b80);border-radius:17px;padding:23px;color:#fff;text-align:center;font-size:18px;line-height:1.65;font-weight:800}.ex-disclaimer{margin-top:16px;background:#fbfcfe;border:1px solid #dce7f2;border-radius:13px;padding:14px;color:#647992;line-height:1.7;font-size:12px}.ex-footer{text-align:center;margin:25px 0 0;color:#7a8ba1;font-size:12px}
+.ex-photo-entry{width:174px;border-radius:13px;padding:8px}.ex-photo-entry img{height:110px;object-fit:contain;background:#eef4fa;border-radius:8px}.ex-photo-entry button{background:#fff0f0;color:#a02b38;border:1px solid #ffccd1;margin:5px 3px}.ex-admin-row{padding:12px;border:1px solid #e1e9f2}.ex-editor-split{display:grid;grid-template-columns:1fr;gap:10px}
+@media(max-width:800px){.ex-gallery-layout,.ex-section-grid{grid-template-columns:1fr}.ex-info.wide{grid-column:auto}.ex-hero{padding:25px 22px}.ex-gallery-main{height:270px}.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.ex-grid{grid-template-columns:1fr}.ex-tile img{height:220px}.ex-white{padding:15px}.ex-filter-card .row select{width:100%!important}.ex-info{padding:17px}.ex-thumbs .ex-thumb{flex-basis:85px}}
+
 </style></head><body>
 
 <div id="homeView" class="hidden"><div class="wrap">
   <header class="hero"><div class="warm-kicker">WARM-UP · TOGETHER</div><h1>2026 DURING 품질공감데이</h1><p>회사 이야기 · 현장 공감 · 개인 퀴즈 · 품질 한마디로 함께 웃고 참여하는 WARM-UP입니다.</p></header>
   <div class="home-grid">
-    <button class="home-card" id="goLive"><div class="home-kicker">EVENT SCREEN</div><div class="home-title">LIVE 화면</div><div class="home-desc">큰 QR · 개인전 10문제 · 실시간 정답자 TOP3</div></button>
+    <button class="home-card" id="goLive"><div class="home-kicker">EVENT SCREEN</div><div class="home-title">LIVE 화면</div><div class="home-desc">큰 QR · 개인전 10문제 · 실시간 정답자 TOP5</div></button>
     <button class="home-card" id="goParticipant"><div class="home-kicker">PARTICIPANT</div><div class="home-title">참가자 화면</div><div class="home-desc">한국어 / English로 현재 질문에 참여</div></button>
-    <button class="home-card" id="goAdmin"><div class="home-kicker">ADMIN</div><div class="home-title">관리자 화면</div><div class="home-desc">접수 시작 · 개인전 Q1~Q10 · 품질 한마디 TOP5</div></button>
+    <button class="home-card" id="goExhibition"><div class="home-kicker">ALWAYS OPEN</div><div class="home-title">제품 전시관</div><div class="home-desc">제품 기능 · 불량 사례 · 품질관리 POINT</div></button>
+     <button class="home-card" id="goAdmin"><div class="home-kicker">ADMIN</div><div class="home-title">관리자 화면</div><div class="home-desc">접수 시작 · 개인전 Q1~Q10 · 품질 한마디 TOP5</div></button>
   </div>
-  <section class="card"><h2 style="margin-top:0">행사 진행 흐름</h2><div class="flowline"><span>① 접수 시작</span><b>→</b><span>② Q1~Q10 개인전</span><b>→</b><span>③ 문제별 빠른 정답 TOP3</span><b>→</b><span>④ 품질 한마디</span><b>→</b><span>⑤ TOP5 시상</span></div></section>
+  <section class="card"><h2 style="margin-top:0">행사 진행 흐름</h2><div class="flowline"><span>① 접수 시작</span><b>→</b><span>② Q1~Q10 개인전</span><b>→</b><span>③ 문제별 빠른 정답 TOP5</span><b>→</b><span>④ 품질 한마디</span><b>→</b><span>⑤ TOP5 시상</span></div></section>
 </div></div>
 
 <div id="participantView" class="hidden"><div class="wrap">
-  <div class="lang-switch"><button id="langKo" class="lang-btn">한국어</button><button id="langEn" class="lang-btn">English</button></div>
+  <div class="row" style="margin-bottom:12px"><button id="pGoExhibition" class="btn cyan" type="button">제품 전시관 · 상시 열람 ▶</button></div>
+   <div class="lang-switch"><button id="langKo" class="lang-btn">한국어</button><button id="langEn" class="lang-btn">English</button></div>
   <header class="hero"><div class="warm-kicker">LIVE WARM-UP</div><h1 id="pHeroTitle">2026 DURING 품질공감데이</h1><p id="pHeroSub">현재 LIVE 질문에 함께 참여해 주세요.</p></header>
   <section class="card">
     <div class="row" style="justify-content:space-between"><span id="pStateBadge" class="badge">상태 확인중</span><span id="pQuestionState" class="small"></span></div>
@@ -237,7 +265,8 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
         <option value="설비보전팀">설비보전팀 (Equipment Maintenance Team)</option>
       </select>
     </div>
-    <div id="quizArea" class="question-card">
+    <div id="quizWaitGate" class="card hidden" style="text-align:center;background:#eff7ff"><h2>퀴즈 시작 대기 중</h2><p>관리자가 시작하면 퀴즈가 열립니다.<br>제품 전시관은 언제든지 열람하실 수 있습니다.</p><button class="btn cyan" type="button" onclick="goMode('exhibition')">제품 전시관 보기</button></div>
+     <div id="quizArea" class="question-card">
       <div class="quiz-step" id="pStep">QUESTION</div>
       <div class="quiz-progress"><div id="pProgress" style="width:20%"></div></div>
       <div class="quiz-question" id="pQuestion"></div>
@@ -251,7 +280,18 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
   </section>
 </div></div>
 
-<div id="adminView" class="hidden"><div class="wrap">
+<div id="exhibitionView" class="hidden"><div class="wrap ex-wrap">
+  <header class="hero ex-hero"><div class="warm-kicker">PRODUCT EXHIBITION · DURING QUALITY DAY</div>
+  <h1>우리가 만드는 제품,<br>우리가 지키는 품질</h1><p>자동차의 안전과 성능을 뒷받침하는 DURING의 제품을 소개합니다.<br>제품 사진과 실제 사례로 제품의 기능·품질 중요성을 확인해 보세요.</p></header>
+  <section id="exListArea">
+    <div class="card ex-filter-card"><div class="row"><input id="exSearch" placeholder="제품명 / 불량유형 / 적용 시스템 검색" aria-label="제품 검색" style="flex:1;min-width:200px"><select id="exGroup" aria-label="제품군 선택" style="width:auto;min-width:170px"><option value="">전체 제품군</option></select></div><div class="small" id="exCount" style="margin-top:10px"></div></div><div id="exSourceBanner" class="ex-alert hidden"></div>
+    <div id="exCards" class="ex-grid"></div>
+  </section>
+  <section id="exDetails" class="hidden"></section>
+  <div class="ex-footer">DURING · QUALITY STARTS WITH ME · 품질 위험과 기능 설명은 사내 검토 후 최종 확정해 주세요.</div>
+</div></div>
+
+ <div id="adminView" class="hidden"><div class="wrap">
   <header class="hero"><div class="warm-kicker">WARM-UP CONTROL</div><h1>2026 품질공감데이 관리자</h1><p>현재 질문을 선택하면 참가자·LIVE 화면이 동시에 전환됩니다.</p></header>
   <section class="card">
     <label>관리자 PIN</label><input id="aPin" type="password" placeholder="관리자 PIN 입력"><div class="small" style="margin-top:6px">10월 최초 설정 PIN: 2026 · 실제 적용값은 Supabase DB 기준</div><div style="margin-top:10px"><button id="verifyPinBtn" class="btn gray" type="button">PIN 확인 (데이터 변경 없음)</button></div>
@@ -269,7 +309,8 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
     </div>
     <div id="aMsg"></div>
   </section>
-  <div class="admin-grid">
+  <section class="card"><h2>제품 전시관 관리 · 관리자 전용</h2><p class="small">제품의 추가·수정·삭제 및 사진 업로드는 Supabase Auth 관리자 계정으로 로그인한 경우에만 가능합니다. 기존 행사 PIN은 퀴즈 진행 전용입니다.</p><div class="row"><input id="exEmail" type="email" placeholder="Supabase 관리자 이메일" style="flex:1;min-width:200px"><input id="exPassword" type="password" placeholder="관리자 계정 비밀번호" style="flex:1;min-width:200px"><button id="exLogin" class="btn" type="button">전시 관리자 로그인</button><button id="exLogout" class="btn gray hidden" type="button">로그아웃</button></div><div id="exLoginMsg" class="small" style="margin:10px 0"></div><div id="exAdminArea" class="hidden"><div class="row"><button class="btn cyan" id="exNew" type="button">+ 새 제품 등록</button><button class="btn gray" id="exSeed" type="button">PPT 초안 서버에 일괄 등록</button><button class="btn gray" id="exRefreshAdmin" type="button">제품 목록 새로고침</button></div><p class="small">현재 DB가 비어 있으면 아래 일괄 등록 버튼을 1회 누르세요. 18종 제품 정보가 서버에 저장됩니다. 초기 사진을 보려면 index.html과 함께 assets 폴더 전체를 GitHub에 올려야 합니다.</p><div id="exAdminList" class="ex-admin-list"></div><div id="exEditor" class="hidden"><h3 id="exEditorTitle">제품 편집</h3><div class="ex-form" id="exForm"></div><label>제품 사진 첨부 (복수 선택 가능 · JPG / PNG / WEBP, 최대 5MB/장)</label><input type="file" id="exUpload" accept="image/png,image/jpeg,image/webp" multiple><p class="small">대표사진은 첫 번째 사진입니다. 제거 후 저장하면 전시 페이지에서 제외됩니다.</p><div id="exPhotoList" class="ex-photos"></div><div class="row" style="margin-top:15px"><button class="btn" id="exSave" type="button">사진·제품 정보 서버 저장</button><button class="btn gray" id="exCancel" type="button">취소</button></div><div id="exEditMsg"></div></div></div></section>
+   <div class="admin-grid">
     <section class="card"><h2>현재 현황</h2><div class="row"><div><div class="small">접수상태</div><div id="aState" class="stat">-</div></div><div><div class="small">참여인원</div><div id="aCount" class="stat">0명</div></div></div><div id="aCurrent" class="warm-note"></div></section>
     <section class="card"><h2>현재 문제 응답 현황</h2><div id="aResponses"></div></section>
   </div>
@@ -292,9 +333,9 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
             버튼을 다시 누르면 새로운 테스트 참가자로 열립니다.
           </div>
         </div>
-        <div class="warm-quote">“QR은 처음 한 번만!”<br>Q1~Q10은 모두 개인전입니다.<br><br>정답도 중요하지만 속도도 중요!<br>문제별 빠른 정답 TOP 3에 도전하세요.</div>
+        <div class="warm-quote">“QR은 처음 한 번만!”<br>Q1~Q10은 모두 개인전입니다.<br><br>정답도 중요하지만 속도도 중요!<br>문제별 빠른 정답 TOP5에 도전하세요.</div>
       </div>
-      <div class="warm-note" style="margin-top:14px">Q1~Q10은 전원 개인전입니다. 문제별 정답자 중 빠른 순 TOP 3를 표시합니다. 마지막 ‘여러분에게 품질이란 무엇인가요?’는 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10 기준으로 TOP 5를 선정합니다.</div>
+      <div class="warm-note" style="margin-top:14px">Q1~Q10은 전원 개인전입니다. 문제별 정답자 중 빠른 순 TOP5를 표시합니다. 마지막 ‘여러분에게 품질이란 무엇인가요?’는 취지 30 · 실천성 25 · 구체성 20 · 공감성 15 · 창의성 10 기준으로 TOP 5를 선정합니다.</div>
     </section>
     <section class="live-panel">
       <div id="lSingleView"><div class="live-warm-head"><div id="lQLbl" class="live-warm-label">QUESTION</div><div id="lQuestion" class="live-warm-q"></div><div id="lQuestionEn" class="live-warm-en"></div></div><div id="lResults" class="result-bars"></div><div id="lMessage"></div></div>
@@ -311,7 +352,7 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
 </div></div>
 
 <button id="backBtn" class="back-btn hidden" type="button">← 뒤로가기</button>
-<div id="modeNav" class="mode-nav hidden"><a id="navHome" href="#">메뉴</a><a id="navLive" href="#">LIVE</a><a id="navParticipant" href="#">참가자</a><a id="navAdmin" href="#">관리자</a></div>
+<div id="modeNav" class="mode-nav hidden"><a id="navHome" href="#">메뉴</a><a id="navLive" href="#">LIVE</a><a id="navParticipant" href="#">참가자</a><a id="navExhibition" href="#">제품전시</a><a id="navAdmin" href="#">관리자</a></div>
 <script>
 /* Self-contained QR generator. No external QR service or CDN is used. */
 const __QR_MODULES = {
@@ -1624,7 +1665,7 @@ const QUESTIONS=[
 
 const I18N={
  ko:{hero:"2026 DURING 품질공감데이",sub:"현재 LIVE 질문에 함께 참여해 주세요.",name:"이름 / 닉네임 *",dept:"소속 / Team *",namePh:"예: 김OO 또는 닉네임",submit:"정답 보내기",open:"참여 가능",closed:"접수 마감",required:"이름/소속과 답변을 확인해 주세요.",thanks:"응답 완료! 다음 문제를 기다려 주세요.",already:"이 질문에는 이미 참여했습니다. 다음 질문을 기다려 주세요.",qualitySubmit:"품질 한마디 제출하기",qualityQ:"여러분에게 ‘품질’이란 무엇인가요?",qualitySub:"정답은 없습니다. 여러분이 생각하는 품질을 한두 문장으로 들려주세요.",qualityPh:"예: 품질은 다음 공정과 고객에게 보내는 약속입니다.",qualityThanks:"품질 한마디가 등록되었습니다. 실시간 TOP5 평가에 반영됩니다."},
- en:{hero:"2026 DURING Quality Empathy Day",sub:"Join the current LIVE question.",name:"Name / Nickname *",dept:"Department / Team *",namePh:"e.g. Alex or nickname",submit:"Send answer",open:"Open",closed:"Closed",required:"Please enter your name/department and answer.",thanks:"Answer sent! Please wait for the next question.",already:"You already answered this question. Please wait for the next one.",qualitySubmit:"Submit Quality Voice",qualityQ:"What does ‘quality’ mean to you?",qualitySub:"There is no single correct answer. Share what quality means to you in one or two sentences.",qualityPh:"e.g. Quality is a promise to the next process and to our customers.",qualityThanks:"Your Quality Voice is submitted and included in the live TOP 3 evaluation."}
+ en:{hero:"2026 DURING Quality Empathy Day",sub:"Join the current LIVE question.",name:"Name / Nickname *",dept:"Department / Team *",namePh:"e.g. Alex or nickname",submit:"Send answer",open:"Open",closed:"Closed",required:"Please enter your name/department and answer.",thanks:"Answer sent! Please wait for the next question.",already:"You already answered this question. Please wait for the next one.",qualitySubmit:"Submit Quality Voice",qualityQ:"What does ‘quality’ mean to you?",qualitySub:"There is no single correct answer. Share what quality means to you in one or two sentences.",qualityPh:"e.g. Quality is a promise to the next process and to our customers.",qualityThanks:"Your Quality Voice is submitted and included in the live TOP5 evaluation."}
 };
 
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
@@ -1682,7 +1723,7 @@ function participantCount(raw){
 }
 function countsFor(rows,qid){const c={};for(const r of rows){if(r.quiz.questionId===qid)c[r.quiz.choice]=(c[r.quiz.choice]||0)+1}return c}
 
-function correctTop3(rows,qid){
+function correctTop5(rows,qid){
  const q=QUESTIONS.find(x=>x.id===qid);if(!q)return[];
  const seen=new Set(),out=[];
  for(const r of rows){
@@ -1691,7 +1732,7 @@ function correctTop3(rows,qid){
    if(seen.has(pid))continue;seen.add(pid);
    out.push({name:r.name||"",dept:r.dept||"",created_at:r.created_at||""})
  }
- return out.sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at))).slice(0,3)
+ return out.sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at))).slice(0,5)
 }
 
 function recentQuizResponses(rows,qid,limit=5){
@@ -1884,13 +1925,15 @@ function autoEvaluateQuality(responses){
 function qualityBreakdownText(w){const b=w?.breakdown||{};return `취지 ${b.purpose??0}/30 · 실천성 ${b.practice??0}/25 · 구체성 ${b.specific??0}/20 · 공감성 ${b.empathy??0}/15 · 창의성 ${b.creative??0}/10`}
 
 const params=new URLSearchParams(location.search),mode=params.get("mode")||"home";
-const viewId=mode==="participant"?"participantView":mode==="admin"?"adminView":mode==="live"?"liveView":"homeView";
+const viewId=mode==="participant"?"participantView":mode==="admin"?"adminView":mode==="live"?"liveView":mode==="exhibition"?"exhibitionView":"homeView";
 document.getElementById(viewId).classList.remove("hidden");
 document.body.className=mode==="live"?"live-body":"";
 
 if(typeof goLive!=="undefined")goLive.addEventListener("click",()=>goMode("live"));
 if(typeof goParticipant!=="undefined")goParticipant.addEventListener("click",()=>location.href=modeUrl("participant","ko"));
 if(typeof goAdmin!=="undefined")goAdmin.addEventListener("click",()=>goMode("admin"));
+if(typeof goExhibition!=="undefined")goExhibition.addEventListener("click",()=>goMode("exhibition"));
+if(typeof pGoExhibition!=="undefined")pGoExhibition.addEventListener("click",()=>goMode("exhibition"));
 
 if(mode!=="home"){
  backBtn.classList.remove("hidden");
@@ -1899,7 +1942,7 @@ if(mode!=="home"){
 }
 if(mode!=="home"&&mode!=="participant"){
  modeNav.classList.remove("hidden");
- navHome.href=currentBase();navLive.href=modeUrl("live");navParticipant.href=modeUrl("participant","ko");navAdmin.href=modeUrl("admin");
+ navHome.href=currentBase();navLive.href=modeUrl("live");navParticipant.href=modeUrl("participant","ko");navAdmin.href=modeUrl("admin");navExhibition.href=modeUrl("exhibition");
  modeNav.prepend(backBtn);
 }
 
@@ -1922,12 +1965,13 @@ if(mode==="participant"){
 
  function renderCurrent(){
    const t=I18N[lang],qs=getQuizState(lastState);
+    const started=Boolean(lastState?.is_open);quizArea.classList.toggle("hidden",!started);quizWaitGate.classList.toggle("hidden",started);identityBox.classList.toggle("hidden",!started);if(!started){pStateBadge.textContent="퀴즈 대기";pStateBadge.className="badge closed";return;}
    pStateBadge.textContent=lastState?.is_open?t.open:t.closed;pStateBadge.className="badge"+(lastState?.is_open?"":" closed");
 
    if(qs.showAll||qs.currentQuestion===0){
      pQuestionState.textContent="EVENT COMPLETE";pStep.textContent="THANK YOU";pProgress.style.width="100%";
      pQuestion.textContent=lang==="en"?"Thank you for joining!":"참여해 주셔서 감사합니다!";
-     pQuestionEn.textContent=lang==="en"?"Please see the LIVE screen for today's awards.":"LIVE 화면에서 오늘의 TOP3 결과를 확인해 주세요.";
+     pQuestionEn.textContent=lang==="en"?"Please see the LIVE screen for today's awards.":"LIVE 화면에서 오늘의 TOP5 결과를 확인해 주세요.";
      pOptions.innerHTML="";pQualityText.classList.add("hidden");pSubmit.classList.add("hidden");pNextCheck.classList.add("hidden");
      note(lang==="en"?"Please check the LIVE screen for the awards.":"퀴즈 및 품질 한마디 TOP5를 LIVE에서 발표합니다.","notice ok");return
    }
@@ -1989,7 +2033,7 @@ if(mode==="participant"){
 
 /* LIVE */
 if(mode==="live"){
- const joinUrl=modeUrl("participant");
+ const joinUrl=currentBase(); // one QR for quiz and exhibition
  const qrImg=document.getElementById("qrMain"),qrText=document.getElementById("qrLinkText");
  if(location.protocol==="file:"){
    qrImg.style.display="none";
@@ -2013,8 +2057,8 @@ if(mode==="live"){
 
  let liveState=null,liveRaw=[];
 
- function top3Html(rows,qid){
-   const top=correctTop3(rows,qid);
+ function top5Html(rows,qid){
+   const top=correctTop5(rows,qid);
    return top.length?`<div class="leaderboard">${top.map((w,i)=>`<div class="leader-card"><div class="place">${i+1}위 · 빠른 정답</div><div class="name">${esc(w.name)}</div><div class="score">${esc(w.dept)}</div></div>`).join("")}</div>`:'<div class="ai-note">아직 정답자가 없습니다.</div>'
  }
  function renderQuiz(q,counts,qs,rows){
@@ -2065,8 +2109,8 @@ if(mode==="live"){
    }
 
    lMessage.innerHTML=`<div class="live-message">${esc(q.messageKo)}<br><small>${esc(q.messageEn)}</small></div>
-   <div class="live-section-title gold">이 문제 빠른 정답 TOP 3</div>
-   ${top3Html(rows,q.id)}
+   <div class="live-section-title gold">이 문제 빠른 정답 TOP5</div>
+   ${top5Html(rows,q.id)}
    ${recentHtml}
    ${overallHtml}`;
  }
@@ -2211,7 +2255,7 @@ if(mode==="admin"){
    if(qs.showAll||qs.currentQuestion===0){
      const overall=quizOverallTop5(qr),qw=(Array.isArray(qs.qualityWinners)&&qs.qualityWinners.length)?qs.qualityWinners:autoEvaluateQuality(quality);
      aReveal.textContent="현재 문제 정답 공개";
-     aCurrent.innerHTML=`<b>현재 화면:</b> 시상 · 전체 결과<br><div class="prize-note">Q1~Q10 개인전 · 문제별 빠른 정답 TOP3 · 품질 한마디 100점 평가 TOP5</div>`;
+     aCurrent.innerHTML=`<b>현재 화면:</b> 시상 · 전체 결과<br><div class="prize-note">Q1~Q10 개인전 · 문제별 빠른 정답 TOP5 · 품질 한마디 100점 평가 TOP5</div>`;
      aResponses.innerHTML='<h3>QUIZ · 실시간 종합 TOP5</h3>'+(overall.length?overall.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right;font-weight:900">${w.correct}/${QUESTIONS.length} 정답 · ${esc(w.dept)}</span></div>`).join(''):'<div class="small">아직 퀴즈 응답이 없습니다.</div>')+'<h3 style="margin-top:22px">QUALITY VOICE TOP5</h3>'+(qw.length?qw.map((w,i)=>`<div class="resp-row"><b>TOP ${i+1} · ${esc(w.dept)} ${esc(w.name)} · ${esc(w.score)}점</b><br>${esc(w.answer)}<div class="small">${esc(qualityBreakdownText(w))}<br>${esc(w.reason||"")}</div></div>`).join(''):'<div class="small">아직 품질 한마디가 없습니다.</div>');
      return
    }
@@ -2225,11 +2269,11 @@ if(mode==="admin"){
      return
    }
 
-   const qi=Math.max(1,Math.min(QUESTIONS.length,qn)),q=QUESTIONS[qi-1],c=countsFor(qr,q.id),total=Object.values(c).reduce((a,b)=>a+b,0),top=correctTop3(qr,q.id);
+   const qi=Math.max(1,Math.min(QUESTIONS.length,qn)),q=QUESTIONS[qi-1],c=countsFor(qr,q.id),total=Object.values(c).reduce((a,b)=>a+b,0),top=correctTop5(qr,q.id);
    aReveal.textContent=qs.reveal?"현재 문제 정답 숨김":"현재 문제 정답 공개";
    aCurrent.innerHTML=`<b>Q${qi} · 개인전</b> ${esc(q.ko)}<br><span class="small">정답: ${q.correct} · 정답 공개 ${qs.reveal?"ON":"OFF"}</span>`;
    let base=q.options.map(o=>`<div class="resp-row"><b>${o.v}. ${esc(o.ko)} ${o.v===q.correct?'✓':''}</b><span style="float:right;font-weight:900">${c[o.v]||0}명</span><div class="small" style="margin-top:3px">${esc(o.en)}</div></div>`).join('')+`<div class="small" style="margin-top:8px">현재 문제 응답 ${total}건</div>`;
-   base+='<h3 style="margin-top:18px">빠른 정답 TOP3</h3>'+(top.length?top.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right">${esc(w.dept)}</span></div>`).join(''):'<div class="small">아직 정답자가 없습니다.</div>');
+   base+='<h3 style="margin-top:18px">빠른 정답 TOP5</h3>'+(top.length?top.map((w,i)=>`<div class="resp-row"><b>${i+1}위 · ${esc(w.name)}</b><span style="float:right">${esc(w.dept)}</span></div>`).join(''):'<div class="small">아직 정답자가 없습니다.</div>');
    const recent=recentQuizResponses(qr,q.id,5);
    base+='<h3 style="margin-top:18px">실시간 최근 응답 5건</h3>'+(recent.length?recent.map(r=>`<div class="resp-row"><b>${esc(r.name)}</b> · ${esc(r.dept)}<span style="float:right">${esc(recentTimeLabel(r.created_at))}</span><div class="small">${qs.reveal?`${esc(r.choice)} 선택 · ${r.correct?"정답":"오답"}`:"응답 완료 · 정답 공개 전 선택값 숨김"}</div></div>`).join(''):'<div class="small">아직 응답이 없습니다.</div>');
    aResponses.innerHTML=base
@@ -2239,4 +2283,69 @@ if(mode==="admin"){
  refreshAdmin();setInterval(refreshAdmin,1200)
 }
 
-</script></body></html>
+</script>
+<script>
+/* EXHIBITION MODULE - original quiz routines are unchanged except QR entry and pre-start gate. */
+const EX_DRAFT=[{"id":"EX001","name":"LINK OVERMOLD","system":"액추에이터 관련 인서트 사출부품","role":"자석을 일체화해 위치·상태 감지 구조를 형성하는 부품(적용 기능 확인 필요)","feature":"제품별 상세 기능은 관리자 검토 후 보완해 주세요.","process":"사출 → 인서트/조립 → 검사 → 출하","defect":"Magnet 누락","cause":"수동 Magnet 삽입 과정의 누락","risk":"자기 감지 기능 이상 및 후공정 조립 오류 가능성","point":"Magnet 유무 전수검출, 삽입 지그, 누락방지 인터록","customer":"보그워너","date":"2026.01.05","qty":"1EA","source":"2026 상반기 PPT 1페이지","image":"assets/first-01.jpg","images":["assets/first-01.jpg"],"published":true,"sort_order":1,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX002","name":"TAS Gen3.0 Connector","system":"조향 시스템","role":"조향 관련 전장 커넥터 부품의 전기적 연결·보호","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"사출 → 인서트/조립 → 검사 → 출하","defect":"사출 성형불량","cause":"쿠션량 4.5 수준에서 간헐적으로 0.7까지 감소, 체크링 마모 의심","risk":"형상·치수 이상으로 커넥터 조립 및 접속 불량 가능성","point":"쿠션량 관리, 체크링 상태 점검, 성형 외관·치수 검증","customer":"HL Klemove","date":"2026년 1월","qty":"136EA","source":"2026 상반기 PPT 3페이지","image":"assets/first-03.jpg","images":["assets/first-03.jpg"],"published":true,"sort_order":2,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX003","name":"PCSV KEV1 2차 POT Ass’y","system":"엔진 증발가스 제어","role":"퍼지 솔레노이드 밸브의 코일 구동 및 제어 계통 부품","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"터미널 휨","cause":"불량 취출 후 한쪽 제품 잔존을 센서가 감지하지 못함","risk":"터미널 연결불량, 후공정 충돌 및 추가 손상 위험","point":"취출 잔존품 감지, 센서 위치 개선, 터미널 형상 확인","customer":"현대케피코","date":"2026년 1월","qty":"224EA","source":"2026 상반기 PPT 4페이지","image":"assets/first-04.jpg","images":["assets/first-04.jpg"],"published":true,"sort_order":3,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX004","name":"IMEB2 ECU Housing Ass’y","system":"전자식 제동 시스템","role":"전자제어장치의 구조적 고정·보호 및 조립 정합성 유지","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"사출 → 인서트/조립 → 검사 → 출하","defect":"샤프트 자성에 따른 Gauss 하한","cause":"원인 미확정, 유출방지대책 수립 진행","risk":"자기 특성 요구치 미달로 시스템 성능 영향 가능성","point":"자기특성 검사, 샤프트 취급 및 유출차단 관리","customer":"현대모비스","date":"2026년 2월","qty":"21EA(모비스 Ass’y 기준)","source":"2026 상반기 PPT 5페이지","image":"assets/first-05.jpg","images":["assets/first-05.jpg"],"published":true,"sort_order":4,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX005","name":"KEV BOBBIN PPS","system":"엔진 증발가스 제어","role":"솔레노이드 코일을 일정한 위치에 유지하고 절연하는 PPS 보빈","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"사출 → 인서트/조립 → 검사 → 출하","defect":"BOBBIN END 파손·WIRE 홈이탈","cause":"디버링 시 플레이트와 제품 간섭으로 끝단 파손","risk":"권선 위치이탈, 절연 및 코일 기능 불안정 가능성","point":"보빈 끝단 파손, 디버링 간섭, WIRE 안착상태","customer":"현대케피코","date":"2026년 1~2월","qty":"1월 270EA / 2월 240EA","source":"2026 상반기 PPT 6페이지","image":"assets/first-06.jpg","images":["assets/first-06.jpg"],"published":true,"sort_order":5,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX006","name":"MEB5 IV Coil Ass’y","system":"차량 제동 제어","role":"솔레노이드 구동을 위한 전자기력을 발생시키는 코일 조립품","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"리드핀 납 뭉침","cause":"솔더조 내 온도 편차에 따른 납 용융 부족, 히터 고정 불안정 가능성","risk":"전기적 접속 불안정 및 납뭉침에 따른 조립 간섭 가능성","point":"솔더 온도 균일도, 납뭉침·젖음성, 히터 고정 상태","customer":"현대모비스","date":"2026년 2월","qty":"69EA","source":"2026 상반기 PPT 7페이지","image":"assets/first-07.jpg","images":["assets/first-07.jpg"],"published":true,"sort_order":6,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX007","name":"치수·후크부 형상 관리 사례","system":"사출·조립부품 공통","role":"후크 체결과 치수 정합성이 요구되는 사출 부품 사례","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"평면도·후크 높이·내측 폭 치수 NG","cause":"첨부자료에 실제 측정치와 규격 이탈 제시(원인 정보 없음)","risk":"조립 체결력 저하·간섭 및 위치불일치 가능성","point":"중요 치수 전항목 측정, 금형별 편차, 후크 체결성","customer":"미기재","date":"상반기 사례","qty":"미기재","source":"2026 상반기 PPT 8페이지","image":"assets/first-08.jpg","images":["assets/first-08.jpg"],"published":true,"sort_order":7,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX008","name":"저항용접 접합강도 관리 사례","system":"권선·용접부품 공통","role":"코일과 터미널 사이에 전기적·기계적 접합을 형성","feature":"제품별 상세 기능은 관리자 검토 후 보완해 주세요.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"외관 용접흔 존재하나 내부 융착 부족","cause":"원인 정보 없음(외관만으로 접합 상태 판단 불가)","risk":"접촉저항 증가, 단선 및 진동 내구성 저하 가능성","point":"용접 전류·가압력·시간, 파단면, 접합강도 검증","customer":"미기재","date":"상반기 사례","qty":"미기재","source":"2026 상반기 PPT 9페이지","image":"assets/first-09.jpg","images":["assets/first-09.jpg"],"published":true,"sort_order":8,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX009","name":"MEB5 3차 IV Coil Ass’y","system":"차량 제동 제어","role":"유압 제어 솔레노이드의 전자기 구동 코일","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"START 랩핑부 솔더 스크래치","cause":"솔더 완료 후 이송부 클램프·가이드 간섭 추정","risk":"피복·접합부 손상으로 전기적 신뢰성 저하 가능성","point":"이송부 간섭, 랩핑부 외관, 솔더 품질","customer":"현대모비스","date":"2026.03.25","qty":"1EA","source":"2026 상반기 PPT 10페이지","image":"assets/first-10.jpg","images":["assets/first-10.jpg"],"published":true,"sort_order":9,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX010","name":"MEB5 ESCi Housing","system":"전자식 제동 시스템","role":"제동 모듈의 모터핀·커넥터 부품을 고정·보호","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"사출 → 인서트/조립 → 검사 → 출하","defect":"Motor Pin Support 역방향 인서트 사출","cause":"방향결정 에러 조치 후 삽입 방향 확인 미흡","risk":"모터핀 방향·위치 불일치로 조립불량 가능성","point":"방향 검출·인터록, 에러 해제 후 재확인, 인서트 방향","customer":"현대모비스","date":"2026.02.26","qty":"252EA","source":"2026 상반기 PPT 11페이지","image":"assets/first-11.jpg","images":["assets/first-11.jpg"],"published":true,"sort_order":10,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX011","name":"IMEB2 Housing 레이저 마킹","system":"전자식 제동 시스템","role":"제동 모듈용 하우징 및 제품 추적성 식별","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"사출 → 인서트/조립 → 검사 → 출하","defect":"바코드 마킹 틀어짐","cause":"제품과 고정 플레이트 간극으로 마킹 중 흔들림","risk":"바코드 인식 실패·이력 추적성 저하 가능성","point":"제품 고정 반복성, 마킹 위치, 코드 인식 전수검사","customer":"현대모비스","date":"2026년 2~4월","qty":"81EA","source":"2026 상반기 PPT 12페이지","image":"assets/first-12.jpg","images":["assets/first-12.jpg"],"published":true,"sort_order":11,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX012","name":"EV-6 Natural Variant Coil Ass’y","system":"자동차 전자기 구동부","role":"솔레노이드 작동을 위한 권선·용접 코일","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"End부 용접 미흡","cause":"조건별 재현시험에서 불량 미재현(원인 미확정)","risk":"접속 불량·단선으로 구동 기능 저하 가능성","point":"용접 가압력·통전·접합강도, 이상 즉시 보고","customer":"KVP (현대케피코 베트남)","date":"2026.04.15","qty":"1EA","source":"2026 상반기 PPT 13페이지","image":"assets/first-13.jpg","images":["assets/first-13.jpg"],"published":true,"sort_order":12,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX013","name":"MEB5 ESCi Housing Ass’y","system":"전자식 제동 시스템","role":"모터핀·씰을 조립한 제동용 하우징","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"사출 → 인서트/조립 → 검사 → 출하","defect":"O-ring 이중 조립","cause":"실린더 전후진 센서 신호 중첩으로 그리퍼 2회 동작","risk":"씰 위치·체결불량, 기밀·조립 신뢰성 저하 가능성","point":"O-ring 1개 투입 검증, 센서 시퀀스, 조립 후 검출","customer":"현대모비스","date":"2026.05.26","qty":"2EA","source":"2026 상반기 PPT 14페이지","image":"assets/first-14.jpg","images":["assets/first-14.jpg"],"published":true,"sort_order":13,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX014","name":"MEB5 Coil Ass’y (HSV)","system":"전자식 제동 시스템","role":"HSV 제어용 솔레노이드 코일 조립품","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"WIRE 홈이탈","cause":"자료에 생산처 에스이 및 불량 현상 제시(원인 미기재)","risk":"WIRE 손상·절연 불안정 및 권선 신뢰성 저하 가능성","point":"WIRE 홈 안착, 가이드·간섭, 권선 외관","customer":"에스이","date":"2026년 하반기","qty":"미기재","source":"2026 하반기 PPT 1페이지","image":"assets/second-1.jpg","images":["assets/second-1.jpg"],"published":true,"sort_order":14,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX015","name":"LRR30 Housing","system":"차량 전장 하우징","role":"내부 구성부품의 정렬·보호 및 후크 체결","feature":"제품별 상세 기능은 관리자 검토 후 보완해 주세요.","process":"사출 → 인서트/조립 → 검사 → 출하","defect":"Hook부 형상 불량","cause":"사내 문제 발견 후 고객 재고 즉시 조치(원인 미기재)","risk":"후크 체결력 저하·이탈 및 조립 간섭 가능성","point":"Hook 형상, 금형 상태, 체결력·조립성","customer":"고객사 유출 사례","date":"2026년 하반기","qty":"미기재","source":"2026 하반기 PPT 2페이지","image":"assets/second-2.jpg","images":["assets/second-2.jpg"],"published":true,"sort_order":15,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX016","name":"IDB Gen2 Coil Ass’y (NC)","system":"전자식 제동 시스템","role":"제동 솔레노이드 제어를 위한 코일 조립품","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"터미널 용접 누락","cause":"자료에 생산처 DS 및 용접 누락 현상 제시(원인 미기재)","risk":"코일 전기 회로 단절로 제어 기능 불능 가능성","point":"용접 유무, 접합강도, 전기저항, 비전 검사","customer":"디에스","date":"2026년 하반기","qty":"미기재","source":"2026 하반기 PPT 3페이지","image":"assets/second-3.jpg","images":["assets/second-3.jpg"],"published":true,"sort_order":16,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX017","name":"700G Spool Ass’y","system":"자동차 전자기 제어부","role":"스풀·터미널을 포함한 기구 및 전기 연결 구성품(적용 시스템 확인 필요)","feature":"제품의 위치·형상·전기적 특성을 안정적으로 유지하여 적용 시스템의 정상 작동을 지원합니다.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"부품 조립불량","cause":"고객 불량으로 제시(원인 미기재)","risk":"기구 간섭·전기 접촉 및 후공정 체결 이상 가능성","point":"부품 안착·조립방향, 터미널 형상, 체결상태","customer":"유라테크","date":"2026년 하반기","qty":"미기재","source":"2026 하반기 PPT 4페이지","image":"assets/second-4.jpg","images":["assets/second-4.jpg"],"published":true,"sort_order":17,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."},{"id":"EX018","name":"ARF Arm Spring","system":"자동차 기구·복귀 구조","role":"스프링 탄성력으로 기구의 위치 유지·복귀를 보조","feature":"제품별 상세 기능은 관리자 검토 후 보완해 주세요.","process":"권선/부품조립 → 접합/조립 → 검사 → 출하","defect":"탄성부 GAP 초과","cause":"자료에 동광테크 생산품의 GAP 규격 초과 제시","risk":"탄성력·작동 위치 불안정 및 조립 간섭 가능성","point":"GAP 치수, 스프링 하중, 형상 변형","customer":"동광테크","date":"2026년 하반기","qty":"미기재","source":"2026 하반기 PPT 5페이지","image":"assets/second-5.jpg","images":["assets/second-5.jpg"],"published":true,"sort_order":18,"review":"제품 기능·위험은 교육 목적의 기술적 추정이며 적용 시스템과 최종 영향은 검토 필요. 불량 현상·원인·수량은 PPT 내용 기반."}];
+const EX_TABLE='quality_day_exhibits';const EX_BUCKET='quality-day-exhibits';
+let exRows=[],exSession=null,exEdit=null;
+const exFields=[['id','제품 ID','text'],['name','제품명','text'],['system','적용 시스템·제품군','text'],['role','제품 기능·역할','textarea'],['feature','추가 기능 설명','textarea'],['process','주요 제조공정','textarea'],['defect','과거 불량 현상','textarea'],['cause','불량 원인 (자료 기준)','textarea'],['risk','발생 가능한 위험 (검토 초안)','textarea'],['point','핵심 품질관리 POINT','textarea'],['customer','고객사/생산처','text'],['date','발생 시점','text'],['qty','불량 수량','text'],['source','자료 출처','text'],['review','검토 필요사항','textarea'],['sort_order','전시 순서','number'],['published','관람객 공개','checkbox']];
+function exAuthHeaders(){return {...headers(),...(exSession?.access_token?{Authorization:'Bearer '+exSession.access_token}:{})}}
+function exAbs(path){if(!path)return '';if(/^https?:\/\//i.test(path)||path.startsWith('data:'))return path;return new URL(path,currentBase()).href}
+async function exRequest(path,options={}){const res=await fetch(apiBase+path,{...options,headers:{...exAuthHeaders(),...(options.headers||{})}});const body=await res.text();if(!res.ok)throw new Error((()=>{try{const j=JSON.parse(body);return j.message||j.error||body}catch(e){return body}})());return body?JSON.parse(body):null}
+async function exGetRows(){try{const data=await exRequest('/rest/v1/'+EX_TABLE+'?select=*&order=sort_order.asc');return Array.isArray(data)?data:[]}catch(e){console.error('Exhibition data load error',e);if(mode==='exhibition'){const b=document.getElementById('exSourceBanner');if(b){b.classList.remove('hidden');b.textContent='Supabase 조회 오류: '+e.message+' · DB 연결 및 RLS 정책을 확인해주세요.';}}return []}}
+function exItemById(id){return exRows.find(p=>p.id===id)}
+function exRender(){
+ if(mode!=='exhibition')return;
+ const search=(exSearch.value||'').toLowerCase().trim(),group=exGroup.value;
+ const gr=[...new Set(exRows.filter(p=>p.published!==false).map(p=>p.system).filter(Boolean))].sort();
+ exGroup.innerHTML='<option value="">전체 제품군</option>'+gr.map(g=>`<option value="${esc(g)}" ${g===group?'selected':''}>${esc(g)}</option>`).join('');
+ const view=exRows.filter(p=>p.published!==false&&(!group||p.system===group)&&(!search||[p.name,p.system,p.defect,p.point,p.role].some(x=>String(x||'').toLowerCase().includes(search))));
+ exCount.textContent=`전시제품 ${exRows.filter(p=>p.published!==false).length}종 · 검색결과 ${view.length}종`;
+ const statusBanner=document.getElementById('exSourceBanner');if(statusBanner){statusBanner.classList.toggle('hidden',exRows.length!==0);statusBanner.textContent=exRows.length===0?'제품 전시 서버에 등록된 데이터가 없습니다. 관리자 계정으로 로그인 후 PPT 초안을 1회 등록하면 제품 사진과 상세 카드가 표시됩니다.':'';}
+ exCards.innerHTML=view.map(p=>`<button type="button" class="ex-tile" data-id="${esc(p.id)}"><img src="${esc(exAbs(p.image||(p.images||[])[0]))}" alt="${esc(p.name)} 제품 사진" loading="lazy" onerror="this.style.visibility='hidden'"><div class="ex-tile-body"><div class="ex-eyebrow">DURING · PRODUCT</div><b>${esc(p.name)}</b><div class="small">${esc(p.system)}</div><div class="small ex-defect"><strong>품질 사례</strong> ${esc(p.defect||'등록 전')}</div><div class="small" style="color:#1c69b7;font-weight:900">제품 상세정보 보기 ›</div></div></button>`).join('')||(exRows.length===0?'<section class="ex-empty"><h3>전시제품의 서버 등록이 아직 완료되지 않았습니다.</h3><p>화면 디자인이 깨진 것이 아니라 Supabase <b>quality_day_exhibits</b> 테이블에 공개 제품이 0건인 상태입니다.</p><p>관리자 화면 → 제품 전시관 관리 → 이메일 로그인 → <b>PPT 초안 서버에 일괄 등록</b> 버튼을 한 번 눌러주세요.</p><a href="'+esc(modeUrl('admin'))+'">관리자 화면에서 제품 등록하기</a></section>':'<section class="ex-empty"><h3>검색 결과가 없습니다.</h3><p>검색어 또는 제품군 조건을 변경해주세요.</p></section>');
+ exCards.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>exShowDetail(b.dataset.id));
+}
+function exShowDetail(id){
+ const p=exItemById(id);if(!p)return;
+ exListArea.classList.add('hidden');exDetails.classList.remove('hidden');
+ const images=(p.images?.length?p.images:(p.image?[p.image]:[])).filter(Boolean);
+ const items=text=>String(text||'').split(/\n|\s*→\s*|\s*[,;] \s*/).map(x=>x.trim()).filter(Boolean);
+ const qpoints=String(p.point||'').split(/\n|[,;] */).map(x=>x.trim()).filter(Boolean);
+ const overview=String(p.role||p.feature||'제품 기능 설명을 준비하고 있습니다.');
+ const gallery=images.length?`<div class="ex-gallery-main"><img id="exFocusImg" src="${esc(exAbs(images[0]))}" alt="${esc(p.name)} 사진"></div><div class="ex-thumbs">${images.map((im,i)=>`<button type="button" class="ex-thumb ${i===0?'active':''}" data-photo-index="${i}" aria-label="사진 ${i+1} 보기"><img src="${esc(exAbs(im))}" alt="사진 ${i+1}"></button>`).join('')}</div>`:'<div class="ex-gallery-main" style="color:#6b86a1">등록된 사진이 없습니다.</div>';
+ exDetails.innerHTML=`
+ <div class="row" style="justify-content:space-between;margin-bottom:14px"><button id="exBack" class="btn gray" type="button">← 전시제품 목록</button><span class="ex-status">상시 전시 · PRODUCT EXHIBITION</span></div>
+ <div class="ex-gallery-layout"><div class="ex-white">${gallery}</div><div class="ex-white"><div class="ex-eyebrow">DURING · PRODUCT & QUALITY</div><h2 class="ex-product-title">${esc(p.name)}</h2><div><span class="ex-tag">${esc(p.system||'자동차 부품')}</span><span class="ex-tag">품질공감데이</span></div><div class="ex-summary">${esc(overview)}</div><div class="ex-info soft" style="margin-top:16px"><h3>이 제품은 어디에 사용될까요?</h3><p>${esc(p.system||'적용 시스템 검토 중')}</p></div></div></div>
+ <div class="ex-section-grid">
+ <section class="ex-info"><h3>01 · 제품의 기능과 역할</h3><p>${esc(p.feature||p.role||'등록 전')}</p></section>
+ <section class="ex-info"><h3>02 · DURING 주요 제조공정</h3><div class="ex-process-steps">${items(p.process).map((t,i)=>`${i?'<span style="color:#8194ac">→</span>':''}<span class="ex-process-step">${esc(t)}</span>`).join('')||'등록 전'}</div></section>
+ <section class="ex-info warning"><h3>03 · 실제 발생한 품질 불량</h3><p><b>${esc(p.defect||'미등록')}</b></p>${p.cause?`<div style="margin-top:12px;color:#7a584c"><strong>발생 원인 (자료 기준)</strong><div>${esc(p.cause)}</div></div>`:''}</section>
+ <section class="ex-info warning"><h3>04 · 어떤 문제가 발생할 수 있을까요?</h3><p>${esc(p.risk||'기술 검토 중')}</p><div style="font-size:12px;color:#a06d53;margin-top:9px">※ 잠재적 위험으로 실제 발생 결과와 구분합니다.</div></section>
+ <section class="ex-info point wide"><h3>05 · 핵심 품질관리 POINT</h3><div class="ex-q-list">${qpoints.map(q=>`<div class="ex-q-point">${esc(q)}</div>`).join('')||'관리 항목 등록 전'}</div></section>
+ </div>
+ <div class="ex-message">“작은 품질 차이가 자동차의 안전과 신뢰를 만듭니다.”<br><small>QUALITY STARTS WITH ME</small></div>
+ <div class="ex-disclaimer"><strong>전시 자료 안내</strong> · ${esc(p.source||'품질공감데이')}<div>고객/생산처: ${esc(p.customer||'—')} · 발생 시점: ${esc(p.date||'—')} · 관련 수량: ${esc(p.qty||'—')}</div>${p.review?`<div style="margin-top:7px">${esc(p.review)}</div>`:''}</div>`;
+ document.getElementById('exBack').onclick=()=>{exDetails.classList.add('hidden');exListArea.classList.remove('hidden');exDetails.innerHTML='';window.scrollTo({top:0,behavior:'smooth'})};
+ exDetails.querySelectorAll('[data-photo-index]').forEach(b=>b.onclick=()=>{const i=Number(b.dataset.photoIndex);const img=document.getElementById('exFocusImg');if(img)img.src=exAbs(images[i]);exDetails.querySelectorAll('.ex-thumb').forEach(el=>el.classList.toggle('active',el===b))});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+async function exLoad(){exRows=await exGetRows();exRender();exRenderAdmin()}
+if(mode==='exhibition'){exSearch.addEventListener('input',exRender);exGroup.addEventListener('change',exRender);exLoad()}
+async function exSignIn(email,password){const res=await fetch(apiBase+'/auth/v1/token?grant_type=password',{method:'POST',headers:headers(),body:JSON.stringify({email,password})});const j=await res.json();if(!res.ok)throw new Error(j.error_description||j.msg||j.message||'로그인 실패');return j}
+async function exCheckRole(){const data=await exRequest('/rest/v1/quality_day_exhibit_admins?select=user_id&user_id=eq.'+encodeURIComponent(exSession.user.id));if(!data?.length)throw new Error('관리자 허용 목록에 등록되지 않은 계정입니다. setup.sql에서 사용자 UUID를 등록해주세요.')}
+if(mode==='admin'){
+exLogin.onclick=async()=>{try{exLogin.disabled=true;exSession=await exSignIn(exEmail.value.trim(),exPassword.value);await exCheckRole();exAdminArea.classList.remove('hidden');exLogout.classList.remove('hidden');exLoginMsg.textContent='전시 관리자 인증 성공';await exLoad()}catch(e){exSession=null;exLoginMsg.textContent='로그인 실패: '+e.message}finally{exLogin.disabled=false}};
+exLogout.onclick=()=>{exSession=null;exAdminArea.classList.add('hidden');exLogout.classList.add('hidden');exLoginMsg.textContent='로그아웃되었습니다.'};
+exNew.onclick=()=>exOpenEditor(null);exCancel.onclick=()=>exEditor.classList.add('hidden');exRefreshAdmin.onclick=exLoad;
+exSeed.onclick=async()=>{if(!exSession)return;if(!confirm('PPT 초안 18종을 서버에 최초 등록할까요? 이미 등록된 제품은 유지합니다.'))return;try{const live=await exRequest('/rest/v1/'+EX_TABLE+'?select=id');const ids=new Set(live.map(x=>x.id));const add=EX_DRAFT.filter(x=>!ids.has(x.id));if(add.length)await exRequest('/rest/v1/'+EX_TABLE,{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(add)});exLoginMsg.textContent=add.length+'종 등록 완료 (기존 '+ids.size+'종 유지)';await exLoad()}catch(e){exLoginMsg.textContent='초안 등록 실패: '+e.message}};
+exSave.onclick=exSaveEditor;
+}
+function exRenderAdmin(){if(mode!=='admin'||!exSession)return;exAdminList.innerHTML=exRows.map(p=>`<div class="ex-admin-row"><div><b>${esc(p.name)}</b><div class="small">${esc(p.id)} · ${p.published===false?'비공개':'공개'}</div></div><div class="row"><button class="btn cyan" data-edit="${esc(p.id)}">수정</button><button class="btn gray" data-del="${esc(p.id)}">삭제</button></div></div>`).join('')||'<div class="notice">아직 등록된 전시제품이 없습니다. 위 <b>PPT 초안 서버에 일괄 등록</b> 버튼을 누르면 18개 제품 초안이 등록됩니다.</div>';exAdminList.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>exOpenEditor(exItemById(b.dataset.edit)));exAdminList.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>exDelete(b.dataset.del))}
+function exOpenEditor(p){exEdit=p?structuredClone(p):{id:'EX'+Date.now().toString().slice(-8),name:'',system:'',published:true,images:[],sort_order:exRows.length+1};exEditor.classList.remove('hidden');exEditorTitle.textContent=p?'전시제품 수정':'신규 전시제품 등록';exForm.innerHTML=exFields.map(([key,label,type])=>`<div class="${type==='textarea'?'wide':''}"><label for="ef_${key}">${esc(label)}</label>${type==='textarea'?`<textarea id="ef_${key}">${esc(exEdit[key]||'')}</textarea>`:type==='checkbox'?`<input id="ef_${key}" type="checkbox" style="width:25px;height:25px" ${exEdit[key]!==false?'checked':''}>`:`<input id="ef_${key}" type="${type}" value="${esc(exEdit[key]??'')}">`}</div>`).join('');exRenderPhotos();exEditMsg.textContent='';exEditor.scrollIntoView({behavior:'smooth'})}
+function exRenderPhotos(){const imgs=exEdit.images?.length?exEdit.images:(exEdit.image?[exEdit.image]:[]);exPhotoList.innerHTML=imgs.map((src,i)=>`<div class="ex-photo-entry"><img src="${esc(exAbs(src))}" alt="등록사진"><button type="button" class="btn gray" data-photo="${i}">사진 제거</button></div>`).join('');exPhotoList.querySelectorAll('[data-photo]').forEach(b=>b.onclick=()=>{const imgs=exEdit.images?.length?exEdit.images:[exEdit.image].filter(Boolean);imgs.splice(Number(b.dataset.photo),1);exEdit.images=imgs;exEdit.image=imgs[0]||'';exRenderPhotos()})}
+async function exUploadFiles(productId){const files=[...exUpload.files];for(const file of files){if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw new Error('JPG/PNG/WEBP 형식만 허용됩니다.');if(file.size>5*1024*1024)throw new Error('5MB보다 큰 사진이 있습니다: '+file.name);const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';const path=productId+'/'+Date.now()+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;const res=await fetch(apiBase+'/storage/v1/object/'+EX_BUCKET+'/'+path,{method:'POST',headers:{apikey:CONFIG.SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+exSession.access_token,'Content-Type':file.type,'x-upsert':'false'},body:file});if(!res.ok)throw new Error('사진 업로드 실패: '+await res.text());exEdit.images=exEdit.images||[];exEdit.images.push(apiBase+'/storage/v1/object/public/'+EX_BUCKET+'/'+path)}exEdit.image=exEdit.images?.[0]||'';exUpload.value='';exRenderPhotos()}
+async function exSaveEditor(){if(!exSession)return;try{exSave.disabled=true;for(const [key,,type] of exFields){const el=document.getElementById('ef_'+key);exEdit[key]=type==='checkbox'?el.checked:type==='number'?Number(el.value||0):el.value.trim()}if(!exEdit.id||!exEdit.name)throw new Error('제품 ID와 제품명을 입력해 주세요.');await exUploadFiles(exEdit.id);const payload={...exEdit};delete payload.created_at;delete payload.updated_at;await exRequest('/rest/v1/'+EX_TABLE+'?on_conflict=id',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify([payload])});exEditMsg.className='notice ok';exEditMsg.textContent='서버 저장 완료';await exLoad()}catch(e){exEditMsg.className='notice error';exEditMsg.textContent='저장 실패: '+e.message}finally{exSave.disabled=false}}
+async function exDelete(id){if(!exSession||!confirm('제품 '+id+'를 삭제하시겠습니까? 삭제 후 복구는 백업이 필요합니다.'))return;try{await exRequest('/rest/v1/'+EX_TABLE+'?id=eq.'+encodeURIComponent(id),{method:'DELETE'});await exLoad()}catch(e){exLoginMsg.textContent='삭제 실패: '+e.message}}
+</script>
+</body></html>
