@@ -213,8 +213,8 @@ input,textarea,select{width:100%;border:1px solid #c9d6e6;border-radius:12px;pad
 @media(max-width:570px){.ex-grid{grid-template-columns:1fr}.ex-tile img{height:220px}}
 
 /* V5.1: prevent top-right navigation overlap and improve empty/preview states */
-body:has(#exhibitionView:not(.hidden)) .mode-nav,body:has(#adminView:not(.hidden)) .mode-nav{position:relative;top:auto;right:auto;max-width:1120px;margin:10px auto 0;justify-content:flex-end;padding:0 14px;flex-wrap:wrap}
-body:has(#exhibitionView:not(.hidden)) .back-btn:not(.mode-nav .back-btn){position:relative;top:auto;right:auto}
+/* Navigation is fixed at top-right for every operational view. */
+
 .ex-empty{grid-column:1/-1;background:#fff;border:1px solid #d6e5f6;border-radius:18px;padding:28px;box-shadow:0 7px 22px rgba(10,39,73,.05);line-height:1.8}
 .ex-empty h3{color:#123d6b;margin:0 0 10px;font-size:22px}.ex-empty p{color:#647b98;margin:4px 0}.ex-empty a{display:inline-block;margin-top:13px;background:#2362c4;color:#fff;text-decoration:none;font-weight:900;border-radius:12px;padding:12px 16px}
 .ex-alert{border:1px solid #f0d9b2;background:#fffaef;color:#865a18;padding:12px 15px;border-radius:12px;margin:0 0 16px;font-size:13px;line-height:1.6}
@@ -231,6 +231,16 @@ body:has(#exhibitionView:not(.hidden)) .back-btn:not(.mode-nav .back-btn){positi
 .ex-photo-entry{width:174px;border-radius:13px;padding:8px}.ex-photo-entry img{height:110px;object-fit:contain;background:#eef4fa;border-radius:8px}.ex-photo-entry button{background:#fff0f0;color:#a02b38;border:1px solid #ffccd1;margin:5px 3px}.ex-admin-row{padding:12px;border:1px solid #e1e9f2}.ex-editor-split{display:grid;grid-template-columns:1fr;gap:10px}
 @media(max-width:800px){.ex-gallery-layout,.ex-section-grid{grid-template-columns:1fr}.ex-info.wide{grid-column:auto}.ex-hero{padding:25px 22px}.ex-gallery-main{height:270px}.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.ex-grid{grid-template-columns:1fr}.ex-tile img{height:220px}.ex-white{padding:15px}.ex-filter-card .row select{width:100%!important}.ex-info{padding:17px}.ex-thumbs .ex-thumb{flex-basis:85px}}
+
+/* V5.2: common top navigation always visible (not placed after the entire page). */
+.mode-nav{position:fixed!important;top:10px!important;right:12px!important;left:auto!important;z-index:120!important;max-width:min(100vw - 24px,690px);display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:6px;padding:6px!important;margin:0!important;border-radius:14px;background:rgba(244,247,251,.96);box-shadow:0 4px 20px rgba(7,28,52,.13);border:1px solid #dce4ef;backdrop-filter:blur(8px)}
+.mode-nav.hidden{display:none!important}
+.mode-nav a,.mode-nav .back-btn{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;background:#fff;border:1px solid #cbd8e7;border-radius:999px;padding:9px 12px;font-size:12px;line-height:1.25;font-weight:850;color:#173454;text-decoration:none;cursor:pointer}
+.mode-nav a[aria-current="page"]{background:#194f94;color:#fff;border-color:#194f94}
+.mode-nav a:hover,.mode-nav .back-btn:hover{border-color:#316bc0}
+body:has(#adminView:not(.hidden)) #adminView>.wrap,body:has(#exhibitionView:not(.hidden)) #exhibitionView>.wrap,body:has(#participantView:not(.hidden)) #participantView>.wrap{padding-top:72px}
+body:has(#liveView:not(.hidden)) #liveView>.live-wrap{padding-top:70px}
+@media(max-width:650px){.mode-nav{top:5px!important;right:5px!important;max-width:calc(100vw - 10px);gap:3px;padding:5px!important;border-radius:10px}.mode-nav a,.mode-nav .back-btn{font-size:10px;padding:7px 8px}body:has(#adminView:not(.hidden)) #adminView>.wrap,body:has(#exhibitionView:not(.hidden)) #exhibitionView>.wrap,body:has(#participantView:not(.hidden)) #participantView>.wrap{padding-top:82px}body:has(#liveView:not(.hidden)) #liveView>.live-wrap{padding-top:86px}}
 
 </style></head><body>
 
@@ -1940,10 +1950,12 @@ if(mode!=="home"){
  backBtn.textContent=params.get("lang")==="en"?"← Back":"← 뒤로가기";
  backBtn.addEventListener("click",()=>history.length>1?history.back():location.href=currentBase())
 }
-if(mode!=="home"&&mode!=="participant"){
+if(mode!=="home"){
  modeNav.classList.remove("hidden");
  navHome.href=currentBase();navLive.href=modeUrl("live");navParticipant.href=modeUrl("participant","ko");navAdmin.href=modeUrl("admin");navExhibition.href=modeUrl("exhibition");
  modeNav.prepend(backBtn);
+ const currentNav={live:navLive,participant:navParticipant,exhibition:navExhibition,admin:navAdmin}[mode];
+ if(currentNav)currentNav.setAttribute("aria-current","page");
 }
 
 /* PARTICIPANT */
